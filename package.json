@@ -9,7 +9,9 @@
   "dependencies": {
     "native-base": "^2.0.12",
     "react": "~15.4.1",
-    "react-native": "0.42.0"
+    "react-native": "0.42.0",
+    "showDevMenu": "adb shell input keyevent 82",
+    "connectToDev": "adb reverse tcp:8081 tcp:8081"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",
