@@ -9,45 +9,65 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator
 } from 'react-native';
+import {
+  Header,
+  Left,
+  Button,
+  Icon,
+  Body,
+  Right,
+  Container,
+  Content,
+  Title,
+  StyleProvider
+} from 'native-base';
+import ListPage from './components/Scenes/ListPage.js';
+import AppDrawer from './components/Drawer/AppDrawer.js';
+import getTheme from './native-base-theme/components';
+import platform from './native-base-theme/variables/platform';
+
 
 export default class fiveMJournalNative extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      title:"My Journals",
+    };
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <StyleProvider style={getTheme(platform)}>
+        <AppDrawer ref="appDrawer">
+          <Container>
+            <Header>
+              <Left>
+                <Button transparent onPress={()=>{this.refs.appDrawer._drawer._root.open()}}>
+                  <Icon name='menu' />
+                </Button>
+              </Left>
+              <Body>
+                <Title>{this.state.title}</Title>
+              </Body>
+              <Right />
+            </Header>
+
+            {/* <ListPage></ListPage> */}
+            <Navigator
+              initialRoute={{ title: 'My Initial Scene', index: 0 }}
+              renderScene={(route, navigator) => {
+                return <ListPage/>
+              }}
+            />
+          </Container>
+        </AppDrawer>
+      </StyleProvider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('fiveMJournalNative', () => fiveMJournalNative);
