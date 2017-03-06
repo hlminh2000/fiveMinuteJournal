@@ -89,6 +89,7 @@ export default class ListPage extends Component {
                   <Text>Go to the gym...</Text>
                 </View>
               </ListItem>
+
             </List>
           </View>
         </ScrollView>
