@@ -31,11 +31,18 @@ import platform from './native-base-theme/variables/platform';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers/index.js';
-
 import AppWrapper from './AppWrapper.js';
+import { DrawerNavigator } from 'react-navigation';
 
 const store = createStore(reducers);
 
+const AppNavigator = DrawerNavigator({
+  Journals: {
+    screen: ListPage,
+  }
+}, {
+  contentComponent: AppDrawer,
+});
 
 export default class fiveMJournalNative extends Component {
 
@@ -68,53 +75,6 @@ export default class fiveMJournalNative extends Component {
     };
   }
 
-  renderScene(route, navigator){
-    return (
-      <AppWrapper
-        route={route}
-        navigator={navigator}
-        title={route.title}>
-        {
-          (function(route, navigator){
-            switch (route.link) {
-              case 'my_journals':
-                return <ListPage navigator={navigator}/>
-                // break;
-              case 'journal_edit_1':
-                return (
-                  <View
-                    style={{
-                      flex:1,
-                      justifyContent:'center',
-                      alignItems:'center',
-                      backgroundColor:'white'
-                    }}>
-                    <Text>This will be the edit page 1!</Text>
-                  </View>
-                )
-                // break;
-              case 'setting_screen':
-                return (
-                  <View
-                    style={{
-                      flex:1,
-                      justifyContent:'center',
-                      alignItems:'center',
-                      backgroundColor:'white'
-                    }}>
-                    <Text>This will be the setting page!</Text>
-                  </View>
-                )
-                // break;
-              default:
-                return this.renderErrorPage();
-            }
-          })(route, navigator)
-        }
-      </AppWrapper>
-    )
-  }
-
   renderErrorPage(){
     return(
       <View
@@ -135,15 +95,7 @@ export default class fiveMJournalNative extends Component {
     return (
       // <Provider store={store}>
         <StyleProvider style={getTheme(platform)}>
-          <Navigator
-            ref="navigator"
-            initialRoute={{
-              link: 'my_journals',
-              title: 'My Journals',
-              index: 0
-            }}
-            renderScene={this.renderScene.bind(this)}
-          ></Navigator>
+          <AppNavigator/>
         </StyleProvider>
       // <Provider/>
     );

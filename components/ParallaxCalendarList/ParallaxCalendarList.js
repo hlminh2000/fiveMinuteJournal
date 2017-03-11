@@ -10,11 +10,6 @@ import {
   ScrollView
 } from 'react-native';
 import {
-  Container,
-  Header,
-  Content,
-  Body,
-  Title,
   ListItem,
   Left,
   Right,
@@ -70,7 +65,7 @@ const calendarStyle = {
 }
 
 
-export default class ListPage extends Component {
+export default class ParallaxCalendarList extends Component {
 
   constructor(props){
     super(props);
@@ -89,18 +84,11 @@ export default class ListPage extends Component {
   }
 
   goToEditPage1(){
-    this.props.navigator.push({
-      link: 'journal_edit_1',
-      title: 'What I am grateful for',
-      index: 1
-    });
+    this.props.navigation.navigate('Home');
   }
 
   render() {
     return (
-
-      <Container>
-        <NavBar title='My Journals' navigation={this.props.navigation}></NavBar>
         <ParallaxView
           backgroundSource = {{uri: 'http://digioh.com/blog/wp-content/uploads/2016/08/teaser.jpg'}}
           windowHeight={305}
@@ -195,7 +183,6 @@ export default class ListPage extends Component {
             </View>
           </View>
         </ParallaxView>
-      </Container>
 
     );
   }
