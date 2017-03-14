@@ -26,19 +26,32 @@ import {
 } from 'native-base';
 import ListPage from './components/Scenes/ListPage.js';
 import AppDrawer from './components/Drawer/AppDrawer.js';
+import ParallaxCalendarList from './components/ParallaxCalendarList/ParallaxCalendarList.js';
 import getTheme from './native-base-theme/components';
 import platform from './native-base-theme/variables/platform';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers/index.js';
 import AppWrapper from './AppWrapper.js';
-import { DrawerNavigator } from 'react-navigation';
+import JournalEntryEdit1 from './components/EditPages/JournalEntryEdit1.js';
+import { DrawerNavigator, StackNavigator } from 'react-navigation';
 
 const store = createStore(reducers);
 
+const ListNavigator = StackNavigator({
+  Home: {
+    screen: ListPage,
+  },
+  Edit1: {
+    screen: JournalEntryEdit1
+  }
+}, {
+  headerMode: 'none',
+});
+
 const AppNavigator = DrawerNavigator({
   Journals: {
-    screen: ListPage,
+    screen: ListNavigator,
   }
 }, {
   contentComponent: AppDrawer,

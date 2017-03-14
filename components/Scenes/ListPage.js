@@ -32,15 +32,11 @@ import ParallaxView from 'react-native-parallax-view';
 import ParallaxCalendarList from '../ParallaxCalendarList/ParallaxCalendarList.js';
 
 
-const ListNavigator = StackNavigator({
-  Home: {
-    screen: ParallaxCalendarList,
-  }
-});
-API
-
-
 export default class ListPage extends Component {
+
+  static navigationOptions = {
+    title: 'My Journals',
+  }
 
   constructor(props){
     super(props);
@@ -51,7 +47,7 @@ export default class ListPage extends Component {
 
       <Container>
         <NavBar title='My Journals' navigation={this.props.navigation}></NavBar>
-        <ListNavigator/>
+        <ParallaxCalendarList navigation={this.props.navigation}></ParallaxCalendarList>
       </Container>
 
     );

@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
-  View,
-  Dimensions,
-  Image,
-  TouchableHighlight,
-  ScrollView
+  View
 } from 'react-native';
 import {
   ListItem,
@@ -23,9 +18,6 @@ import {
 import NavBar from '../NavBar/NavBar.js'
 import Calendar from 'react-native-calendar';
 import ParallaxView from 'react-native-parallax-view';
-// import LinearGradient from 'react-native-linear-gradient';
-
-// import ParallaxScrollView from 'react-native-parallax-scroll-view';
 
 const calendarStyle = {
   calendarContainer:{
@@ -84,7 +76,7 @@ export default class ParallaxCalendarList extends Component {
   }
 
   goToEditPage1(){
-    this.props.navigation.navigate('Home');
+    this.props.navigation.navigate('Edit1');
   }
 
   render() {
@@ -95,7 +87,6 @@ export default class ParallaxCalendarList extends Component {
           showsVerticalScrollIndicator = {false}
           header={(
             <View>
-              {/* <View style={{position:'absolute', height: 305, width: 3, right:0, backgroundColor:'rgba(20, 100, 100, 1)', bottom:0, }}></View> */}
               <View
                 style={{
                   alignItems: 'center',

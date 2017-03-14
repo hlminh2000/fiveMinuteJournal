@@ -16,13 +16,17 @@ import {
 export default class NavBar extends Component {
 
   render(){
+    const currentRoute = this.props.navigation.state.routeName;
     return (
         <View style={{height:50, justifyContent:'center'}}>
           <Button transparent onPress={()=>{
-              // this.refs.appDrawer._drawer._root.open()
-              this.props.navigation.navigate('DrawerOpen')
+              if(currentRoute == 'Home'){
+                this.props.navigation.navigate('DrawerOpen')
+              } else {
+                this.props.navigation.goBack();
+              }
             }}>
-            <Icon name='menu' style={{color:'darkgrey'}}/>
+            <Icon name={currentRoute == 'Home' ? 'menu' : 'ios-arrow-back'} style={{color:'darkgrey'}}/>
           </Button>
           <Text
             style ={{
