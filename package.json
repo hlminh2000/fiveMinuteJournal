@@ -24,6 +24,7 @@
     "react-native-parallax": "^0.3.0",
     "react-native-parallax-view": "^2.0.6",
     "react-native-swipeout": "^2.0.12",
+    "react-native-textinput-effects": "^0.3.0",
     "react-navigation": "^1.0.0-beta.6",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0"
