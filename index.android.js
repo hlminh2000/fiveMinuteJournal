@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, BackAndroid } from 'react-native';
 import { StyleProvider } from 'native-base';
 import { addNavigationHelpers } from 'react-navigation';
 import getTheme from './native-base-theme/components';
@@ -21,6 +21,10 @@ export default class fiveMJournalNative extends Component {
 
   constructor(props){
     super(props);
+    BackAndroid.addEventListener("hardwareBackPress", () => {
+      console.log("store.getState().hardwareBackButtonEnabled");
+      return !store.getState().hardwareBackButtonEnabled;
+    })
   }
 
   render() {

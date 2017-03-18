@@ -9,7 +9,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    goToAuthoringPage: () => {
+      dispatch({type: "ENTER_AUTHORING_PAGE", data: null});
+    }
   }
 }
 

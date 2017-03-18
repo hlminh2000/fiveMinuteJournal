@@ -20,6 +20,7 @@ export default class ListPage extends Component {
   static defaultProps = {
     ...Component.defaultProps,
     authoringEnabled: true,
+    goToAuthoringPage: ()=>{},
   }
 
   constructor(props){
@@ -28,7 +29,10 @@ export default class ListPage extends Component {
 
   goToAuthoringPage(){
     // console.log(this.props.navigation.state);
-    this.props.navigation.navigate('Authoring');
+    setTimeout(()=>{
+      this.props.navigation.navigate('Authoring');
+      this.props.goToAuthoringPage();
+    }, 0);
   }
 
   render() {
