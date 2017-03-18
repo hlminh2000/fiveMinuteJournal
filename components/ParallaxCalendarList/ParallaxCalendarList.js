@@ -18,6 +18,7 @@ import {
 import NavBar from '../NavBar/NavBar.js'
 import Calendar from 'react-native-calendar';
 import ParallaxView from 'react-native-parallax-view';
+import Moment from 'moment';
 
 const calendarStyle = {
   calendarContainer:{
@@ -59,20 +60,23 @@ const calendarStyle = {
 
 export default class ParallaxCalendarList extends Component {
 
+  static today = Moment().format('YYYY-MM-DD');
+
+  static defaultProps = {
+    ...Component.defaultProps,
+    selectedDate  : this.today,
+    today         : this.today,
+    navigation    : null,
+    onDateSelect  : (date) => {},
+  }
+
   constructor(props){
     super(props);
-    this.state = {
-      date  : new Date(),
-      clicked: true,
-    }
-    this.onDateChange = this.onDateChange.bind(this);
     this.goToEditPage1 = this.goToEditPage1.bind(this);
   }
 
-  onDateChange(date){
-    this.setState({
-      date  : date,
-    });
+  onDateSelect(date){
+    this.props.onDateSelect(Moment(date).format('YYYY-MM-DD'));
   }
 
   goToEditPage1(){
@@ -96,14 +100,16 @@ export default class ParallaxCalendarList extends Component {
                   <Calendar
                     scrollEnabled={false}
                     showControls={true}
-                    customStyle={calendarStyle}/>
+                    customStyle={calendarStyle}
+                    onDateSelect={this.onDateSelect.bind(this)}
+                    selectedDate={this.props.selectedDate}/>
                 </View>
             </View>
           )}>
 
           <View
             style={{
-              backgroundColor:'white',
+              backgroundColor:'#fafafa',
               paddingTop: 5,
               paddingBottom: 5
             }}>

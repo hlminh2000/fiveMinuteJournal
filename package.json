@@ -7,13 +7,16 @@
     "test": "jest",
     "postinstall": "rndebugger-open",
     "showDevMenu": "adb shell input keyevent 82",
-    "connectToDev": "adb reverse tcp:8081 tcp:8081"
+    "connectToDev": "adb reverse tcp:8081 tcp:8081",
+    "connectToDebug": "adb reverse tcp:8097 tcp:8097"
   },
   "dependencies": {
     "ip": "^1.1.5",
+    "moment": "^2.17.1",
     "native-base": "^2.0.12",
     "react": "~15.4.1",
     "react-native": "0.42.0",
+    "react-native-action-button": "^2.6.4",
     "react-native-calendar": "^0.10.0",
     "react-native-calendar-component": "^0.1.2",
     "react-native-calendar-picker": "^3.0.0",

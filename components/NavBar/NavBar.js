@@ -15,10 +15,15 @@ import {
 
 export default class NavBar extends Component {
 
+  static defaultProp = {
+    navigation: null,
+    backgroundColor: '#fafafa',
+  }
+
   render(){
     const currentRoute = this.props.navigation.state.routeName;
     return (
-        <View style={{height:50, justifyContent:'center'}}>
+        <View style={{height:50, justifyContent:'center', backgroundColor: this.props.backgroundColor}}>
           <Button transparent onPress={()=>{
               if(currentRoute == 'Home'){
                 this.props.navigation.navigate('DrawerOpen')

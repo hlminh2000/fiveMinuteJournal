@@ -10,7 +10,7 @@ import {
 } from 'native-base';
 import NavBar from '../NavBar/NavBar.js'
 
-export default class JournalEntryEdit1 extends Component{
+export default class AuthoringPage1 extends Component{
   static navigationOptions = {
     title: 'Life',
   }
@@ -23,10 +23,10 @@ export default class JournalEntryEdit1 extends Component{
   render(){
     return (
       <Container>
-        <NavBar
+        {/* <NavBar
           title='What I am grateful about'
           navigation={this.props.navigation}
-          backgroundColor={'rgba(60,220,80,1)'}></NavBar>
+          backgroundColor={'rgba(60,220,80,1)'}></NavBar> */}
         <View
           style={{
             alignItems:'center',
