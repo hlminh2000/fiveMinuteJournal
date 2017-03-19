@@ -6,6 +6,8 @@ import {
   Text,
   View,
   ScrollView,
+  Image,
+  Dimensions,
   TextInput,
 } from 'react-native';
 import {
@@ -15,6 +17,8 @@ import {
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import ActionButton from 'react-native-action-button';
 import LinearGradient from 'react-native-linear-gradient';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 import NavBar from '../NavBar/NavBar.js'
 
@@ -33,71 +37,128 @@ export default class AuthoringPage1 extends Component{
     this.props.navigation.navigate('q2');
   }
 
+  renderFirstCard(){
+    return (
+      <Card style={{borderRadius:5}}>
+        <LinearGradient
+          colors={['#FF4E50', '#F9D423']}
+          start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
+          style={{height:150, borderRadius: 5}}>
+          <LinearGradient
+            colors={
+              (()=>{
+                function pushColor (colorArray, length) {
+                  colorArray.push('rgba(0, 0, 0, 0)')
+                  if(colorArray.length < length) {pushColor(colorArray, length)}
+                  return colorArray;
+                };
+                var output = pushColor([], 4);
+                output.push('rgba(0, 0, 0, 0.4)');
+                return output;
+              })()
+            }
+            style={{
+              height: 1,
+              flex: 1}}/>
+          <Text style={{
+            position:'absolute',
+            left: 10,
+            bottom:40,
+            color:'white',
+            fontSize: 24
+          }}>What I am grateful for...</Text>
+        </LinearGradient>
+
+        <View style={{backgroundColor: 'white', marginTop:-30, marginBottom: 10, paddingTop: 0, paddingBottom: 20}}>
+          <View style={{marginTop: 5, marginBottom: 5, flex: 5, alignItems:'center'}}>
+            <View style={{width:300, paddingTop: 15}}>
+              <Text style={{fontSize: 22, color: '#FF4E50'}}>1</Text>
+              <TextInput
+                underlineColorAndroid='transparent'
+                autoCapitalize='sentences'
+                style={{
+                  backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                  textAlign: 'center',
+                  fontSize: 18,
+                  fkex: 1,
+                  color: 'rgba(0, 0, 0, 0.6)',
+                  height: 40,
+                }}/>
+            </View>
+            <View style={{width:300, paddingTop: 15}}>
+              <Text style={{fontSize: 22, color: '#FF4E50'}}>2</Text>
+              <TextInput
+                underlineColorAndroid='transparent'
+                autoCapitalize='sentences'
+                style={{
+                  backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                  textAlign: 'center',
+                  fontSize: 18,
+                  fkex: 1,
+                  color: 'rgba(0, 0, 0, 0.6)',
+                  height: 40,
+                }}/>
+            </View>
+            <View style={{width:300, paddingTop: 15}}>
+              <Text style={{fontSize: 22, color: '#FF4E50'}}>3</Text>
+              <TextInput
+                underlineColorAndroid='transparent'
+                autoCapitalize='sentences'
+                style={{
+                  backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                  textAlign: 'center',
+                  fontSize: 18,
+                  fkex: 1,
+                  color: 'rgba(0, 0, 0, 0.6)',
+                  height: 40,
+                }}/>
+            </View>
+          </View>
+        </View>
+      </Card>
+    )
+  }
+
   render(){
     return (
-      <Container>
-        {/* <NavBar
-          title='What I am grateful about'85D8CE
-          navigation={this.props.navigation}
-          backgroundColor={'rgba(60,220,80,1)'}></NavBar> */}
-        <LinearGradient colors={['#85D8CE', '#085078']} style={{flex:1}}>
-          <ScrollView
-            style={{
-              alignItems:'center',
-              flex:1,
-              // backgroundColor: 'rgba(60,220,80,1)'
-            }}>
-            <Text
-              style={{
-                color: 'rgba(255, 255, 255, 0.8)',
-                fontSize: 24,
-                marginTop: 50,
-                marginBottom: 20,
-              }}>
-              What I am grateful for:
-            </Text>
-            <View style={{paddingTop: 20, paddingBottom:20}}>
-              <Text style={{color:'rgba(255, 255, 255, 0.7)', fontSize: 20}}>1</Text>
-              <TextInput
-                underlineColorAndroid='rgba(255, 255, 255, 0.5)'
-                autoCapitalize='sentences'
-                style={{
-                  width: 300,
-                  backgroundColor:'rgba(255, 255, 255, 0.1)',
-                  color:'white',
-                  fontSize: 18
-                }}/>
+      <Container style={{backgroundColor: 'white'}}>
+
+        <View style = {{height: 3, width: Dimensions.get('window').width/3, backgroundColor: '#FF4E50'}}></View>
+
+        <ScrollView style={{alignItems:'center'}}>
+
+          <View style={{
+              flex: 1,
+              flexDirection:'row',
+              paddingTop: 20,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              paddingRight: 10}}>
+            <Image
+              source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg'}}
+              style={{height: 60, width: 60, borderRadius:50}}
+            />
+          <View style={{flex: 1, paddingLeft: 10}}>
+              <Text style={{fontSize: 18, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic'}}>
+                Stay hungry, stay foolish.
+              </Text>
+              <Text style={{fontSize: 18, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic', position: 'absolute', bottom: 0, right: 0}}>
+                - Steve Jobs -
+              </Text>
             </View>
-            <View style={{paddingTop: 20, paddingBottom:20}}>
-              <Text style={{color:'rgba(255, 255, 255, 0.7)', fontSize: 20}}>2</Text>
-              <TextInput
-                underlineColorAndroid='rgba(255, 255, 255, 0.5)'
-                autoCapitalize='sentences'
-                style={{
-                  width: 300,
-                  backgroundColor:'rgba(255, 255, 255, 0.1)',
-                  color:'white',
-                  fontSize: 18
-                }}/>
-            </View>
-            <View style={{paddingTop: 20, paddingBottom:20}}>
-              <Text style={{color:'rgba(255, 255, 255, 0.7)', fontSize: 20}}>3</Text>
-              <TextInput
-                underlineColorAndroid='rgba(255, 255, 255, 0.5)'
-                autoCapitalize='sentences'
-                style={{
-                  width: 300,
-                  backgroundColor:'rgba(255, 255, 255, 0.1)',
-                  color:'white',
-                  fontSize: 18
-                }}/>
-            </View>
-          </ScrollView>
-        </LinearGradient>
+          </View>
+
+          <View style={{flex:5, width: 340}}>
+            {this.renderFirstCard.bind(this)()}
+          </View>
+
+        </ScrollView>
+
         <ActionButton
-          // buttonColor={ this.props.authoringEnabled ? 'rgba(60,220,80,1)' : 'rgba(200,200,200,1)' }/>
           onPress={() => { this.goToNextPage.bind(this) }}
-          buttonColor={'#85D8CE'}/>
+          icon={<Icon name="ios-arrow-forward" style={{color: 'white', fontSize: 20}}/>}
+          buttonColor={'#FF4E50'}>
+        </ActionButton>
       </Container>
     )
   }

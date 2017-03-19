@@ -15,10 +15,11 @@ import {
   Button,
   H3
 } from 'native-base';
-import NavBar from '../NavBar/NavBar.js'
+import LinearGradient from 'react-native-linear-gradient';
 import Calendar from 'react-native-calendar';
 import ParallaxView from 'react-native-parallax-view';
 import Moment from 'moment';
+import NavBar from '../NavBar/NavBar.js'
 
 const calendarStyle = {
   calendarContainer:{
@@ -91,19 +92,17 @@ export default class ParallaxCalendarList extends Component {
           showsVerticalScrollIndicator = {false}
           header={(
             <View>
-              <View
-                style={{
-                  alignItems: 'center',
-                  height: 305,
-                  backgroundColor: 'rgba(50, 255, 255, 0.3)'
-                }}>
+              <LinearGradient
+                colors={['#FF4E50', '#F9D423']}
+                start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
+                style={{height:305, alignItems:'center'}}>
                   <Calendar
                     scrollEnabled={false}
                     showControls={true}
                     customStyle={calendarStyle}
                     onDateSelect={this.onDateSelect.bind(this)}
                     selectedDate={this.props.selectedDate}/>
-                </View>
+              </LinearGradient>
             </View>
           )}>
 
