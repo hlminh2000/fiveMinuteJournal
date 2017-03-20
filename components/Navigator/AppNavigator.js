@@ -3,8 +3,6 @@ import JournalEntryEdit1 from '../EditPages/JournalEntryEdit1.js';
 import AppDrawer from '../Drawer/AppDrawer.js';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
 import AuthoringPage1 from '../Scenes/AuthoringPage1.js';
-import AuthoringPage2 from '../Scenes/AuthoringPage2.js';
-import AuthoringPage3 from '../Scenes/AuthoringPage3.js';
 import CON_ListPage from '../../containers/CON_ListPage.js';
 
 const AppNavigator = DrawerNavigator({
@@ -12,9 +10,7 @@ const AppNavigator = DrawerNavigator({
     screen: StackNavigator({
       Home      : { screen: CON_ListPage },
       Authoring : { screen: StackNavigator({
-          q1      : { screen: AuthoringPage1 },
-          q2      : { screen: AuthoringPage2 },
-          q3      : { screen: AuthoringPage3 },
+          q1      : { screen: AuthoringPage1 }
         }, {headerMode: 'none'})
       },
       Edit1: { screen: JournalEntryEdit1 }
