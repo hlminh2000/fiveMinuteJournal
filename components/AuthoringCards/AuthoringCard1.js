@@ -74,8 +74,8 @@ export default class AuthoringCard1 extends Component{
           }}>What I am grateful for...</Text>
         </LinearGradient>
 
-        <View style={{backgroundColor: 'white', marginTop:-30, marginBottom: 10, paddingTop: 0, paddingBottom: 20}}>
-          <View style={{marginTop: 5, marginBottom: 5, flex: 5, alignItems:'center'}}>
+        <View style={{backgroundColor: 'white', marginTop:-30, marginBottom: 10, paddingTop: 0, paddingBottom: 20, flex: 1}}>
+          <View style={{marginTop: 5, marginBottom: 5, flex: 5, alignItems:'center', justifyContent: 'center'}}>
             <View style={{width:300, paddingTop: 15}}>
               <Text style={{fontSize: 22, color: '#FF4E50'}}>1</Text>
               <TextInput
@@ -87,8 +87,7 @@ export default class AuthoringCard1 extends Component{
                 style={{
                   backgroundColor: 'rgba(0, 0, 0, 0.05)',
                   textAlign: 'center',
-                  fontSize: 18,
-                  flex: 1,
+                  // flex: 1,
                   color: 'rgba(0, 0, 0, 0.6)',
                   height: 40,
                 }}/>
@@ -104,8 +103,7 @@ export default class AuthoringCard1 extends Component{
                 style={{
                   backgroundColor: 'rgba(0, 0, 0, 0.05)',
                   textAlign: 'center',
-                  fontSize: 18,
-                  flex: 1,
+                  // flex: 1,
                   color: 'rgba(0, 0, 0, 0.6)',
                   height: 40,
                 }}/>
@@ -121,8 +119,7 @@ export default class AuthoringCard1 extends Component{
                 style={{
                   backgroundColor: 'rgba(0, 0, 0, 0.05)',
                   textAlign: 'center',
-                  fontSize: 18,
-                  flex: 1,
+                  // flex: 1,
                   color: 'rgba(0, 0, 0, 0.6)',
                   height: 40,
                 }}/>

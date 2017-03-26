@@ -22,6 +22,7 @@
     "react-native-calendar-picker": "^3.0.0",
     "react-native-carousel": "^0.10.0",
     "react-native-carousel-control": "^1.1.1",
+    "react-native-global-props": "^1.1.1",
     "react-native-keyboardevents": "^0.4.5",
     "react-native-linear-gradient": "^2.0.0",
     "react-native-parallax": "^0.3.0",

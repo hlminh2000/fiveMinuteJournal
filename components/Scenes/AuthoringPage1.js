@@ -1,5 +1,9 @@
 
 
+
+
+
+
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -10,7 +14,7 @@ import {
   Dimensions,
   TextInput,
   Keyboard,
-
+  ViewPagerAndroid
 } from 'react-native';
 import {
   Container,
@@ -54,36 +58,34 @@ export default class AuthoringPage1 extends Component{
     }
   }
 
-  keyboardWillShow() {
-    this.setState({
-      ...this.state,
-      currentPage: this.carousel.state.currentPage,
-      isKeyboardOpened: true
-    });
-  }
-
-  keyboardWillHide() {
-    this.setState({
-      ...this.state,
-      isKeyboardOpened: false
-    });
-  }
-
-  onCardCardContentChange(){
-    console.log("isfbpsdbufsdfoivbfdso");
-    this.setState({
-      ...this.state,
-      currentPage: this.carousel.state.currentPage,
-    });
-    this.forceUpdate();
-  }
-
-  componentDidMount() {
-    // KeyboardEventEmitter.on(KeyboardEvents.KeyboardDidShowEvent, this.updateKeyboardSpace);
-    // KeyboardEventEmitter.on(KeyboardEvents.KeyboardWillHideEvent, this.resetKeyboardSpace);
-    Keyboard.addListener('keyboardDidShow', this.keyboardWillShow.bind(this))
-    Keyboard.addListener('keyboardDidHide', this.keyboardWillHide.bind(this))
-  }
+  // keyboardWillShow() {
+  //   this.setState({
+  //     ...this.state,
+  //     currentPage: this.carousel.state.currentPage,
+  //     isKeyboardOpened: true
+  //   });
+  // }
+  //
+  // keyboardWillHide() {
+  //   this.setState({
+  //     ...this.state,
+  //     isKeyboardOpened: false
+  //   });
+  // }
+  //
+  // onCardCardContentChange(){
+  //   console.log("isfbpsdbufsdfoivbfdso");
+  //   this.setState({
+  //     ...this.state,
+  //     currentPage: this.carousel.state.currentPage,
+  //   });
+  //   this.forceUpdate();
+  // }
+  //
+  // componentDidMount() {
+  //   Keyboard.addListener('keyboardDidShow', this.keyboardWillShow.bind(this))
+  //   Keyboard.addListener('keyboardDidHide', this.keyboardWillHide.bind(this))
+  // }
 
   static navigationOptions = {
     title: 'Life',
@@ -101,31 +103,17 @@ export default class AuthoringPage1 extends Component{
 
   render(){
 
-    // setTimeout(()=>{
-    //   this.setState({
-    //     ...this.state,
-    //     currentPage: this.state.currentPage+1,
-    //   });
-    // }, 1000);
-
-    const cards = [
-      <AuthoringCard1 ref="card1" key={1} onInputChange={this.onCardCardContentChange.bind(this)}/>,
-      <AuthoringCard1 ref="card2" key={2} onInputChange={this.onCardCardContentChange.bind(this)}/>,
-      <AuthoringCard1 ref="card3" key={3} onInputChange={this.onCardCardContentChange.bind(this)}/>,
-      <View key={4}>
-        <Text>GOOD JOB!</Text>
-      </View>
-    ];
+    const windowDimention = Dimensions.get('window');
 
     return (
       <Container style={{backgroundColor: 'white'}}>
 
-        <View style = {{height: 3, width: Dimensions.get('window').width/3, backgroundColor: '#FF4E50'}}></View>
+        <View style = {{height: 3, width: windowDimention.width/3, backgroundColor: '#FF4E50'}}></View>
 
-        <ScrollView contentContainerStyle={{alignItems:'center'}}>
+        <ScrollView contentContainerStyle={{alignItems:'center', height: windowDimention.height - 30 }}>
 
           <View style={{
-              flex: 1,
+              height: 100,
               flexDirection:'row',
               paddingTop: 20,
               paddingBottom: 10,
@@ -135,7 +123,7 @@ export default class AuthoringPage1 extends Component{
               source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg'}}
               style={{height: 60, width: 60, borderRadius:50}}
             />
-          <View style={{flex: 1, paddingLeft: 10}}>
+            <View style={{flex: 1, paddingLeft: 10}}>
               <Text style={{fontSize: 18, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic'}}>
                 Stay hungry, stay foolish.
               </Text>
@@ -145,53 +133,32 @@ export default class AuthoringPage1 extends Component{
             </View>
           </View>
 
-          {/* <ScrollView
-            horizontal
-            scrollEnabled={ !this.state.isKeyboardOpened }
+          <ViewPagerAndroid
+            initialPage={0}
+            style={{
+              width: windowDimention.width,
+              flex: 1,
+            }}
             >
-            {cards} */}
-            <Carousel
-              swipeThreshold={0.05}
-              pageWidth={Dimensions.get('window').width - 35}
-              currentPage={this.state.currentPage}
-              onPageChange={()=>{console.log("changing!!!");}}
-              ref={(carousel) => { this.carousel = carousel; }}
-              // currentPage={
-              //   // cards.indexOf(
-              //     (()=>{
-              //       const focusedCard = cards.filter((card)=>card.state.isFocused)
-              //       return focusedCard ? cards.indexOf(ocusedCard) : 0;
-              //     })()
-              //   // )
-              // }
-              sneak={0.5}>
-              { cards }
-            </Carousel>
-          {/* </ScrollView> */}
-
-          {/* <Carousel width={375}>
-            <View style={styles.container}>
-              <Text>Page 1</Text>
-            </View>
-            <View style={styles.container}>
-              <Text>Page 2</Text>
-            </View>
-            <View style={styles.container}>
-              <Text>Page 3</Text>
-            </View>
-          </Carousel> */}
-
-          {/* <Carousel
-            ref={'carousel'}
-            sliderWidth={Dimensions.get('window').width - 35}
-            itemWidth={Dimensions.get('window').width - 35} >
-            <AuthoringCard1/>
-            <AuthoringCard1/>
-            <AuthoringCard1/>
-            <View>
-              <Text>GOOD JOB!</Text>
-            </View>
-          </Carousel> */}
+              <View style={{alignItems: 'center'}}>
+                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 20}}>
+                  <AuthoringCard1 ref="card1"/>
+                </View>
+              </View>
+              <View style={{alignItems: 'center'}}>
+                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 20}}>
+                  <AuthoringCard1 ref="card2"/>
+                </View>
+              </View>
+              <View style={{alignItems: 'center'}}>
+                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 20}}>
+                  <AuthoringCard1 ref="card3"/>
+                </View>
+              </View>
+              <View style={{alignItems: 'center'}}>
+                <Text>GOOD JOB!</Text>
+              </View>
+          </ViewPagerAndroid>
 
           {/* <TextInput
             // onFocus={this.setCardFocused.bind(this)}
