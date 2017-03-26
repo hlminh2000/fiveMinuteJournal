@@ -27,14 +27,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavBar from '../NavBar/NavBar.js';
 import AuthoringCard1 from '../AuthoringCards/AuthoringCard1.js';
-import Carousel from "react-native-carousel-control";
-// import Carousel from "react-native-carousel";
-// import Carousel from 'react-native-snap-carousel';
-
-// import KeyboardEvents from 'react-native-keyboardevents';
-// import {
-//   Emitter as KeyboardEventEmitter
-// } from 'react-native-keyboardevents';
 
 
 var styles = StyleSheet.create({
@@ -57,35 +49,6 @@ export default class AuthoringPage1 extends Component{
       isKeyboardOpened: false,
     }
   }
-
-  // keyboardWillShow() {
-  //   this.setState({
-  //     ...this.state,
-  //     currentPage: this.carousel.state.currentPage,
-  //     isKeyboardOpened: true
-  //   });
-  // }
-  //
-  // keyboardWillHide() {
-  //   this.setState({
-  //     ...this.state,
-  //     isKeyboardOpened: false
-  //   });
-  // }
-  //
-  // onCardCardContentChange(){
-  //   console.log("isfbpsdbufsdfoivbfdso");
-  //   this.setState({
-  //     ...this.state,
-  //     currentPage: this.carousel.state.currentPage,
-  //   });
-  //   this.forceUpdate();
-  // }
-  //
-  // componentDidMount() {
-  //   Keyboard.addListener('keyboardDidShow', this.keyboardWillShow.bind(this))
-  //   Keyboard.addListener('keyboardDidHide', this.keyboardWillHide.bind(this))
-  // }
 
   static navigationOptions = {
     title: 'Life',
@@ -159,20 +122,6 @@ export default class AuthoringPage1 extends Component{
                 <Text>GOOD JOB!</Text>
               </View>
           </ViewPagerAndroid>
-
-          {/* <TextInput
-            // onFocus={this.setCardFocused.bind(this)}
-            // onEndEditing={this.setCardUnfocused.bind(this)}
-            underlineColorAndroid='transparent'
-            autoCapitalize='sentences'
-            style={{
-              backgroundColor: 'rgba(0, 0, 0, 0.05)',
-              textAlign: 'center',
-              fontSize: 18,
-              flex: 1,
-              color: 'rgba(0, 0, 0, 0.6)',
-              height: 40,
-            }}/> */}
 
         </ScrollView>
 
