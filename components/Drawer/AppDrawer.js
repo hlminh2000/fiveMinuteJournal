@@ -16,6 +16,8 @@ import {
   Button,
   H2
 } from 'native-base';
+import LinearGradient from 'react-native-linear-gradient';
+
 
 export default class AppDrawer extends Component {
 
@@ -40,6 +42,13 @@ export default class AppDrawer extends Component {
               </View>
             </Image>
           </View>
+
+          <LinearGradient
+            colors={['#FF4E50', '#F9D423']}
+            start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
+            style={{height: 3, alignItems: 'center'}}>
+          </LinearGradient>
+          
           <ScrollView style={{paddingTop:15}}>
 
             <Button dark full transparent onPress={(this.showJournalPage)}>

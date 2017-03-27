@@ -39,9 +39,16 @@ export default class AuthoringPage1 extends Component{
   constructor(props){
     super(props);
     this.state = {
-      currentPage: 0,
+      viewPagerScrollState: null,
       isKeyboardOpened: false,
     }
+  }
+
+  componentDidMount(){
+    this.setState({
+      ...this.state,
+      currentPage: this.viewPager.state,
+    });
   }
 
   static navigationOptions = {
@@ -58,6 +65,13 @@ export default class AuthoringPage1 extends Component{
     this.props.navigation.navigate('q2');
   }
 
+  onViewPagerScroll(state){
+    this.setState({
+      ...this.state,
+      currentPage: state.nativeEvent.position,
+    });
+  }
+
   render(){
 
     const windowDimention = Dimensions.get('window');
@@ -65,7 +79,12 @@ export default class AuthoringPage1 extends Component{
     return (
       <Container style={{backgroundColor: 'white'}}>
 
-        <View style = {{height: 3, width: windowDimention.width/3, backgroundColor: '#FF4E50'}}></View>
+        <View style = {{height: 3, width: windowDimention.width*this.state.currentPage/3}}>
+          <LinearGradient
+            colors={['#FF4E50', '#F9D423']}
+            start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
+            style={{height:3, borderRadius: 5, width: windowDimention.width}}/>
+        </View>
 
         <ScrollView contentContainerStyle={{alignItems:'center', height: windowDimention.height - 30 }}>
 
@@ -92,6 +111,8 @@ export default class AuthoringPage1 extends Component{
 
           <ViewPagerAndroid
             initialPage={0}
+            ref={viewPager => { this.viewPager = viewPager }}
+            onPageSelected={this.onViewPagerScroll.bind(this)}
             style={{
               width: windowDimention.width,
               flex: 1,
