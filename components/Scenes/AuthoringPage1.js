@@ -79,11 +79,17 @@ export default class AuthoringPage1 extends Component{
     return (
       <Container style={{backgroundColor: 'white'}}>
 
-        <View style = {{height: 3, width: windowDimention.width*this.state.currentPage/3}}>
+        <View style = {{height: 3, width: windowDimention.width}}>
           <LinearGradient
             colors={['#FF4E50', '#F9D423']}
             start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
             style={{height:3, borderRadius: 5, width: windowDimention.width}}/>
+          <View style={{
+              backgroundColor: 'white',
+              width: windowDimention.width*(1-this.state.currentPage/3),
+              height: 3,
+              position: 'absolute',
+              left: windowDimention.width*this.state.currentPage/3}}/>
         </View>
 
         <ScrollView contentContainerStyle={{alignItems:'center', height: windowDimention.height - 30 }}>
@@ -113,24 +119,34 @@ export default class AuthoringPage1 extends Component{
             initialPage={0}
             ref={viewPager => { this.viewPager = viewPager }}
             onPageSelected={this.onViewPagerScroll.bind(this)}
+            pageMargin={-30}
             style={{
               width: windowDimention.width,
               flex: 1,
             }}
             >
               <View style={{alignItems: 'center'}}>
-                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 20}}>
-                  <AuthoringCard1 ref="card1"/>
+                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 40}}>
+                  <AuthoringCard1
+                    inputCount={ 3 }
+                    showIndex={true}
+                    headerText={"I am grateful for..."}/>
                 </View>
               </View>
               <View style={{alignItems: 'center'}}>
-                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 20}}>
-                  <AuthoringCard1 ref="card2"/>
+                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 40}}>
+                  <AuthoringCard1
+                    inputCount={ 3 }
+                    showIndex={true}
+                    headerText={"What would make today \ngreat?"}/>
                 </View>
               </View>
               <View style={{alignItems: 'center'}}>
-                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 20}}>
-                  <AuthoringCard1 ref="card3"/>
+                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 40}}>
+                  <AuthoringCard1
+                    inputCount={ 1 }
+                    showIndex={false}
+                    headerText={"Daily affirmations. I am..."}/>
                 </View>
               </View>
               <View style={{alignItems: 'center'}}>

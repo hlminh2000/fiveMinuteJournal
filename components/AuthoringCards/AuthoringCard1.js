@@ -43,6 +43,14 @@ export default class AuthoringCard1 extends Component{
   }
 
   render(){
+
+    const windowDimention = Dimensions.get('window');
+
+    const indices = [];
+    for (i = 0; i < this.props.inputCount; i++){
+      indices.push(i);
+    }
+
     return (
       <Card style={{borderRadius:5}}>
         <LinearGradient
@@ -71,13 +79,37 @@ export default class AuthoringCard1 extends Component{
             bottom:40,
             color:'white',
             fontSize: 24
-          }}>What I am grateful for...</Text>
+          }}> {this.props.headerText} </Text>
         </LinearGradient>
 
         <View style={{backgroundColor: 'white', marginTop:-30, marginBottom: 10, paddingTop: 0, paddingBottom: 20, flex: 1}}>
           <View style={{marginTop: 5, marginBottom: 5, flex: 5, alignItems:'center', justifyContent: 'center'}}>
-            <View style={{width:300, paddingTop: 15}}>
-              <Text style={{fontSize: 22, color: '#FF4E50'}}>1</Text>
+
+            {
+              indices.map((index) => {
+                return (
+                  <View style={{width:windowDimention.width - 80, paddingTop: 15}}>
+                    <Text style={{fontSize: 22, color: '#FF4E50'}}>{ this.props.showIndex ? index+1 : " " }</Text>
+                    <TextInput
+                      // onFocus={this.setCardFocused.bind(this)}
+                      // onEndEditing={this.setCardUnfocused.bind(this)}
+                      onChangeText={()=>{ console.log("typing!!!"); if(this.props.onInputChange) {this.props.onInputChange()}}}
+                      underlineColorAndroid='transparent'
+                      autoCapitalize='sentences'
+                      style={{
+                        backgroundColor: 'rgba(0, 0, 0, 0.03)',
+                        textAlign: 'center',
+                        // flex: 1,
+                        color: 'rgba(0, 0, 0, 0.6)',
+                        height: 40,
+                      }}/>
+                  </View>
+                )
+              })
+            }
+
+            {/* <View style={{width:300, paddingTop: 15}}>
+              <Text style={{fontSize: 22, color: '#FF4E50'}}>{ this.props.showIndex ? 1 : " " }</Text>
               <TextInput
                 // onFocus={this.setCardFocused.bind(this)}
                 // onEndEditing={this.setCardUnfocused.bind(this)}
@@ -93,7 +125,7 @@ export default class AuthoringCard1 extends Component{
                 }}/>
             </View>
             <View style={{width:300, paddingTop: 15}}>
-              <Text style={{fontSize: 22, color: '#FF4E50'}}>2</Text>
+              <Text style={{fontSize: 22, color: '#FF4E50'}}>{ this.props.showIndex ? 2 : " " }</Text>
               <TextInput
                 // onFocus={this.setCardFocused.bind(this)}
                 // onEndEditing={this.setCardUnfocused.bind(this)}
@@ -109,7 +141,7 @@ export default class AuthoringCard1 extends Component{
                 }}/>
             </View>
             <View style={{width:300, paddingTop: 15}}>
-              <Text style={{fontSize: 22, color: '#FF4E50'}}>3</Text>
+              <Text style={{fontSize: 22, color: '#FF4E50'}}>{ this.props.showIndex ? 3 : " " }</Text>
               <TextInput
                 // onFocus={this.setCardFocused.bind(this)}
                 // onEndEditing={this.setCardUnfocused.bind(this)}
@@ -123,7 +155,8 @@ export default class AuthoringCard1 extends Component{
                   color: 'rgba(0, 0, 0, 0.6)',
                   height: 40,
                 }}/>
-            </View>
+            </View> */}
+
           </View>
         </View>
       </Card>
