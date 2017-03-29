@@ -9,10 +9,7 @@ const AppNavigator = DrawerNavigator({
   Journals: {
     screen: StackNavigator({
       Home      : { screen: CON_ListPage },
-      Authoring : { screen: StackNavigator({
-          q1      : { screen: AuthoringPage1 }
-        }, {headerMode: 'none'})
-      },
+      Authoring : { screen: AuthoringPage1 },
       Edit1: { screen: JournalEntryEdit1 }
     }, { headerMode: 'none' })
   }

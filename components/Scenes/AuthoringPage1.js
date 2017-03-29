@@ -8,13 +8,14 @@ import {
   Dimensions,
   TextInput,
   Keyboard,
+  TouchableNativeFeedback,
   ViewPagerAndroid
 } from 'react-native';
 import {
   Container,
-  Card
+  Card,
+  Button
 } from 'native-base';
-import { TabNavigator } from 'react-navigation';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import ActionButton from 'react-native-action-button';
 import LinearGradient from 'react-native-linear-gradient';
@@ -41,6 +42,7 @@ export default class AuthoringPage1 extends Component{
     this.state = {
       viewPagerScrollState: null,
       isKeyboardOpened: false,
+      quoteData: null,
     }
   }
 
@@ -49,6 +51,7 @@ export default class AuthoringPage1 extends Component{
       ...this.state,
       currentPage: this.viewPager.state,
     });
+    this.getQuote();
   }
 
   static navigationOptions = {
@@ -60,9 +63,8 @@ export default class AuthoringPage1 extends Component{
     backgroundColor: '#F8FFAE',
   }
 
-  goToNextPage(){
-    console.log("asdgosnfon");
-    this.props.navigation.navigate('q2');
+  onDoneButtonPress(){
+    this.props.navigation.goBack();
   }
 
   onViewPagerScroll(state){
@@ -70,6 +72,24 @@ export default class AuthoringPage1 extends Component{
       ...this.state,
       currentPage: state.nativeEvent.position,
     });
+  }
+
+  getQuote(){
+    fetch('https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous', {
+      method: 'POST',
+      headers: {
+        'X-Mashape-Key' : 'fW86umSu3qmshWyv7l4jetvoqOA0p1RGfeYjsns5uqMqEhiEdE',
+        'Content-Type'  : 'application/x-www-form-urlencoded',
+        'Accept'        : 'application/json'
+      }
+    })
+    .then((response)=>{return response.json()})
+    .then((response)=>{
+      this.setState({
+        ...this.state,
+        quoteData: response
+      });
+    })
   }
 
   render(){
@@ -81,7 +101,7 @@ export default class AuthoringPage1 extends Component{
 
         <View style = {{height: 3, width: windowDimention.width}}>
           <LinearGradient
-            colors={['#FF4E50', '#F9D423']}
+            colors={['#F8FFAE', '#43C6AC']}
             start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
             style={{height:3, borderRadius: 5, width: windowDimention.width}}/>
           <View style={{
@@ -95,25 +115,31 @@ export default class AuthoringPage1 extends Component{
         <ScrollView contentContainerStyle={{alignItems:'center', height: windowDimention.height - 30 }}>
 
           <View style={{
-              height: 100,
-              flexDirection:'row',
-              paddingTop: 20,
-              paddingBottom: 10,
-              paddingLeft: 20,
-              paddingRight: 20}}>
-            <Image
-              source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg'}}
-              style={{height: 60, width: 60, borderRadius:50}}
-            />
-            <View style={{flex: 1, paddingLeft: 10}}>
-              <Text style={{fontSize: 18, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic'}}>
-                Stay hungry, stay foolish.
-              </Text>
-              <Text style={{fontSize: 18, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic', position: 'absolute', bottom: 0, right: 0}}>
-                - Steve Jobs -
-              </Text>
-            </View>
+            height: 100,
+            flexDirection:'row',
+            paddingTop: 20,
+            paddingBottom: 10,
+            paddingLeft: 20,
+            alpha: 0,
+            paddingRight: 20}}>
+              {/* <Image
+                source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg'}}
+                style={{height: 60, width: 60, borderRadius:50}}
+                /> */}
+            {/* {
+              this.state.currentPage === 3 ? null : ( */}
+                <View style={{flex: 1, paddingLeft: 10}}>
+                  <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic'}}>
+                    { this.state.quoteData ? this.state.quoteData.quote : "" }
+                  </Text>
+                  <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic', position: 'absolute', bottom: 0, right: 0}}>
+                    { this.state.quoteData ? "- " + this.state.quoteData.author + " -" : "" }
+                  </Text>
+                </View>
+              {/* )
+            } */}
           </View>
+
 
           <ViewPagerAndroid
             initialPage={0}
@@ -126,7 +152,7 @@ export default class AuthoringPage1 extends Component{
             }}
             >
               <View style={{alignItems: 'center'}}>
-                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 40}}>
+                <View style={{height: windowDimention.height - 100 - 50, width: windowDimention.width - 40}}>
                   <AuthoringCard1
                     inputCount={ 3 }
                     showIndex={true}
@@ -134,7 +160,7 @@ export default class AuthoringPage1 extends Component{
                 </View>
               </View>
               <View style={{alignItems: 'center'}}>
-                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 40}}>
+                <View style={{height: windowDimention.height - 100 - 50, width: windowDimention.width - 40}}>
                   <AuthoringCard1
                     inputCount={ 3 }
                     showIndex={true}
@@ -142,26 +168,40 @@ export default class AuthoringPage1 extends Component{
                 </View>
               </View>
               <View style={{alignItems: 'center'}}>
-                <View style={{height: windowDimention.height - 100 - 80, width: windowDimention.width - 40}}>
+                <View style={{height: windowDimention.height - 100 - 230, width: windowDimention.width - 40}}>
                   <AuthoringCard1
                     inputCount={ 1 }
                     showIndex={false}
                     headerText={"Daily affirmations. I am..."}/>
                 </View>
               </View>
-              <View style={{alignItems: 'center'}}>
-                <Text>GOOD JOB!</Text>
+              <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 100}}>
+                <View style={{width: windowDimention.width - 90}}>
+                  <View style={{marginBottom: 20}}>
+                    <Text style={{color: '#43C6AC', fontSize:18}}>Great Job!</Text>
+                  </View>
+                  <View style={{marginBottom: 20}}>
+                    <Text style={{color: '#43C6AC', fontSize:18}}>Now go rock the world!</Text>
+                  </View>
+                  <View>
+                    <Button rounded bordered style={{borderColor: "#43C6AC"}}
+                      onPress={this.onDoneButtonPress.bind(this)}>
+                      <Text style={{color: '#43C6AC'}}>Done</Text>
+                    </Button>
+                  </View>
+                </View>
+
               </View>
           </ViewPagerAndroid>
 
         </ScrollView>
 
 
-        <ActionButton
+        {/* <ActionButton
           onPress={() => { this.goToNextPage.bind(this) }}
           icon={<Icon name="ios-arrow-forward" style={{color: 'white', fontSize: 20}}/>}
           buttonColor={'#FF4E50'}>
-        </ActionButton>
+        </ActionButton> */}
       </Container>
     )
   }

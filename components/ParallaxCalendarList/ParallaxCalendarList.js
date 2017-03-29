@@ -93,15 +93,15 @@ export default class ParallaxCalendarList extends Component {
           header={(
             <View>
               <LinearGradient
-                colors={['#FF4E50', '#F9D423']}
+                colors={['#43C6AC', '#F8FFAE']}
                 start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
                 style={{height:305, alignItems:'center'}}>
-                  <Calendar
-                    scrollEnabled={false}
-                    showControls={true}
-                    customStyle={calendarStyle}
-                    onDateSelect={this.onDateSelect.bind(this)}
-                    selectedDate={this.props.selectedDate}/>
+                <Calendar
+                  scrollEnabled={false}
+                  showControls={true}
+                  customStyle={calendarStyle}
+                  onDateSelect={this.onDateSelect.bind(this)}
+                  selectedDate={this.props.selectedDate}/>
               </LinearGradient>
             </View>
           )}>
@@ -117,34 +117,34 @@ export default class ParallaxCalendarList extends Component {
               <Card style={{width: 340}}>
                 <List style={{paddingBottom:10}}>
                     <ListItem style={{paddingTop: 20, paddingBottom: 25}} onPress={this.goToEditPage1.bind(this)}>
-                      <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/>
+                      {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                       <View style={{marginLeft:15}}>
                         <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>What I am grateful for?</Text></View>
                         <Text>1) The color of my beautiful eyes</Text>
                         <Text>2) My perfect wave hair</Text>
                         <Text>3) How awesome I am</Text>
                       </View>
-                      <Icon style={{right: -5, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                      <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                     </ListItem>
 
                   <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/>
+                    {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>What would make today great?</Text></View>
                       <Text>1) Finish my project</Text>
                       <Text>2) Submit my application</Text>
                       <Text>3) Go to the gym</Text>
                     </View>
-                    <Icon style={{right: -5, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                    <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                   </ListItem>
 
                   <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/>
+                    {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>Daily Affirmation. I am...</Text></View>
                       <Text>The strongest version of myself</Text>
                     </View>
-                    <Icon style={{right: -5, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                    <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                   </ListItem>
                 </List>
               </Card>
@@ -155,23 +155,23 @@ export default class ParallaxCalendarList extends Component {
                 <List>
 
                   <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    <Icon name="ios-moon" style={{color:'rgba(0, 0, 0, 0.1)'}}/>
+                    {/* <Icon name="ios-moon" style={{color:'rgba(0, 0, 0, 0.1)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
                       <Text>1) I was a mentor at a major hackathon</Text>
                       <Text>2) I am building my first mobile app</Text>
                       <Text>3) I was almost a judge</Text>
                     </View>
-                    <Icon style={{right: -5, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                    <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                   </ListItem>
 
                   <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    <Icon name="ios-moon" style={{color:'rgba(0, 0, 0, 0.1)'}}/>
+                    {/* <Icon name="ios-moon" style={{color:'rgba(0, 0, 0, 0.1)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
                       <Text>Go to the gym...</Text>
                     </View>
-                    <Icon style={{right: -5, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                    <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                   </ListItem>
 
                 </List>

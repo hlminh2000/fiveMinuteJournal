@@ -83,13 +83,19 @@ export default class AuthoringCard1 extends Component{
         </LinearGradient>
 
         <View style={{backgroundColor: 'white', marginTop:-30, marginBottom: 10, paddingTop: 0, paddingBottom: 20, flex: 1}}>
-          <View style={{marginTop: 5, marginBottom: 5, flex: 5, alignItems:'center', justifyContent: 'center'}}>
+          <View style={{marginTop: 15, marginBottom: 5, flex: 5, alignItems:'center', justifyContent: 'center'}}>
 
             {
               indices.map((index) => {
                 return (
                   <View style={{width:windowDimention.width - 80, paddingTop: 15}}>
-                    <Text style={{fontSize: 22, color: '#FF4E50'}}>{ this.props.showIndex ? index+1 : " " }</Text>
+                    {
+                      (()=>{
+                        return !this.props.showIndex ? null : (
+                          <Text style={{fontSize: 22, color: '#43C6AC'}}>{ index+1 }</Text>
+                        )
+                      })()
+                    }
                     <TextInput
                       // onFocus={this.setCardFocused.bind(this)}
                       // onEndEditing={this.setCardUnfocused.bind(this)}
@@ -107,55 +113,6 @@ export default class AuthoringCard1 extends Component{
                 )
               })
             }
-
-            {/* <View style={{width:300, paddingTop: 15}}>
-              <Text style={{fontSize: 22, color: '#FF4E50'}}>{ this.props.showIndex ? 1 : " " }</Text>
-              <TextInput
-                // onFocus={this.setCardFocused.bind(this)}
-                // onEndEditing={this.setCardUnfocused.bind(this)}
-                onChangeText={()=>{ console.log("typing!!!"); if(this.props.onInputChange) {this.props.onInputChange()}}}
-                underlineColorAndroid='transparent'
-                autoCapitalize='sentences'
-                style={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.05)',
-                  textAlign: 'center',
-                  // flex: 1,
-                  color: 'rgba(0, 0, 0, 0.6)',
-                  height: 40,
-                }}/>
-            </View>
-            <View style={{width:300, paddingTop: 15}}>
-              <Text style={{fontSize: 22, color: '#FF4E50'}}>{ this.props.showIndex ? 2 : " " }</Text>
-              <TextInput
-                // onFocus={this.setCardFocused.bind(this)}
-                // onEndEditing={this.setCardUnfocused.bind(this)}
-                onChangeText={()=>{ console.log("typing!!!"); if(this.props.onInputChange) {this.props.onInputChange()}}}
-                underlineColorAndroid='transparent'
-                autoCapitalize='sentences'
-                style={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.05)',
-                  textAlign: 'center',
-                  // flex: 1,
-                  color: 'rgba(0, 0, 0, 0.6)',
-                  height: 40,
-                }}/>
-            </View>
-            <View style={{width:300, paddingTop: 15}}>
-              <Text style={{fontSize: 22, color: '#FF4E50'}}>{ this.props.showIndex ? 3 : " " }</Text>
-              <TextInput
-                // onFocus={this.setCardFocused.bind(this)}
-                // onEndEditing={this.setCardUnfocused.bind(this)}
-                onChangeText={()=>{ console.log("typing!!!"); if(this.props.onInputChange) {this.props.onInputChange()}}}
-                underlineColorAndroid='transparent'
-                autoCapitalize='sentences'
-                style={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.05)',
-                  textAlign: 'center',
-                  // flex: 1,
-                  color: 'rgba(0, 0, 0, 0.6)',
-                  height: 40,
-                }}/>
-            </View> */}
 
           </View>
         </View>
