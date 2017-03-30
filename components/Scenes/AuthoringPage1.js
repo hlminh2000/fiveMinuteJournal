@@ -126,18 +126,14 @@ export default class AuthoringPage1 extends Component{
                 source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg'}}
                 style={{height: 60, width: 60, borderRadius:50}}
                 /> */}
-            {/* {
-              this.state.currentPage === 3 ? null : ( */}
-                <View style={{flex: 1, paddingLeft: 10}}>
-                  <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic'}}>
-                    { this.state.quoteData ? this.state.quoteData.quote : "" }
-                  </Text>
-                  <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic', position: 'absolute', bottom: 0, right: 0}}>
-                    { this.state.quoteData ? "- " + this.state.quoteData.author + " -" : "" }
-                  </Text>
-                </View>
-              {/* )
-            } */}
+            <View style={{flex: 1, paddingLeft: 10}}>
+              <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic'}}>
+                { this.state.quoteData ? this.state.quoteData.quote : "" }
+              </Text>
+              <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic', position: 'absolute', bottom: 0, right: 0}}>
+                { this.state.quoteData ? "- " + this.state.quoteData.author + " -" : "" }
+              </Text>
+            </View>
           </View>
 
 

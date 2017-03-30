@@ -8,6 +8,9 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers/index.js';
 import AppNavigator from './components/Navigator/AppNavigator.js';
+import * as firebase from 'firebase';
+
+import API_ACCOUNTS from './configs/API_ACCOUNTS.json';
 
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
@@ -16,6 +19,7 @@ const store = createStore(
 );
 /* eslint-enable */
 
+const firebaseApp = firebase.initializeApp(API_ACCOUNTS.FIREBASE);
 
 export default class fiveMJournalNative extends Component {
 
@@ -28,6 +32,7 @@ export default class fiveMJournalNative extends Component {
   }
 
   render() {
+    console.log(firebaseApp.auth());
     return (
       <Provider store={store}>
         <StyleProvider style={getTheme(platform)}>
