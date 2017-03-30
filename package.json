@@ -23,6 +23,8 @@
     "react-native-calendar-picker": "^3.0.0",
     "react-native-carousel": "^0.10.0",
     "react-native-carousel-control": "^1.1.1",
+    "react-native-fbsdk": "^0.5.0",
+    "react-native-firebase": "^1.0.0-alpha10",
     "react-native-global-props": "^1.1.1",
     "react-native-keyboardevents": "^0.4.5",
     "react-native-linear-gradient": "^2.0.0",

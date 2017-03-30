@@ -20,6 +20,7 @@ const store = createStore(
 /* eslint-enable */
 
 const firebaseApp = firebase.initializeApp(API_ACCOUNTS.FIREBASE);
+var provider = new firebase.auth.FacebookAuthProvider();
 
 export default class fiveMJournalNative extends Component {
 
