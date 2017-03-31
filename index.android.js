@@ -9,9 +9,7 @@ import { Provider } from 'react-redux';
 import reducers from './reducers/index.js';
 import AppNavigator from './components/Navigator/AppNavigator.js';
 import LoginNavigator from './components/Navigator/LoginNavigator.js';
-import * as firebase from 'firebase';
-
-import API_ACCOUNTS from './configs/API_ACCOUNTS.json';
+import CON_Authenticator from './containers/CON_Authenticator.js';
 
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
@@ -20,26 +18,14 @@ const store = createStore(
 );
 /* eslint-enable */
 
-const firebaseApp = firebase.initializeApp(API_ACCOUNTS.FIREBASE);
-var provider = new firebase.auth.FacebookAuthProvider();
 
 export default class fiveMJournalNative extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      isLoggedIn : false,
-    }
-  }
-
   render() {
-    console.log(firebaseApp.auth());
     return (
       <Provider store={store}>
         <StyleProvider style={getTheme(platform)}>
-          {
-            this.state.isLoggedIn ? <AppNavigator/> : <LoginNavigator/>
-          }
+          <CON_Authenticator/>
         </StyleProvider>
       </Provider>
     );

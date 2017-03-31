@@ -13,8 +13,33 @@ import {
   Button,
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
+import FirebaseApp from '../../firebase/Firebase.js';
+
+
 
 export default class LogInScreen extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      email:  null,
+      password: null,
+    }
+  }
+
+  signInWithEmailAndPassword(){
+    FirebaseApp.auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        console.log(FirebaseApp.auth().currentUser);
+        if(this.props.onLoginComplete){
+          this.props.onLoginComplete();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   render() {
 
@@ -31,10 +56,11 @@ export default class LogInScreen extends Component {
             style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             <View style={{marginTop: 20}}>
               <TextInput
-                onChangeText={()=>{ console.log("typing!!!"); if(this.props.onInputChange) {this.props.onInputChange()}}}
+                onChangeText={(text)=>{ this.state.email = text}}
                 underlineColorAndroid='transparent'
                 autoCapitalize='sentences'
                 placeholder="email"
+                // value={this.state.email}
                 placeholderTextColor='rgba(255, 255, 255, 0.3)'
                 style={{
                   backgroundColor: 'rgba(0, 0, 0, 0.07)',
@@ -47,10 +73,11 @@ export default class LogInScreen extends Component {
             </View>
             <View style={{marginTop: 20}}>
               <TextInput
-                onChangeText={()=>{ console.log("typing!!!"); if(this.props.onInputChange) {this.props.onInputChange()}}}
+                onChangeText={(text)=>{ this.state.password = text}}
                 underlineColorAndroid='transparent'
                 autoCapitalize='sentences'
                 placeholder="password"
+                // value={this.state.password}
                 placeholderTextColor='rgba(255, 255, 255, 0.3)'
                 style={{
                   backgroundColor: 'rgba(0, 0, 0, 0.07)',
@@ -62,8 +89,12 @@ export default class LogInScreen extends Component {
                 }}/>
             </View>
             <View style={{marginTop: 20}}>
-              <Button style={{width: windowDimention.width-150, borderRadius: 5, justifyContent:'center', flexDirection: 'column', paddingTop: 0, paddingBottom: 0}}>
-                <TouchableNativeFeedback background={TouchableNativeFeedback.SelectableBackground()} useForeground={true}>
+              <Button
+                style={{width: windowDimention.width-150, borderRadius: 5, justifyContent:'center', flexDirection: 'column', paddingTop: 0, paddingBottom: 0}}>
+                <TouchableNativeFeedback
+                  onPress={ this.signInWithEmailAndPassword.bind(this) }
+                  background={TouchableNativeFeedback.SelectableBackground()}
+                  useForeground={true}>
                   <LinearGradient
                     colors={['#FF4E50', '#F9D423']}
                     start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}

@@ -5,6 +5,7 @@ const initialState = {
   hardwareBackButtonEnabled: true,
   selectedDate  : Moment().format('YYYY-MM-DD'),
   today         : Moment().format('YYYY-MM-DD'),
+  isLoggedIn    : false,
 }
 
 const reducers = combineReducers({
@@ -19,6 +20,12 @@ const reducers = combineReducers({
         return {
           ...state,
           hardwareBackButtonEnabled : false,
+        }
+      case "LOG_IN_COMPLETE":
+        console.log(state.isLoggedIn);
+        return {
+          ...state,
+          isLoggedIn : true,
         }
       default:
         return initialState

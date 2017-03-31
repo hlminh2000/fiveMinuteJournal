@@ -73,7 +73,6 @@
 		CC5DCCFEAF7A4BC795896813 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4404BC11FF472892248091 /* libRCTActionSheet.a */; };
 		BDA2825363794E1F9E763C5F /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37702E0E080648EEA669392D /* libBVLinearGradient.a */; };
 		26CA7F09B3324683BADBEE97 /* libRNKeyboardEvents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1155742165AC48008008228D /* libRNKeyboardEvents.a */; };
-		5AF7ECE81E49435AA98C010C /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 393C11A04740489181C2D513 /* libRCTFBSDK.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,8 +334,8 @@
 		37702E0E080648EEA669392D /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		A5EFB9477723428AA226482F /* RNKeyboardEvents.xcodeproj */ = {isa = PBXFileReference; name = "RNKeyboardEvents.xcodeproj"; path = "../node_modules/react-native-keyboardevents/RNKeyboardEvents.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		1155742165AC48008008228D /* libRNKeyboardEvents.a */ = {isa = PBXFileReference; name = "libRNKeyboardEvents.a"; path = "libRNKeyboardEvents.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		A4721DA19E434D8493EE5955 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; name = "RCTFBSDK.xcodeproj"; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		393C11A04740489181C2D513 /* libRCTFBSDK.a */ = {isa = PBXFileReference; name = "libRCTFBSDK.a"; path = "libRCTFBSDK.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		CF0E2A9AE0E4429F96042528 /* ReactNativeGlobalProps.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativeGlobalProps.xcodeproj"; path = "../node_modules/react-native-global-props/ios/ReactNativeGlobalProps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		226DB96FBC634A87A8DED652 /* reactnativeswipeout.xcodeproj */ = {isa = PBXFileReference; name = "reactnativeswipeout.xcodeproj"; path = "../node_modules/react-native-swipeout/ios/reactnativeswipeout.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,7 +366,6 @@
 				CC5DCCFEAF7A4BC795896813 /* libRCTActionSheet.a in Frameworks */,
 				BDA2825363794E1F9E763C5F /* libBVLinearGradient.a in Frameworks */,
 				26CA7F09B3324683BADBEE97 /* libRNKeyboardEvents.a in Frameworks */,
-				5AF7ECE81E49435AA98C010C /* libRCTFBSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,7 +536,8 @@
 				B089BFCEAB39464AA78DDF56 /* CalendarPicker2.xcodeproj */,
 				6B742B83027C487D880C7759 /* BVLinearGradient.xcodeproj */,
 				A5EFB9477723428AA226482F /* RNKeyboardEvents.xcodeproj */,
-				A4721DA19E434D8493EE5955 /* RCTFBSDK.xcodeproj */,
+				CF0E2A9AE0E4429F96042528 /* ReactNativeGlobalProps.xcodeproj */,
+				226DB96FBC634A87A8DED652 /* reactnativeswipeout.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1143,11 +1142,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fiveMJournalNative.app/fiveMJournalNative";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1155,7 +1149,8 @@
 					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-keyboardevents",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
+					"$(SRCROOT)/../node_modules/react-native-swipeout/ios/reactnativeswipeout",
 				);
 			};
 			name = Debug;
@@ -1176,11 +1171,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/fiveMJournalNative.app/fiveMJournalNative";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1188,7 +1178,8 @@
 					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-keyboardevents",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
+					"$(SRCROOT)/../node_modules/react-native-swipeout/ios/reactnativeswipeout",
 				);
 			};
 			name = Release;
@@ -1214,7 +1205,8 @@
 					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-keyboardevents",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
+					"$(SRCROOT)/../node_modules/react-native-swipeout/ios/reactnativeswipeout",
 				);
 			};
 			name = Debug;
@@ -1239,7 +1231,8 @@
 					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-keyboardevents",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
+					"$(SRCROOT)/../node_modules/react-native-swipeout/ios/reactnativeswipeout",
 				);
 			};
 			name = Release;
@@ -1269,11 +1262,6 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1281,7 +1269,8 @@
 					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-keyboardevents",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
+					"$(SRCROOT)/../node_modules/react-native-swipeout/ios/reactnativeswipeout",
 				);
 			};
 			name = Debug;
@@ -1311,11 +1300,6 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1323,7 +1307,8 @@
 					"$(SRCROOT)/../node_modules/react-native-calendar-picker/ios/CalendarPicker2/**",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-keyboardevents",
-					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-global-props/ios/ReactNativeGlobalProps/**",
+					"$(SRCROOT)/../node_modules/react-native-swipeout/ios/reactnativeswipeout",
 				);
 			};
 			name = Release;
@@ -1348,11 +1333,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1377,11 +1357,6 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;
