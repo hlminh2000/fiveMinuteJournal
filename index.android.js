@@ -8,6 +8,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers/index.js';
 import AppNavigator from './components/Navigator/AppNavigator.js';
+import LoginNavigator from './components/Navigator/LoginNavigator.js';
 import * as firebase from 'firebase';
 
 import API_ACCOUNTS from './configs/API_ACCOUNTS.json';
@@ -26,10 +27,9 @@ export default class fiveMJournalNative extends Component {
 
   constructor(props){
     super(props);
-    BackAndroid.addEventListener("hardwareBackPress", () => {
-      console.log("store.getState().hardwareBackButtonEnabled");
-      return !store.getState().hardwareBackButtonEnabled;
-    })
+    this.state = {
+      isLoggedIn : false,
+    }
   }
 
   render() {
@@ -37,7 +37,9 @@ export default class fiveMJournalNative extends Component {
     return (
       <Provider store={store}>
         <StyleProvider style={getTheme(platform)}>
-          <AppNavigator/>
+          {
+            this.state.isLoggedIn ? <AppNavigator/> : <LoginNavigator/>
+          }
         </StyleProvider>
       </Provider>
     );
