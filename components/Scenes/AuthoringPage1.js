@@ -120,7 +120,6 @@ export default class AuthoringPage1 extends Component{
             paddingTop: 20,
             paddingBottom: 10,
             paddingLeft: 20,
-            alpha: 0,
             paddingRight: 20}}>
               {/* <Image
                 source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg'}}
