@@ -97,17 +97,17 @@ export default class AuthoringCard1 extends Component{
                       })()
                     }
                     <TextInput
-                      // onFocus={this.setCardFocused.bind(this)}
-                      // onEndEditing={this.setCardUnfocused.bind(this)}
                       onChangeText={()=>{ console.log("typing!!!"); if(this.props.onInputChange) {this.props.onInputChange()}}}
                       underlineColorAndroid='transparent'
                       autoCapitalize='sentences'
                       style={{
-                        backgroundColor: 'rgba(0, 0, 0, 0.03)',
                         textAlign: 'center',
-                        // flex: 1,
+                        fontSize: 18,
+                        borderBottomColor: 'lightgrey',
+                        borderBottomWidth: 0.5,
+                        padding: 0,
+                        height: 30,
                         color: 'rgba(0, 0, 0, 0.6)',
-                        height: 40,
                       }}/>
                   </View>
                 )

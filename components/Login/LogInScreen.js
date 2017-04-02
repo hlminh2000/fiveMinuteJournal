@@ -72,6 +72,7 @@ export default class LogInScreen extends Component {
   render() {
 
     const windowDimention = Dimensions.get('window');
+    const cardContentWidth = windowDimention.width - 120;
 
     return (
       <Container>
@@ -130,13 +131,22 @@ export default class LogInScreen extends Component {
                           value={this.state.email}
                           placeholderTextColor='lightgrey'
                           style={{
-                            backgroundColor: 'rgba(0, 0, 0, 0.07)',
+                            // backgroundColor: 'rgba(0, 0, 0, 0.07)',
+                            // textAlign: 'center',
+                            // color: 'grey',
+                            // padding: 0,
+                            // fontSize: 18,
+                            // height: 40,
+
                             textAlign: 'center',
-                            color: 'grey',
-                            padding: 0,
+                            marginBottom: 20,
                             fontSize: 18,
-                            height: 40,
-                            width: windowDimention.width - 80,
+                            borderBottomColor: 'lightgrey',
+                            borderBottomWidth: 0.5,
+                            padding: 0,
+                            height: 30,
+                            color: 'rgba(0, 0, 0, 0.6)',
+                            width: cardContentWidth,
                           }}/>
                       </View>
                       <View style={{marginTop: 20}}>
@@ -148,20 +158,22 @@ export default class LogInScreen extends Component {
                           value={this.state.password}
                           placeholderTextColor='lightgrey'
                           style={{
-                            backgroundColor: 'rgba(0, 0, 0, 0.07)',
                             textAlign: 'center',
-                            color: 'grey',
-                            padding: 0,
+                            marginBottom: 20,
                             fontSize: 18,
-                            height: 40,
-                            width: windowDimention.width - 80,
+                            borderBottomColor: 'lightgrey',
+                            borderBottomWidth: 0.5,
+                            padding: 0,
+                            height: 30,
+                            color: 'rgba(0, 0, 0, 0.6)',
+                            width: cardContentWidth,
                           }}
                           secureTextEntry={true}/>
                       </View>
                       <View style={{marginTop: 20}}>
                         <Button
                             style={{
-                              width: windowDimention.width-150,
+                              width: cardContentWidth,
                               borderRadius: 5,
                               justifyContent:'center',
                               flexDirection: 'column',
@@ -176,7 +188,7 @@ export default class LogInScreen extends Component {
                               start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
                               style={{
                                 borderRadius: 5,
-                                width: windowDimention.width-150,
+                                width: cardContentWidth,
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 flex:1,
@@ -188,7 +200,7 @@ export default class LogInScreen extends Component {
                       </View>
                       <View style={{marginTop: 20}}>
                         <Button style={{
-                          width: windowDimention.width-150,
+                          width: cardContentWidth,
                           borderRadius: 5,
                           justifyContent: 'center',
                           backgroundColor: 'rgb(230, 230, 230)'}}>

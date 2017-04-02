@@ -13,7 +13,9 @@ import {
   Icon,
   Right,
   Button,
-  H2
+  H2,
+  List,
+  ListItem,
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import Firebase from '../../firebase/Firebase.js';
@@ -40,43 +42,73 @@ export default class AppDrawer extends Component {
     }
 
     render() {
+
+      const currentUser = Firebase.auth().currentUser;
+
       return (
         <View style={{backgroundColor:'white', flex:1}}>
           <View style={{backgroundColor:'rgb(255, 255, 255)', height:200}}>
-            <Image
-              source={{uri: 'http://digioh.com/blog/wp-content/uploads/2016/08/teaser.jpg'}}
-              style={{height: 200}}>
-              <View style={{marginLeft:10,marginTop:5, position:'absolute', bottom:5}}>
-                <H2 style={{color:'white', fontStyle:'italic', fontFamily:'droidserif'}}>{"Journals"}</H2>
-              </View>
-            </Image>
+            <LinearGradient
+              colors={['#FF4E50', '#F9D423']}
+              start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
+              style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+              <Image
+                source={{uri: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSGCvvloBzw_9e0WqxQBIfDygTrFuYVB7O6aS9My73nNuBDEPSr5w'}}
+                style={{
+                  borderColor: 'rgba(255, 255, 255, 0.5)',
+                  borderWidth: 3,
+                  borderRadius: 1000,
+                  height: 80,
+                  width: 80}}/>
+                <Text style={{padding: 10, fontSize: 16, color:'rgba(255, 255, 255, 0.7)'}}>Minh's Journals</Text>
+              <LinearGradient
+                colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.20)']}
+                start={{x: 0.0, y: 0.0}} end={{x: 0, y: 1}}
+                style={{position: 'absolute', bottom: 0, alignItems: 'center', width: 800, height: 20}}/>
+            </LinearGradient>
           </View>
 
-          <LinearGradient
-            colors={['#FF4E50', '#F9D423']}
-            start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
-            style={{height: 3, alignItems: 'center'}}>
-          </LinearGradient>
 
           <ScrollView style={{paddingTop:15}}>
 
-            <Button dark full transparent onPress={(this.showJournalPage)}>
-              <Icon name="create"  />
-              <Left><Text style={{fontSize: 18, marginLeft: 10}}>My Journals</Text></Left>
-            </Button>
-
-            <Button dark full transparent onPress={()=>{}}>
-              <Icon name="options"  />
-              <Left><Text style={{fontSize: 18, marginLeft: 10}}>Settings</Text></Left>
-            </Button>
+            <List>
+              <TouchableNativeFeedback
+                onPress={ this.showJournalPage }
+                background={TouchableNativeFeedback.SelectableBackground()}
+                useForeground={true}>
+                <ListItem>
+                  <Left>
+                    <Text style={{fontSize: 18, marginLeft: 10}}>My Journals</Text>
+                  </Left>
+                  <Right>
+                    <Icon name="create" stlye={{color: 'lightgrey'}}  />
+                  </Right>
+                </ListItem>
+              </TouchableNativeFeedback>
+              <TouchableNativeFeedback
+                onPress={ this.showJournalPage }
+                background={TouchableNativeFeedback.SelectableBackground()}
+                useForeground={true}>
+                <ListItem>
+                  <Left>
+                    <Text style={{fontSize: 18, marginLeft: 10}}>Settings</Text>
+                  </Left>
+                  <Right>
+                    <Icon name="options" stlye={{color: 'lightgrey'}}  />
+                  </Right>
+                </ListItem>
+              </TouchableNativeFeedback>
+            </List>
 
           </ScrollView>
+
           <TouchableNativeFeedback
             onPress={ this.logOut.bind(this) }
             background={TouchableNativeFeedback.SelectableBackground()}
             useForeground={true}>
-            <View style={{alignItems: 'center', padding:10, backgroundColor:'rgba(0, 0, 0, 0.1)'}}>
-              <Text style={{fontSize: 18, color: 'grey'}}>
+            <View style={{alignItems: 'center'}}>
+              <View style={{height: 0.5, backgroundColor: 'lightgrey', width: 250}}></View>
+              <Text style={{fontSize: 18, color: 'grey', padding: 10}}>
                 Sign out
               </Text>
             </View>
