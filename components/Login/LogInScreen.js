@@ -29,7 +29,6 @@ export default class LogInScreen extends Component {
       warningMessage: null,
     }
     this.showWarningMessage.bind(this);
-    this.signInWithEmailAndPassword.bind(this);
   }
 
   signInWithEmailAndPassword(){
@@ -50,7 +49,7 @@ export default class LogInScreen extends Component {
           ...this.state,
           isLoggingIn: false,
         })
-        console.log(err);
+        this.showWarningMessage(err.message);
       })
     } else {
       this.showWarningMessage("Please enter your email and password");
@@ -67,7 +66,7 @@ export default class LogInScreen extends Component {
         ...this.state,
         warningMessage: null,
       });
-    }, 2000);
+    }, 5000);
   }
 
   render() {
@@ -169,7 +168,7 @@ export default class LogInScreen extends Component {
                               paddingTop: 0,
                               paddingBottom: 0}}>
                           <TouchableNativeFeedback
-                            onPress={ signInWithEmailAndPassword() }
+                            onPress={ this.signInWithEmailAndPassword.bind(this) }
                             background={ TouchableNativeFeedback.SelectableBackground() }
                             useForeground={true}>
                             <LinearGradient
