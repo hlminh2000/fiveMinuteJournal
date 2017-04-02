@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import {
   Text,
@@ -17,7 +16,7 @@ import {
   H2
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-
+import Firebase from '../../firebase/Firebase.js';
 
 export default class AppDrawer extends Component {
 
@@ -28,6 +27,16 @@ export default class AppDrawer extends Component {
 
     showJournalPage(){
       this.props.navigation.navigate('Journals');
+    }
+
+    logOut(){
+      Firebase.auth().signOut().then(
+        ()=>{
+          if(this.props.onLogoutComplete){
+            this.props.onLogoutComplete();
+          }
+        }
+      );
     }
 
     render() {
@@ -48,7 +57,7 @@ export default class AppDrawer extends Component {
             start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
             style={{height: 3, alignItems: 'center'}}>
           </LinearGradient>
-          
+
           <ScrollView style={{paddingTop:15}}>
 
             <Button dark full transparent onPress={(this.showJournalPage)}>
@@ -62,6 +71,16 @@ export default class AppDrawer extends Component {
             </Button>
 
           </ScrollView>
+          <TouchableNativeFeedback
+            onPress={ this.logOut.bind(this) }
+            background={TouchableNativeFeedback.SelectableBackground()}
+            useForeground={true}>
+            <View style={{alignItems: 'center', padding:10, backgroundColor:'rgba(0, 0, 0, 0.1)'}}>
+              <Text style={{fontSize: 18, color: 'grey'}}>
+                Sign out
+              </Text>
+            </View>
+          </TouchableNativeFeedback>
         </View>
       );
     }

@@ -41,12 +41,13 @@ export default class NavBar extends Component {
               left: 60,
               fontSize: 18,
               color: 'darkgrey',
-            }}>{this.props.title}</Text>
-          </View>
-          {/* <LinearGradient
-            colors={['rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0)']}
-            style={{height:2}}/> */}
-          <View style={{height: 1, backgroundColor: 'rgba(0, 0, 0, 0.01)'}}/>
+            }}>{this.props.title}
+          </Text>
+        </View>
+        {/* <LinearGradient
+          colors={['rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0)']}
+          style={{height:2}}/> */}
+        <View style={{height: 1, backgroundColor: 'rgba(0, 0, 0, 0.01)'}}/>
       </View>
     )
   }

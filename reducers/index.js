@@ -22,10 +22,14 @@ const reducers = combineReducers({
           hardwareBackButtonEnabled : false,
         }
       case "LOG_IN_COMPLETE":
-        console.log(state.isLoggedIn);
         return {
           ...state,
           isLoggedIn : true,
+        }
+      case "LOG_OUT_COMPLETE":
+        return {
+          ...state,
+          isLoggedIn : false,
         }
       default:
         return initialState
