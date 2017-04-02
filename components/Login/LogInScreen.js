@@ -80,7 +80,7 @@ export default class LogInScreen extends Component {
           source={{uri: 'http://digioh.com/blog/wp-content/uploads/2016/08/teaser.jpg'}}
           style={{flex: 1, top: 0, left: 0}}>
           <LinearGradient
-            colors={['rgba(67,198,172, 0.7)', 'rgba(248,255,174, 0.7)']}
+            colors={['rgba(67,198,172, 0.7)', 'rgba(67,198,172, 0.7)']}
             start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
             style={{
               flex: 1,
@@ -174,7 +174,7 @@ export default class LogInScreen extends Component {
                         <Button
                             style={{
                               width: cardContentWidth,
-                              borderRadius: 5,
+                              borderRadius: 100,
                               justifyContent:'center',
                               flexDirection: 'column',
                               paddingTop: 0,
@@ -184,10 +184,10 @@ export default class LogInScreen extends Component {
                             background={ TouchableNativeFeedback.SelectableBackground() }
                             useForeground={true}>
                             <LinearGradient
-                              colors={['#FF4E50', '#F9D423']}
+                              colors={['#FF4E50', '#FF4E50']}
                               start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
                               style={{
-                                borderRadius: 5,
+                                borderRadius: 100,
                                 width: cardContentWidth,
                                 justifyContent: 'center',
                                 alignItems: 'center',
@@ -201,7 +201,7 @@ export default class LogInScreen extends Component {
                       <View style={{marginTop: 20}}>
                         <Button style={{
                           width: cardContentWidth,
-                          borderRadius: 5,
+                          borderRadius: 100,
                           justifyContent: 'center',
                           backgroundColor: 'rgb(230, 230, 230)'}}>
                           <Text style={{fontSize: 16, color: 'grey'}}>Sign up</Text>

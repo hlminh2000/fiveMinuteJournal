@@ -3,9 +3,14 @@ import Moment from 'moment';
 
 const initialState = {
   hardwareBackButtonEnabled: true,
-  selectedDate  : Moment().format('YYYY-MM-DD'),
-  today         : Moment().format('YYYY-MM-DD'),
-  isLoggedIn    : false,
+  selectedDate    : Moment().format('YYYY-MM-DD'),
+  today           : Moment().format('YYYY-MM-DD'),
+  isLoggedIn      : false,
+  currentUserInfo : {
+    firstName : null,
+    lastName  : null,
+    photoURL  : null,
+  },
 }
 
 const reducers = combineReducers({
@@ -25,6 +30,12 @@ const reducers = combineReducers({
         return {
           ...state,
           isLoggedIn : true,
+          currentUserInfo: action.data,
+        }
+      case "EXTERNAL_USER_DATA_CHANGE":
+        return {
+          ...state,
+          currentUserInfo: action.data,
         }
       case "LOG_OUT_COMPLETE":
         return {

@@ -1,5 +1,8 @@
 import { connect } from 'react-redux';
 import LogInScreen from '../components/Login/LogInScreen.js';
+import Firebase from '../firebase/Firebase.js';
+
+const database  = Firebase.database();
 
 const mapStateToProps = (state) => {
   return {
@@ -8,9 +11,18 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+
   return {
     onLoginComplete: () => {
-      dispatch({type: "LOG_IN_COMPLETE", data: null});
+      const currentUser = Firebase.auth().currentUser;
+      console.log(currentUser);
+      database.ref('userInfo/' + currentUser.uid).once('value', function(userInfo){
+        console.log(userInfo.val());
+        dispatch({type: "LOG_IN_COMPLETE", data: userInfo.val()});
+        database.ref('userInfo/' + currentUser.uid).on('value', function(userInfo){
+          dispatch({type: "EXTERNAL_USER_DATA_CHANGE", data: userInfo.val()});
+        });
+      });
     }
   }
 }

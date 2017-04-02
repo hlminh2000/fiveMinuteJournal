@@ -54,7 +54,8 @@ export default class AuthoringCard1 extends Component{
     return (
       <Card style={{borderRadius:5}}>
         <LinearGradient
-          colors={['#FF4E50', '#F9D423']}
+          // colors={['#FF4E50', '#F9D423']}
+          colors={['#FF4E50', '#FF4E50']}
           start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
           style={{height:150, borderRadius: 5}}>
           <LinearGradient

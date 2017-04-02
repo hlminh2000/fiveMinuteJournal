@@ -101,7 +101,8 @@ export default class AuthoringPage1 extends Component{
 
         <View style = {{height: 3, width: windowDimention.width}}>
           <LinearGradient
-            colors={['#F8FFAE', '#43C6AC']}
+            // colors={['#F8FFAE', '#43C6AC']}
+            colors={['#43C6AC', '#43C6AC']}
             start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
             style={{height:3, borderRadius: 5, width: windowDimention.width}}/>
           <View style={{

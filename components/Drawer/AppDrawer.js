@@ -20,6 +20,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Firebase from '../../firebase/Firebase.js';
 
+const database  = Firebase.database();
+
 export default class AppDrawer extends Component {
 
     constructor(props){
@@ -43,24 +45,26 @@ export default class AppDrawer extends Component {
 
     render() {
 
-      const currentUser = Firebase.auth().currentUser;
-
       return (
         <View style={{backgroundColor:'white', flex:1}}>
           <View style={{backgroundColor:'rgb(255, 255, 255)', height:200}}>
             <LinearGradient
-              colors={['#FF4E50', '#F9D423']}
+              // colors={['#FF4E50', '#F9D423']}
+              colors={['#FF4E50', '#FF4E50']}
+              // colors={['#43C6AC', '#43C6AC']}
               start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
               style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
               <Image
-                source={{uri: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSGCvvloBzw_9e0WqxQBIfDygTrFuYVB7O6aS9My73nNuBDEPSr5w'}}
+                source={{uri: this.props.userInfo.photoURL}}
                 style={{
-                  borderColor: 'rgba(255, 255, 255, 0.5)',
-                  borderWidth: 3,
+                  borderColor: 'rgba(255, 255, 255, 0.3)',
+                  borderWidth: 5,
                   borderRadius: 1000,
                   height: 80,
                   width: 80}}/>
-                <Text style={{padding: 10, fontSize: 16, color:'rgba(255, 255, 255, 0.7)'}}>Minh's Journals</Text>
+                <Text style={{padding: 10, fontSize: 16, color:'rgba(255, 255, 255, 0.7)'}}>
+                  {this.props.userInfo.firstName}'s Journals
+                </Text>
               <LinearGradient
                 colors={['rgba(0, 0, 0, 0)', 'rgba(0, 0, 0, 0.20)']}
                 start={{x: 0.0, y: 0.0}} end={{x: 0, y: 1}}

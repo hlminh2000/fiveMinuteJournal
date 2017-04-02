@@ -3,7 +3,7 @@ import AppDrawer from '../components/Drawer/AppDrawer.js';
 
 const mapStateToProps = (state) => {
   return {
-
+    userInfo: state.mainReducer.currentUserInfo,
   }
 };
 

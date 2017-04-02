@@ -43,7 +43,7 @@ export default class ListPage extends Component {
         <ActionButton
           // buttonColor={ this.props.authoringEnabled ? 'rgba(60,220,80,1)' : 'rgba(200,200,200,1)' }/>
           onPress={() => { if(this.props.authoringEnabled) this.goToAuthoringPage() }}
-          buttonColor={ this.props.authoringEnabled ? 'rgba(67,198,172, 1)' : 'rgba(230,230,230,1)' }/>
+          buttonColor={ this.props.authoringEnabled ? '#FF4E50' : 'rgba(230,230,230,1)' }/>
       </Container>
 
     );
