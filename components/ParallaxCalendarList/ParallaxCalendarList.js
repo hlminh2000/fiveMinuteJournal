@@ -94,7 +94,7 @@ export default class ParallaxCalendarList extends Component {
             <View>
               <LinearGradient
                 // colors={['rgba(67,198,172, 0.7)', 'rgba(248,255,174, 0.7)']}
-                colors={['rgba(67,198,172, 0.7)', 'rgba(67,198,172, 0.7)']}
+                colors={['rgba(67,198,172, 1)', 'rgba(67,198,172, 1)']}
                 start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
                 style={{height:305, alignItems:'center'}}>
                 <Calendar

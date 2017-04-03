@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { AppRegistry, BackAndroid } from 'react-native';
+import {
+  AppRegistry,
+  BackAndroid,
+  StatusBar
+} from 'react-native';
 import { StyleProvider } from 'native-base';
 import { addNavigationHelpers } from 'react-navigation';
 import getTheme from './native-base-theme/components';

@@ -1,5 +1,12 @@
-import React, { Component } from 'react';
-import { Container } from 'native-base';
+import React, {
+  Component,
+} from 'react';
+import {
+  StatusBar,
+} from 'react-native';
+import {
+  Container,
+} from 'native-base';
 import StackNavigator from 'react-navigation';
 import NavBar from '../NavBar/NavBar.js';
 import Calendar from 'react-native-calendar';
@@ -38,6 +45,10 @@ export default class ListPage extends Component {
   render() {
     return (
       <Container>
+
+        <StatusBar
+          backgroundColor="rgba(0, 0, 0, 0.3)"
+          barStyle="light-content"/>
         <NavBar title='My Journals' navigation={this.props.navigation}></NavBar>
         <CON_ParallaxCalendarList navigation={this.props.navigation}></CON_ParallaxCalendarList>
         <ActionButton

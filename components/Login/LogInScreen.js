@@ -6,6 +6,7 @@ import {
   View,
   TextInput,
   TouchableNativeFeedback,
+  StatusBar,
   Dimensions,
 } from 'react-native';
 import {
@@ -76,6 +77,10 @@ export default class LogInScreen extends Component {
 
     return (
       <Container>
+        <StatusBar
+          backgroundColor="rgb(67,198,172)"
+          barStyle="light-content"
+        />
         <Image
           source={{uri: 'http://digioh.com/blog/wp-content/uploads/2016/08/teaser.jpg'}}
           style={{flex: 1, top: 0, left: 0}}>
@@ -131,13 +136,6 @@ export default class LogInScreen extends Component {
                           value={this.state.email}
                           placeholderTextColor='lightgrey'
                           style={{
-                            // backgroundColor: 'rgba(0, 0, 0, 0.07)',
-                            // textAlign: 'center',
-                            // color: 'grey',
-                            // padding: 0,
-                            // fontSize: 18,
-                            // height: 40,
-
                             textAlign: 'center',
                             marginBottom: 20,
                             fontSize: 18,
@@ -173,7 +171,7 @@ export default class LogInScreen extends Component {
                       <View style={{marginTop: 20}}>
                         <Button
                             style={{
-                              width: cardContentWidth,
+                              width: cardContentWidth *3/4,
                               borderRadius: 100,
                               justifyContent:'center',
                               flexDirection: 'column',
@@ -182,13 +180,16 @@ export default class LogInScreen extends Component {
                           <TouchableNativeFeedback
                             onPress={ this.signInWithEmailAndPassword.bind(this) }
                             background={ TouchableNativeFeedback.SelectableBackground() }
+                            style={{
+                              borderRadius: 100,
+                            }}
                             useForeground={true}>
                             <LinearGradient
                               colors={['#FF4E50', '#FF4E50']}
                               start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
                               style={{
                                 borderRadius: 100,
-                                width: cardContentWidth,
+                                width: cardContentWidth *3/4,
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 flex:1,
@@ -200,7 +201,7 @@ export default class LogInScreen extends Component {
                       </View>
                       <View style={{marginTop: 20}}>
                         <Button style={{
-                          width: cardContentWidth,
+                          width: cardContentWidth *3/4,
                           borderRadius: 100,
                           justifyContent: 'center',
                           backgroundColor: 'rgb(230, 230, 230)'}}>
