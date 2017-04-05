@@ -3,14 +3,17 @@ import Moment from 'moment';
 
 const initialState = {
   hardwareBackButtonEnabled: true,
-  selectedDate    : Moment().format('YYYY-MM-DD'),
-  today           : Moment().format('YYYY-MM-DD'),
-  isLoggedIn      : false,
-  currentUserInfo : {
+  selectedDate      : Moment().format('YYYY-MM-DD'),
+  today             : Moment().format('YYYY-MM-DD'),
+  calendarStartDate : Moment().startOf('month').format('YYYY-MM-DD'),
+  calendarEndDate   : Moment().endOf('month').format('YYYY-MM-DD'),
+  isLoggedIn        : false,
+  currentUserInfo   : {
     firstName : null,
     lastName  : null,
     photoURL  : null,
   },
+  currentPostShown  : null,
 }
 
 const reducers = combineReducers({
@@ -20,6 +23,23 @@ const reducers = combineReducers({
         return {
           ...state,
           selectedDate : action.data,
+        }
+      case "CALENDAR_NEXT_MONTH_PRESSED":
+        return {
+          ...state,
+          calendarStartDate : Moment(state.calendarStartDate).add(1, 'month').format('YYYY-MM-DD'),
+          calendarStartDate : Moment(state.calendarEndDate).add(1, 'month').format('YYYY-MM-DD'),
+        }
+      case "CALENDAR_PREV_MONTH_PRESSED":
+        return {
+          ...state,
+          calendarStartDate : Moment(state.calendarStartDate).subtract(1, 'month').format('YYYY-MM-DD'),
+          calendarStartDate : Moment(state.calendarEndDate).subtract(1, 'month').format('YYYY-MM-DD'),
+        }
+      case "SELECTED_DATE_POST_FETCHED":
+        return {
+          ...state,
+          currentPostShown  : action.data,
         }
       case "ENTER_AUTHORING_PAGE":
         return {

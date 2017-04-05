@@ -55,7 +55,12 @@ const calendarStyle = {
   },
   dayButtonFiller: {
     width: 45
-  }
+  },
+  eventIndicator: {
+    backgroundColor: 'blue',
+    width: 10,
+    height: 10,
+  },
 }
 
 
@@ -65,10 +70,14 @@ export default class ParallaxCalendarList extends Component {
 
   static defaultProps = {
     ...Component.defaultProps,
-    selectedDate  : this.today,
-    today         : this.today,
-    navigation    : null,
-    onDateSelect  : (date) => {},
+    selectedDate        : this.today,
+    today               : this.today,
+    navigation          : null,
+    calendarStartDate   : Moment().startOf('month').format('YYYY-MM-DD'),
+    currentPostShown    : null,
+    onDateSelect        : (date) => {},
+    onNextMonthPress    : () => {},
+    onPrevMonthPress    : () => {},
   }
 
   constructor(props){
@@ -78,6 +87,18 @@ export default class ParallaxCalendarList extends Component {
 
   onDateSelect(date){
     this.props.onDateSelect(Moment(date).format('YYYY-MM-DD'));
+  }
+
+  onNextMonthPress(){
+    if(this.props.onNextMonthPress){
+      this.props.onNextMonthPress()
+    }
+  }
+
+  onPrevMonthPress(){
+    if(this.props.onPrevMonthPress){
+      this.props.onPrevMonthPress()
+    }
   }
 
   goToEditPage1(){
@@ -102,6 +123,10 @@ export default class ParallaxCalendarList extends Component {
                   showControls={true}
                   customStyle={calendarStyle}
                   onDateSelect={this.onDateSelect.bind(this)}
+                  onTouchNext={this.onNextMonthPress.bind(this)}
+                  onTouchPrev={this.onPrevMonthPress.bind(this)}
+                  startDate={this.props.calendarStartDate}
+                  eventDates={['2017-04-02']}
                   selectedDate={this.props.selectedDate}/>
               </LinearGradient>
             </View>
@@ -121,9 +146,9 @@ export default class ParallaxCalendarList extends Component {
                       {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                       <View style={{marginLeft:15}}>
                         <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>What I am grateful for?</Text></View>
-                        <Text>1) The color of my beautiful eyes</Text>
-                        <Text>2) My perfect wave hair</Text>
-                        <Text>3) How awesome I am</Text>
+                        <Text>1) {(this.props.currentPostShown && this.props.currentPostShown.q1[0]) ? this.props.currentPostShown.q1[0] : "My beautiful eyes"}</Text>
+                        <Text>2) {(this.props.currentPostShown && this.props.currentPostShown.q1[1]) ? this.props.currentPostShown.q1[1] : "My beautiful eyes"}</Text>
+                        <Text>3) {(this.props.currentPostShown && this.props.currentPostShown.q1[2]) ? this.props.currentPostShown.q1[2] : "My beautiful eyes"}</Text>
                       </View>
                       <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                     </ListItem>
@@ -132,9 +157,9 @@ export default class ParallaxCalendarList extends Component {
                     {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>What would make today great?</Text></View>
-                      <Text>1) Finish my project</Text>
-                      <Text>2) Submit my application</Text>
-                      <Text>3) Go to the gym</Text>
+                      <Text>1) {(this.props.currentPostShown && this.props.currentPostShown.q2[0]) ? this.props.currentPostShown.q2[0] : "My beautiful eyes"}</Text>
+                      <Text>2) {(this.props.currentPostShown && this.props.currentPostShown.q2[1]) ? this.props.currentPostShown.q2[1] : "My beautiful eyes"}</Text>
+                      <Text>3) {(this.props.currentPostShown && this.props.currentPostShown.q2[2]) ? this.props.currentPostShown.q2[2] : "My beautiful eyes"}</Text>
                     </View>
                     <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                   </ListItem>
@@ -143,7 +168,7 @@ export default class ParallaxCalendarList extends Component {
                     {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>Daily Affirmation. I am...</Text></View>
-                      <Text>The strongest version of myself</Text>
+                      <Text>{(this.props.currentPostShown && this.props.currentPostShown.q3[0]) ? this.props.currentPostShown.q3[0] : "The strongest version of myself"}</Text>
                     </View>
                     <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                   </ListItem>
