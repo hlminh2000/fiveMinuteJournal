@@ -74,7 +74,7 @@ export default class ParallaxCalendarList extends Component {
     today               : this.today,
     navigation          : null,
     calendarStartDate   : Moment().startOf('month').format('YYYY-MM-DD'),
-    currentPostShown    : null,
+    currentJournalEntry    : null,
     onDateSelect        : (date) => {},
     onNextMonthPress    : () => {},
     onPrevMonthPress    : () => {},
@@ -146,9 +146,9 @@ export default class ParallaxCalendarList extends Component {
                       {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                       <View style={{marginLeft:15}}>
                         <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>What I am grateful for?</Text></View>
-                        <Text>1) {(this.props.currentPostShown && this.props.currentPostShown.q1[0]) ? this.props.currentPostShown.q1[0] : "My beautiful eyes"}</Text>
-                        <Text>2) {(this.props.currentPostShown && this.props.currentPostShown.q1[1]) ? this.props.currentPostShown.q1[1] : "My beautiful eyes"}</Text>
-                        <Text>3) {(this.props.currentPostShown && this.props.currentPostShown.q1[2]) ? this.props.currentPostShown.q1[2] : "My beautiful eyes"}</Text>
+                        <Text>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[0]) ? this.props.currentJournalEntry.q1[0] : "My beautiful eyes"}</Text>
+                        <Text>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[1]) ? this.props.currentJournalEntry.q1[1] : "My beautiful eyes"}</Text>
+                        <Text>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[2]) ? this.props.currentJournalEntry.q1[2] : "My beautiful eyes"}</Text>
                       </View>
                       <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                     </ListItem>
@@ -157,9 +157,9 @@ export default class ParallaxCalendarList extends Component {
                     {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>What would make today great?</Text></View>
-                      <Text>1) {(this.props.currentPostShown && this.props.currentPostShown.q2[0]) ? this.props.currentPostShown.q2[0] : "My beautiful eyes"}</Text>
-                      <Text>2) {(this.props.currentPostShown && this.props.currentPostShown.q2[1]) ? this.props.currentPostShown.q2[1] : "My beautiful eyes"}</Text>
-                      <Text>3) {(this.props.currentPostShown && this.props.currentPostShown.q2[2]) ? this.props.currentPostShown.q2[2] : "My beautiful eyes"}</Text>
+                      <Text>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[0]) ? this.props.currentJournalEntry.q2[0] : "My beautiful eyes"}</Text>
+                      <Text>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[1]) ? this.props.currentJournalEntry.q2[1] : "My beautiful eyes"}</Text>
+                      <Text>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[2]) ? this.props.currentJournalEntry.q2[2] : "My beautiful eyes"}</Text>
                     </View>
                     <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                   </ListItem>
@@ -168,7 +168,7 @@ export default class ParallaxCalendarList extends Component {
                     {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>Daily Affirmation. I am...</Text></View>
-                      <Text>{(this.props.currentPostShown && this.props.currentPostShown.q3[0]) ? this.props.currentPostShown.q3[0] : "The strongest version of myself"}</Text>
+                      <Text>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q3[0]) ? this.props.currentJournalEntry.q3[0] : "The strongest version of myself"}</Text>
                     </View>
                     <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                   </ListItem>

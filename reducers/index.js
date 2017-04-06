@@ -1,6 +1,16 @@
 import { combineReducers } from 'redux';
 import Moment from 'moment';
 
+const emptyJournalEntry = () => {
+  return {
+    q1: [null, null, null],
+    q2: [null, null, null],
+    q3: [null],
+    q4: [null, null, null],
+    q5: [null],
+  }
+}
+
 const initialState = {
   hardwareBackButtonEnabled: true,
   selectedDate      : Moment().format('YYYY-MM-DD'),
@@ -13,7 +23,7 @@ const initialState = {
     lastName  : null,
     photoURL  : null,
   },
-  currentPostShown  : null,
+  currentJournalEntry  : emptyJournalEntry(),
 }
 
 const reducers = combineReducers({
@@ -39,7 +49,7 @@ const reducers = combineReducers({
       case "SELECTED_DATE_POST_FETCHED":
         return {
           ...state,
-          currentPostShown  : action.data,
+          currentJournalEntry  : action.data || emptyJournalEntry(),
         }
       case "ENTER_AUTHORING_PAGE":
         return {
