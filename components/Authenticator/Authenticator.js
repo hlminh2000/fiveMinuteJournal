@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AppNavigator from '../Navigator/AppNavigator.js';
-import CON_LogInScreen from '../../containers/CON_LogInScreen.js';
+import LoginNavigator from '../Navigator/LoginNavigator.js';
 
 
 export default class Authenticator extends Component {
@@ -10,6 +10,6 @@ export default class Authenticator extends Component {
   }
 
   render() {
-    return ( this.props.isLoggedIn ? <AppNavigator/> : <CON_LogInScreen/> );
+    return ( this.props.isLoggedIn ? <AppNavigator/> : <LoginNavigator/> );
   }
 }

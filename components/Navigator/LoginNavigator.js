@@ -1,8 +1,10 @@
 import { StackNavigator } from 'react-navigation';
-import LogInScreen from '../Login/LogInScreen.js';
+import CON_LogInScreen from '../../containers/CON_LogInScreen.js';
+import CON_SignUpScreen from '../../containers/CON_SignUpScreen.js';
 
-const AppNavigator = StackNavigator({
-  Login       : { screen: LogInScreen },
+const LoginNavigator = StackNavigator({
+  Login       : { screen: CON_LogInScreen },
+  Signup      : { screen: CON_SignUpScreen },
 }, { headerMode: 'none' })
 
-export default AppNavigator;
+export default LoginNavigator;

@@ -32,6 +32,10 @@ export default class LogInScreen extends Component {
     this.showWarningMessage.bind(this);
   }
 
+  onSignUpPress(){
+    this.props.navigation.navigate('Signup');
+  }
+
   signInWithEmailAndPassword(){
     if(this.state.email && this.state.password){
       this.setState({
@@ -200,12 +204,14 @@ export default class LogInScreen extends Component {
                         </Button>
                       </View>
                       <View style={{marginTop: 20}}>
-                        <Button style={{
-                          width: cardContentWidth *3/4,
-                          borderRadius: 100,
-                          justifyContent: 'center',
-                          backgroundColor: 'rgb(230, 230, 230)'}}>
-                          <Text style={{fontSize: 16, color: 'grey'}}>Sign up</Text>
+                        <Button
+                          onPress={ this.onSignUpPress.bind(this) }
+                          style={{
+                            width: cardContentWidth *3/4,
+                            borderRadius: 100,
+                            justifyContent: 'center',
+                            backgroundColor: 'rgb(230, 230, 230)'}}>
+                          <Text style={{fontSize: 16, color: 'grey'}}>Sign up with email</Text>
                         </Button>
                       </View>
                     </Card>
