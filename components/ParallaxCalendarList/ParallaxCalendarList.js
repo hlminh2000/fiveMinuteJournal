@@ -108,7 +108,7 @@ export default class ParallaxCalendarList extends Component {
   render() {
     return (
         <ParallaxView
-          backgroundSource = {{uri: 'http://digioh.com/blog/wp-content/uploads/2016/08/teaser.jpg'}}
+          backgroundSource = {{uri: 'https://firebasestorage.googleapis.com/v0/b/mjournal-6d19f.appspot.com/o/skyscrapers-246224_1920.jpg?alt=media&token=61c45321-b324-4862-a2ed-406e4bbf6fe3'}}
           windowHeight={305}
           showsVerticalScrollIndicator = {false}
           header={(

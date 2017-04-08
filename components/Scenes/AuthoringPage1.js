@@ -123,7 +123,7 @@ export default class AuthoringPage1 extends Component{
       <Container style={{backgroundColor: 'white'}}>
         <Image
           style={{flex: 1}}
-          source={{uri: 'http://digioh.com/blog/wp-content/uploads/2016/08/teaser.jpg'}}>
+          source={{uri: 'https://firebasestorage.googleapis.com/v0/b/mjournal-6d19f.appspot.com/o/skyscrapers-246224_1920.jpg?alt=media&token=61c45321-b324-4862-a2ed-406e4bbf6fe3'}}>
           <View style={{flex: 1, backgroundColor: 'rgba(67,198,172, 0.7)', justifyContent: 'center', alignItems: 'center'}}>
             {
               (()=>{
