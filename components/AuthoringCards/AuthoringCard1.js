@@ -62,10 +62,11 @@ export default class AuthoringCard1 extends Component{
       <Card style={{borderRadius:5}}>
         <LinearGradient
           // colors={['#FF4E50', '#F9D423']}
-          colors={['#FF4E50', '#FF4E50']}
+          // colors={['#FF4E50', '#FF4E50']}
+          colors={['white', 'white']}
           start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
           style={{height:150, borderRadius: 5}}>
-          <LinearGradient
+          {/* <LinearGradient
             colors={
               (()=>{
                 function pushColor (colorArray, length) {
@@ -80,43 +81,51 @@ export default class AuthoringCard1 extends Component{
             }
             style={{
               height: 1,
-              flex: 1}}/>
+              flex: 1}}/> */}
           <Text style={{
             position:'absolute',
-            left: 10,
-            bottom:40,
-            color:'white',
-            fontSize: 24
+            left: 20,
+            // bottom:30,
+            top:40,
+            color:'darkgrey',
+            fontSize: 22
           }}> {this.props.headerText} </Text>
         </LinearGradient>
 
-        <View style={{backgroundColor: 'white', marginTop:-30, marginBottom: 10, paddingTop: 0, paddingBottom: 20, flex: 1}}>
-          <View style={{marginTop: 15, marginBottom: 5, flex: 5, alignItems:'center', justifyContent: 'center'}}>
+        {/* <View style={{backgroundColor: 'white', marginTop:-30, marginBottom: 10, paddingTop: 0, paddingBottom: 20, flex: 1}}>
+          <View style={{marginTop: 15, marginBottom: 5, flex: 5, alignItems:'center', justifyContent: 'center'}}> */}
+        <View style={{backgroundColor: 'white', marginTop:-50, marginBottom: 10, paddingTop: 0, paddingBottom: 50, flex: 1}}>
+          <View style={{marginTop: 0, marginBottom: 5, flex: 5, alignItems:'center', justifyContent: 'center'}}>
 
             {
               indices.map((index) => {
                 return (
-                  <View style={{width:windowDimention.width - 80, paddingTop: 15}}>
-                    {
-                      (()=>{
-                        return !this.props.showIndex ? null : (
-                          <Text style={{fontSize: 22, color: '#43C6AC'}}>{ index+1 }</Text>
-                        )
-                      })()
-                    }
-                    <TextInput
-                      onChangeText={ (content) => {this.onInputChange(index, content)} }
-                      underlineColorAndroid='transparent'
-                      autoCapitalize='sentences'
-                      style={{
-                        textAlign: 'center',
-                        fontSize: 18,
-                        borderBottomColor: 'lightgrey',
-                        borderBottomWidth: 0.5,
-                        padding: 0,
-                        height: 30,
-                        color: 'rgba(0, 0, 0, 0.6)',
-                      }}/>
+                  <View style={{width:windowDimention.width - 90, paddingTop: 30}}>
+                    <View>
+                      {
+                        (()=>{
+                          return !this.props.showIndex ? null : (
+                            <Text style={{fontSize: 22, color: '#43C6AC'}}>{ index+1 }</Text>
+                          )
+                        })()
+                      }
+                    </View>
+                    <View style={{alignItems: 'center'}}>
+                      <TextInput
+                        onChangeText={ (content) => {this.onInputChange(index, content)} }
+                        underlineColorAndroid='transparent'
+                        autoCapitalize='sentences'
+                        style={{
+                          textAlign: 'center',
+                          fontSize: 18,
+                          borderBottomColor: 'lightgrey',
+                          borderBottomWidth: 0.5,
+                          padding: 0,
+                          height: 30,
+                          color: 'rgba(0, 0, 0, 0.6)',
+                          width: 250,
+                        }}/>
+                    </View>
                   </View>
                 )
               })

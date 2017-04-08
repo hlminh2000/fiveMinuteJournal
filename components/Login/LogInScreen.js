@@ -220,7 +220,7 @@ export default class LogInScreen extends Component {
                 )
               }})()
             }
-            <Spinner isVisible={this.state.isLoggingIn} color={"white"} size={windowDimention.width / 3} type={'Bounce'}/>
+            <Spinner isVisible={this.state.isLoggingIn} color={"white"} size={windowDimention.width * 3/4} type={'Pulse'}/>
           </LinearGradient>
         </Image>
       </Container>

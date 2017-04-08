@@ -140,53 +140,70 @@ export default class ParallaxCalendarList extends Component {
             }}>
 
             <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>
-              <Card style={{width: 340}}>
-                <List style={{paddingBottom:10}}>
-                    <ListItem style={{paddingTop: 20, paddingBottom: 25}} onPress={this.goToEditPage1.bind(this)}>
-                      {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
-                      <View style={{marginLeft:15}}>
-                        <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>What I am grateful for?</Text></View>
-                        <Text>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[0]) ? this.props.currentJournalEntry.q1[0] : "My beautiful eyes"}</Text>
-                        <Text>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[1]) ? this.props.currentJournalEntry.q1[1] : "My beautiful eyes"}</Text>
-                        <Text>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[2]) ? this.props.currentJournalEntry.q1[2] : "My beautiful eyes"}</Text>
+              <Card style={{width: 340, borderRadius: 5}}>
+                {
+                  (()=>{
+                    if(
+                      true
+                      // this.props.currentJournalEntry && (
+                      //   this.props.currentJournalEntry.q1[0] && this.props.currentJournalEntry.q1[1] && this.props.currentJournalEntry.q1[2] &&
+                      //   this.props.currentJournalEntry.q2[0] && this.props.currentJournalEntry.q2[1] && this.props.currentJournalEntry.q2[2] &&
+                      //   this.props.currentJournalEntry.q3[0] && this.props.currentJournalEntry.q3[1] && this.props.currentJournalEntry.q3[2]
+                      // )
+                    ){ return (
+                      <List style={{paddingBottom:10}}>
+                        <ListItem style={{paddingTop: 20, paddingBottom: 25}} onPress={this.goToEditPage1.bind(this)}>
+                          {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
+                          <View style={{marginLeft:15}}>
+                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What I am grateful for?</Text></View>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[0]) ? this.props.currentJournalEntry.q1[0] : "My beautiful eyes"}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[1]) ? this.props.currentJournalEntry.q1[1] : "My beautiful eyes"}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[2]) ? this.props.currentJournalEntry.q1[2] : "My beautiful eyes"}</Text>
+                          </View>
+                          <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                        </ListItem>
+
+                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                          {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
+                          <View style={{marginLeft:15}}>
+                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What would make today great?</Text></View>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[0]) ? this.props.currentJournalEntry.q2[0] : "My beautiful eyes"}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[1]) ? this.props.currentJournalEntry.q2[1] : "My beautiful eyes"}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[2]) ? this.props.currentJournalEntry.q2[2] : "My beautiful eyes"}</Text>
+                          </View>
+                          <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                        </ListItem>
+
+                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                          {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
+                          <View style={{marginLeft:15}}>
+                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>Daily Affirmation. I am...</Text></View>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q3[0]) ? this.props.currentJournalEntry.q3[0] : "The strongest version of myself"}</Text>
+                          </View>
+                          <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                        </ListItem>
+                      </List>
+                    )} else { return (
+                      <View style={{alignItems: 'center', paddingTop: 30, paddingBottom: 30}}>
+                        <Text style={{paddingTop: 5, paddingBottom: 5}}> No journal  </Text>
                       </View>
-                      <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
-                    </ListItem>
-
-                  <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
-                    <View style={{marginLeft:15}}>
-                      <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>What would make today great?</Text></View>
-                      <Text>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[0]) ? this.props.currentJournalEntry.q2[0] : "My beautiful eyes"}</Text>
-                      <Text>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[1]) ? this.props.currentJournalEntry.q2[1] : "My beautiful eyes"}</Text>
-                      <Text>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[2]) ? this.props.currentJournalEntry.q2[2] : "My beautiful eyes"}</Text>
-                    </View>
-                    <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
-                  </ListItem>
-
-                  <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
-                    <View style={{marginLeft:15}}>
-                      <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>Daily Affirmation. I am...</Text></View>
-                      <Text>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q3[0]) ? this.props.currentJournalEntry.q3[0] : "The strongest version of myself"}</Text>
-                    </View>
-                    <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
-                  </ListItem>
-                </List>
+                    )}
+                  })()
+                }
               </Card>
             </View>
 
             <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>
-              <Card style={{width: 340}}>
+              <Card style={{width: 340, borderRadius: 5}}>
                 <List>
 
                   <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
                     {/* <Icon name="ios-moon" style={{color:'rgba(0, 0, 0, 0.1)'}}/> */}
                     <View style={{marginLeft:15}}>
-                      <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
-                      <Text>1) I was a mentor at a major hackathon</Text>
-                      <Text>2) I am building my first mobile app</Text>
-                      <Text>3) I was almost a judge</Text>
+                      <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
+                      <Text style={{paddingTop: 5, paddingBottom: 5}}>1) I was a mentor at a major hackathon</Text>
+                      <Text style={{paddingTop: 5, paddingBottom: 5}}>2) I am building my first mobile app</Text>
+                      <Text style={{paddingTop: 5, paddingBottom: 5}}>3) I was almost a judge</Text>
                     </View>
                     <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
                   </ListItem>
@@ -194,7 +211,7 @@ export default class ParallaxCalendarList extends Component {
                   <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
                     {/* <Icon name="ios-moon" style={{color:'rgba(0, 0, 0, 0.1)'}}/> */}
                     <View style={{marginLeft:15}}>
-                      <View style={{width:250}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
+                      <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
                       <Text>Go to the gym...</Text>
                     </View>
                     <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />

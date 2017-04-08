@@ -25,7 +25,7 @@ import AuthoringCard1 from '../AuthoringCards/AuthoringCard1.js';
 import CON_AuthoringCard1 from '../../containers/CON_AuthoringCard1.js';
 import Moment from 'moment';
 import Firebase from '../../firebase/Firebase.js';
-
+import Spinner from 'react-native-spinkit';
 
 const database = Firebase.database();
 
@@ -73,8 +73,10 @@ export default class AuthoringPage1 extends Component{
     this.setState({ ...this.state, isTransmittingData: true });
     this.transmitDataToFirebase(this.props.currentJournalEntry)
       .then((data) => {
-        this.props.navigation.goBack();
-        this.setState({ ...this.state, isTransmittingData: false });
+        setTimeout(()=>{
+          this.props.navigation.goBack();
+          this.setState({ ...this.state, isTransmittingData: false });
+        },1000);
       })
       .catch((err) => {
         this.setState({ ...this.state, isTransmittingData: false });
@@ -119,103 +121,115 @@ export default class AuthoringPage1 extends Component{
 
     return (
       <Container style={{backgroundColor: 'white'}}>
+        <Image
+          style={{flex: 1}}
+          source={{uri: 'http://digioh.com/blog/wp-content/uploads/2016/08/teaser.jpg'}}>
+          <View style={{flex: 1, backgroundColor: 'rgba(67,198,172, 0.7)', justifyContent: 'center', alignItems: 'center'}}>
+            {
+              (()=>{
+                if(!this.state.isTransmittingData){ return (
+                  <View style={{flex: 1}}>
+                    <View style = {{height: 3, width: windowDimention.width}}>
+                      <LinearGradient
+                        // colors={['#F8FFAE', '#43C6AC']}
+                        colors={['white', 'white']}
+                        start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
+                        style={{height:3, borderRadius: 5, width: windowDimention.width*(this.state.currentPage/3)}}/>
+                      {/* <View style={{
+                        backgroundColor: 'white',
+                        width: windowDimention.width*(1-this.state.currentPage/3),
+                        height: 3,
+                        position: 'absolute',
+                        left: windowDimention.width*this.state.currentPage/3}}/> */}
+                      </View>
 
-        <View style = {{height: 3, width: windowDimention.width}}>
-          <LinearGradient
-            // colors={['#F8FFAE', '#43C6AC']}
-            colors={['#43C6AC', '#43C6AC']}
-            start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
-            style={{height:3, borderRadius: 5, width: windowDimention.width}}/>
-          <View style={{
-              backgroundColor: 'white',
-              width: windowDimention.width*(1-this.state.currentPage/3),
-              height: 3,
-              position: 'absolute',
-              left: windowDimention.width*this.state.currentPage/3}}/>
-        </View>
+                      <ScrollView contentContainerStyle={{alignItems:'center', height: windowDimention.height - 30 }}>
 
-        <ScrollView contentContainerStyle={{alignItems:'center', height: windowDimention.height - 30 }}>
+                        <View style={{
+                            height: 100,
+                            flexDirection:'row',
+                            paddingTop: 20,
+                            paddingBottom: 10,
+                            paddingLeft: 20,
+                            paddingRight: 20}}>
+                            {/* <Image
+                              source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg'}}
+                              style={{height: 60, width: 60, borderRadius:50}}
+                              /> */}
+                              <View style={{flex: 1, paddingLeft: 10}}>
+                                <Text style={{fontSize: 12, color: 'white',fontStyle:'italic'}}>
+                                  { this.state.quoteData ? this.state.quoteData.quote : "" }
+                                </Text>
+                                <Text style={{fontSize: 12, color: 'white',fontStyle:'italic', position: 'absolute', bottom: 0, right: 0}}>
+                                  { this.state.quoteData ? "- " + this.state.quoteData.author + " -" : "" }
+                                </Text>
+                              </View>
+                            </View>
 
-          <View style={{
-            height: 100,
-            flexDirection:'row',
-            paddingTop: 20,
-            paddingBottom: 10,
-            paddingLeft: 20,
-            paddingRight: 20}}>
-              {/* <Image
-                source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg'}}
-                style={{height: 60, width: 60, borderRadius:50}}
-                /> */}
-            <View style={{flex: 1, paddingLeft: 10}}>
-              <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic'}}>
-                { this.state.quoteData ? this.state.quoteData.quote : "" }
-              </Text>
-              <Text style={{fontSize: 12, color: 'rgba(0, 0, 0, 0.3)',fontStyle:'italic', position: 'absolute', bottom: 0, right: 0}}>
-                { this.state.quoteData ? "- " + this.state.quoteData.author + " -" : "" }
-              </Text>
-            </View>
+
+                            <ViewPagerAndroid
+                              initialPage={0}
+                              ref={viewPager => { this.viewPager = viewPager }}
+                              onPageSelected={this.onViewPagerScroll.bind(this)}
+                              pageMargin={-30}
+                              style={{
+                                width: windowDimention.width,
+                                flex: 1,
+                              }}
+                              >
+                              <View style={{alignItems: 'center'}}>
+                                <View style={{height: windowDimention.height - 100 - 60, width: windowDimention.width - 40}}>
+                                  <CON_AuthoringCard1
+                                    questionId={ "q1" }
+                                    inputCount={ 3 }
+                                    showIndex={ true }
+                                    headerText={"I am grateful for..."}/>
+                                </View>
+                              </View>
+                              <View style={{alignItems: 'center'}}>
+                                <View style={{height: windowDimention.height - 100 - 60, width: windowDimention.width - 40}}>
+                                  <CON_AuthoringCard1
+                                    questionId={ "q2" }
+                                    inputCount={ 3 }
+                                    showIndex={ true }
+                                    headerText={"What would make today \ngreat?"}/>
+                                </View>
+                              </View>
+                              <View style={{alignItems: 'center'}}>
+                                <View style={{height: windowDimention.height - 100 - 230, width: windowDimention.width - 40}}>
+                                  <CON_AuthoringCard1
+                                    questionId={ "q3" }
+                                    inputCount={ 1 }
+                                    showIndex={ false }
+                                    headerText={"Daily affirmations. \nI am..."}/>
+                                </View>
+                              </View>
+                              <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 200}}>
+                                <View style={{width: windowDimention.width - 90}}>
+                                  <View style={{marginBottom: 20}}>
+                                    <Text style={{color: 'white', fontSize:18}}>Great Job!</Text>
+                                  </View>
+                                  <View style={{marginBottom: 20}}>
+                                    <Text style={{color: 'white', fontSize:18}}>Now go rock the world!</Text>
+                                  </View>
+                                  <View>
+                                    <Button rounded style={{borderColor: "#FF4E50", backgroundColor: "#FF4E50"}}
+                                      onPress={this.onDoneButtonPress.bind(this)}>
+                                      <Text style={{color: 'white'}}>Done</Text>
+                                    </Button>
+                                  </View>
+                                </View>
+
+                              </View>
+                            </ViewPagerAndroid>
+                          </ScrollView>
+                        </View>
+                      )}
+                    })()
+                  }
+              <Spinner isVisible={this.state.isTransmittingData} color={"white"} size={windowDimention.width * 3/4} type={'Pulse'}/>
           </View>
-
-
-          <ViewPagerAndroid
-            initialPage={0}
-            ref={viewPager => { this.viewPager = viewPager }}
-            onPageSelected={this.onViewPagerScroll.bind(this)}
-            pageMargin={-30}
-            style={{
-              width: windowDimention.width,
-              flex: 1,
-            }}
-            >
-              <View style={{alignItems: 'center'}}>
-                <View style={{height: windowDimention.height - 100 - 50, width: windowDimention.width - 40}}>
-                  <CON_AuthoringCard1
-                    questionId={ "q1" }
-                    inputCount={ 3 }
-                    showIndex={ true }
-                    headerText={"I am grateful for..."}/>
-                </View>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <View style={{height: windowDimention.height - 100 - 50, width: windowDimention.width - 40}}>
-                  <CON_AuthoringCard1
-                    questionId={ "q2" }
-                    inputCount={ 3 }
-                    showIndex={ true }
-                    headerText={"What would make today \ngreat?"}/>
-                </View>
-              </View>
-              <View style={{alignItems: 'center'}}>
-                <View style={{height: windowDimention.height - 100 - 230, width: windowDimention.width - 40}}>
-                  <CON_AuthoringCard1
-                    questionId={ "q3" }
-                    inputCount={ 1 }
-                    showIndex={ false }
-                    headerText={"Daily affirmations. I am..."}/>
-                </View>
-              </View>
-              <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 100}}>
-                <View style={{width: windowDimention.width - 90}}>
-                  <View style={{marginBottom: 20}}>
-                    <Text style={{color: '#43C6AC', fontSize:18}}>Great Job!</Text>
-                  </View>
-                  <View style={{marginBottom: 20}}>
-                    <Text style={{color: '#43C6AC', fontSize:18}}>Now go rock the world!</Text>
-                  </View>
-                  <View>
-                    <Button rounded bordered style={{borderColor: "#43C6AC"}}
-                      onPress={this.onDoneButtonPress.bind(this)}>
-                      <Text style={{color: '#43C6AC'}}>Done</Text>
-                    </Button>
-                  </View>
-                </View>
-
-              </View>
-          </ViewPagerAndroid>
-
-        </ScrollView>
-
+        </Image>
       </Container>
     )
   }
