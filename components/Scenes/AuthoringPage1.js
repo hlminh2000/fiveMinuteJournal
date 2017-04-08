@@ -216,12 +216,6 @@ export default class AuthoringPage1 extends Component{
 
         </ScrollView>
 
-
-        {/* <ActionButton
-          onPress={() => { this.goToNextPage.bind(this) }}
-          icon={<Icon name="ios-arrow-forward" style={{color: 'white', fontSize: 20}}/>}
-          buttonColor={'#FF4E50'}>
-        </ActionButton> */}
       </Container>
     )
   }
