@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
     selectedDate          : state.mainReducer.selectedDate,
     today                 : state.mainReducer.today,
     calendarStartDate     : state.mainReducer.calendarStartDate,
-    currentJournalEntry      : state.mainReducer.currentJournalEntry,
+    currentJournalEntry   : state.mainReducer.currentJournalEntry,
   }
 };
 

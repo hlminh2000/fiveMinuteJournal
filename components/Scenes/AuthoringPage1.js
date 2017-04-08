@@ -22,9 +22,14 @@ import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/Ionicons';
 import NavBar from '../NavBar/NavBar.js';
 import AuthoringCard1 from '../AuthoringCards/AuthoringCard1.js';
+import CON_AuthoringCard1 from '../../containers/CON_AuthoringCard1.js';
+import Moment from 'moment';
+import Firebase from '../../firebase/Firebase.js';
 
 
-var styles = StyleSheet.create({
+const database = Firebase.database();
+
+const styles = StyleSheet.create({
   container: {
     width: 375,
     flex: 1,
@@ -43,6 +48,7 @@ export default class AuthoringPage1 extends Component{
       viewPagerScrollState: null,
       isKeyboardOpened: false,
       quoteData: null,
+      isTransmittingData:false,
     }
   }
 
@@ -64,7 +70,22 @@ export default class AuthoringPage1 extends Component{
   }
 
   onDoneButtonPress(){
-    this.props.navigation.goBack();
+    this.setState({ ...this.state, isTransmittingData: true });
+    this.transmitDataToFirebase(this.props.currentJournalEntry)
+      .then((data) => {
+        this.props.navigation.goBack();
+        this.setState({ ...this.state, isTransmittingData: false });
+      })
+      .catch((err) => {
+        this.setState({ ...this.state, isTransmittingData: false });
+        console.log(err);
+      });
+  }
+
+  transmitDataToFirebase(entryData){
+    const currentUser = Firebase.auth().currentUser;
+    const today = Moment().format('YYYY-MM-DD');
+    return database.ref('posts/' + currentUser.uid + "/" + today).set(entryData);
   }
 
   onViewPagerScroll(state){
@@ -149,25 +170,28 @@ export default class AuthoringPage1 extends Component{
             >
               <View style={{alignItems: 'center'}}>
                 <View style={{height: windowDimention.height - 100 - 50, width: windowDimention.width - 40}}>
-                  <AuthoringCard1
+                  <CON_AuthoringCard1
+                    questionId={ "q1" }
                     inputCount={ 3 }
-                    showIndex={true}
+                    showIndex={ true }
                     headerText={"I am grateful for..."}/>
                 </View>
               </View>
               <View style={{alignItems: 'center'}}>
                 <View style={{height: windowDimention.height - 100 - 50, width: windowDimention.width - 40}}>
-                  <AuthoringCard1
+                  <CON_AuthoringCard1
+                    questionId={ "q2" }
                     inputCount={ 3 }
-                    showIndex={true}
+                    showIndex={ true }
                     headerText={"What would make today \ngreat?"}/>
                 </View>
               </View>
               <View style={{alignItems: 'center'}}>
                 <View style={{height: windowDimention.height - 100 - 230, width: windowDimention.width - 40}}>
-                  <AuthoringCard1
+                  <CON_AuthoringCard1
+                    questionId={ "q3" }
                     inputCount={ 1 }
-                    showIndex={false}
+                    showIndex={ false }
                     headerText={"Daily affirmations. I am..."}/>
                 </View>
               </View>

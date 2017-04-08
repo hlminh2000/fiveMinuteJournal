@@ -26,6 +26,7 @@ export default class AuthoringCard1 extends Component{
     this.state = {
       isFocused: false,
     }
+    this.onInputChange.bind(this);
   }
 
   setCardFocused(){
@@ -40,6 +41,12 @@ export default class AuthoringCard1 extends Component{
       ...this.state,
       isFocused: false,
     });
+  }
+
+  onInputChange(index, content){
+    if (this.props.onInputChange){
+      this.props.onInputChange(index, content);
+    }
   }
 
   render(){
@@ -98,7 +105,7 @@ export default class AuthoringCard1 extends Component{
                       })()
                     }
                     <TextInput
-                      onChangeText={()=>{ console.log("typing!!!"); if(this.props.onInputChange) {this.props.onInputChange()}}}
+                      onChangeText={ (content) => {this.onInputChange(index, content)} }
                       underlineColorAndroid='transparent'
                       autoCapitalize='sentences'
                       style={{
