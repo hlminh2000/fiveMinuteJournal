@@ -78,11 +78,18 @@ export default class ParallaxCalendarList extends Component {
     onDateSelect        : (date) => {},
     onNextMonthPress    : () => {},
     onPrevMonthPress    : () => {},
+    onComponentDidMount : () => {},
   }
 
   constructor(props){
     super(props);
     this.goToEditPage1 = this.goToEditPage1.bind(this);
+  }
+
+  componentDidMount(){
+    if(this.props.onComponentDidMount){
+      this.props.onComponentDidMount();
+    }
   }
 
   onDateSelect(date){

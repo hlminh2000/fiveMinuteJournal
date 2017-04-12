@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import ParallaxCalendarList from '../components/ParallaxCalendarList/ParallaxCalendarList.js';
 import Firebase from '../firebase/Firebase.js';
+import Moment from 'moment';
 
 const database = Firebase.database();
+const today = Moment().format('YYYY-MM-DD');
 
 const mapStateToProps = (state) => {
   return {
@@ -29,6 +31,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onPrevMonthPress:() => {
       dispatch({type: "CALENDAR_PREV_MONTH_PRESSED", data: null});
+    },
+    onComponentDidMount: () => {
+      database.ref('posts/' + currentUser.uid + "/" + today).on('value', dispatchPosts);
     }
   }
 }
