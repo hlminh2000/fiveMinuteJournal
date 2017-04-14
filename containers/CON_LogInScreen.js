@@ -18,10 +18,24 @@ const mapDispatchToProps = (dispatch) => {
       console.log(currentUser);
       database.ref('userInfo/' + currentUser.uid).once('value', function(userInfo){
         console.log(userInfo.val());
-        dispatch({type: "LOG_IN_COMPLETE", data: userInfo.val()});
-        database.ref('userInfo/' + currentUser.uid).on('value', function(userInfo){
-          dispatch({type: "EXTERNAL_USER_DATA_CHANGE", data: userInfo.val()});
-        });
+        if(!userInfo.val()){
+          Firebase.database().ref('userInfo/' + Firebase.auth().currentUser.uid).set({
+            firstName : currentUser.displayName,
+            lastName  : null,
+            photoURL  : currentUser.photoURL,
+          })
+          .then(()=>{
+            dispatch({type: "LOG_IN_COMPLETE", data: userInfo.val()});
+            database.ref('userInfo/' + currentUser.uid).on('value', function(userInfo){
+              dispatch({type: "EXTERNAL_USER_DATA_CHANGE", data: userInfo.val()});
+            });
+          })
+        } else {
+          dispatch({type: "LOG_IN_COMPLETE", data: userInfo.val()});
+          database.ref('userInfo/' + currentUser.uid).on('value', function(userInfo){
+            dispatch({type: "EXTERNAL_USER_DATA_CHANGE", data: userInfo.val()});
+          });
+        }
       });
     }
   }

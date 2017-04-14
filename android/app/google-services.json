@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "269141215341",
+    "firebase_url": "https://mjournal-6d19f.firebaseio.com",
+    "project_id": "mjournal-6d19f",
+    "storage_bucket": "mjournal-6d19f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269141215341:android:be5b1efb7c039410",
+        "android_client_info": {
+          "package_name": "com.fivemjournalnative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269141215341-ij1q1s0o24qhjas33vloahe2ekuigglt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUa-lXNBNf1w08ikar6ACqlLQoG-z9NFQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

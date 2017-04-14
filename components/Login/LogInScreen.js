@@ -20,6 +20,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Firebase from '../../firebase/Firebase.js';
 import Spinner from 'react-native-spinkit';
+import FireAuth from 'react-native-firebase-auth';
 
 export default class LogInScreen extends Component {
 
@@ -32,6 +33,39 @@ export default class LogInScreen extends Component {
       warningMessage: null,
     }
     this.showWarningMessage.bind(this);
+    FireAuth.init();
+  }
+
+  componentDidMount() {
+    FireAuth.setup(
+      this.onLogin.bind(this),
+      this.onUserChange.bind(this),
+      this.onLogout.bind(this),
+      this.emailVerified.bind(this),
+      this.onError.bind(this));
+  }
+
+  onLogin(){
+    console.log("currentUser: ", Firebase.auth().currentUser);
+    if(this.props.onLoginComplete){
+      this.props.onLoginComplete();
+    }
+  }
+
+  onUserChange(){
+
+  }
+
+  onLogout(){
+
+  }
+
+  emailVerified(){
+
+  }
+
+  onError(err){
+    console.log("ERROR: ", err);
   }
 
   onSignUpPress(){
@@ -44,24 +78,36 @@ export default class LogInScreen extends Component {
         ...this.state,
         isLoggingIn: true,
       })
-      Firebase.auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
-        if(this.props.onLoginComplete){
-          this.props.onLoginComplete();
-        }
-      })
-      .catch((err) => {
-        this.setState({
-          ...this.state,
-          isLoggingIn: false,
-        })
-        this.showWarningMessage(err.message);
-      })
+      FireAuth.login(this.state.email, this.state.password);
     } else {
       this.showWarningMessage("Please enter your email and password");
     }
   }
+
+  // signInWithEmailAndPassword(){
+  //   if(this.state.email && this.state.password){
+  //     this.setState({
+  //       ...this.state,
+  //       isLoggingIn: true,
+  //     })
+  //     Firebase.auth()
+  //     .signInWithEmailAndPassword(this.state.email, this.state.password)
+  //     .then(() => {
+  //       if(this.props.onLoginComplete){
+  //         this.props.onLoginComplete();
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       this.setState({
+  //         ...this.state,
+  //         isLoggingIn: false,
+  //       })
+  //       this.showWarningMessage(err.message);
+  //     })
+  //   } else {
+  //     this.showWarningMessage("Please enter your email and password");
+  //   }
+  // }
 
   showWarningMessage(message){
     this.setState({
@@ -77,11 +123,11 @@ export default class LogInScreen extends Component {
   }
 
   loginWithFacebook(){
-
+    FireAuth.facebookLogin()
   }
 
   loginWithGoogle(){
-
+    FireAuth.googleLogin()
   }
 
   render() {
