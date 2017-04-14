@@ -21,7 +21,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import Firebase from '../../firebase/Firebase.js';
 import Spinner from 'react-native-spinkit';
 
-
 export default class LogInScreen extends Component {
 
   constructor(props){
@@ -75,6 +74,14 @@ export default class LogInScreen extends Component {
         warningMessage: null,
       });
     }, 5000);
+  }
+
+  loginWithFacebook(){
+
+  }
+
+  loginWithGoogle(){
+
   }
 
   render() {
@@ -223,14 +230,18 @@ export default class LogInScreen extends Component {
                     </View>
 
                     <View style={{alignItems: 'center', flexDirection: 'row'}}>
-                      <View style={{flex: 1, flexDirection: 'row', padding: 10}}><Button style={{backgroundColor: '#39589A', flex: 1, justifyContent: 'center', borderRadius: 100}}>
-                        <Image source={require('./Assets/facebook_f.png')} style={{width: 20, marginTop: 5, marginRight: 10}} resizeMode='contain'/>
-                        <Text style={{color: 'white'}}>Login</Text>
-                      </Button></View>
-                    <View style={{flex: 1, flexDirection: 'row', padding: 10}}><Button style={{backgroundColor: '#F6392F', flex: 1, justifyContent: 'center', borderRadius: 100}}>
-                        <Image source={require('./Assets/google_g.png')} style={{width: 20, marginRight: 10}} resizeMode='contain'/>
-                        <Text style={{color: 'white'}}>Login</Text>
-                      </Button></View>
+                      <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
+                        <Button style={{backgroundColor: '#39589A', flex: 1, justifyContent: 'center', borderRadius: 100}} onPress={this.loginWithFacebook.bind(this)}>
+                          <Image source={require('./Assets/facebook_f.png')} style={{width: 20, marginTop: 5, marginRight: 10}} resizeMode='contain'/>
+                          <Text style={{color: 'white'}}>Login</Text>
+                        </Button>
+                      </View>
+                      <View style={{flex: 1, flexDirection: 'row', padding: 10}}>
+                        <Button style={{backgroundColor: '#F6392F', flex: 1, justifyContent: 'center', borderRadius: 100}} onPress={this.loginWithGoogle.bind(this)}>
+                          <Image source={require('./Assets/google_g.png')} style={{width: 20, marginRight: 10}} resizeMode='contain'/>
+                          <Text style={{color: 'white'}}>Login</Text>
+                        </Button>
+                      </View>
                     </View>
 
                   </View>
