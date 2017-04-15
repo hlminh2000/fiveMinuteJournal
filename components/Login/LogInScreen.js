@@ -66,6 +66,11 @@ export default class LogInScreen extends Component {
 
   onError(err){
     console.log("ERROR: ", err);
+    this.showWarningMessage(err.message);
+    this.setState({
+      ...this.state,
+      isLoggingIn: false,
+    })
   }
 
   onSignUpPress(){
@@ -123,11 +128,19 @@ export default class LogInScreen extends Component {
   }
 
   loginWithFacebook(){
-    FireAuth.facebookLogin()
+    this.setState({
+      ...this.state,
+      isLoggingIn: true,
+    });
+    FireAuth.facebookLogin();
   }
 
   loginWithGoogle(){
-    FireAuth.googleLogin()
+    this.setState({
+      ...this.state,
+      isLoggingIn: true,
+    });
+    FireAuth.googleLogin();
   }
 
   render() {
