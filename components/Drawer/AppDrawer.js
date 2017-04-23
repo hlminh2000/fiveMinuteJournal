@@ -55,7 +55,7 @@ export default class AppDrawer extends Component {
               start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
               style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
               <Image
-                source={{uri: this.props.userInfo.photoURL}}
+                source={this.props.userInfo.photoURL ? {uri: this.props.userInfo.photoURL} : require('./Assets/user_icon.png')}
                 style={{
                   // borderColor: 'rgba(255, 255, 255, 0.3)',
                   borderWidth: 5,
