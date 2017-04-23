@@ -160,7 +160,6 @@ export default class ParallaxCalendarList extends Component {
                     ){ return (
                       <List style={{paddingBottom:10}}>
                         <ListItem style={{paddingTop: 20, paddingBottom: 25}} onPress={this.goToEditPage1.bind(this)}>
-                          {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                           <View style={{marginLeft:15}}>
                             <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What I am grateful for?</Text></View>
                             <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[0]) ? this.props.currentJournalEntry.q1[0] : "My beautiful eyes"}</Text>
@@ -171,7 +170,6 @@ export default class ParallaxCalendarList extends Component {
                         </ListItem>
 
                         <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                          {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                           <View style={{marginLeft:15}}>
                             <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What would make today great?</Text></View>
                             <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[0]) ? this.props.currentJournalEntry.q2[0] : "My beautiful eyes"}</Text>
@@ -182,7 +180,6 @@ export default class ParallaxCalendarList extends Component {
                         </ListItem>
 
                         <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                          {/* <Icon name="ios-sunny-outline" style={{color: 'rgba(0, 0, 0, 0.2)'}}/> */}
                           <View style={{marginLeft:15}}>
                             <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>Daily Affirmation. I am...</Text></View>
                             <Text style={{paddingTop: 5, paddingBottom: 5}}>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q3[0]) ? this.props.currentJournalEntry.q3[0] : "The strongest version of myself"}</Text>
@@ -205,7 +202,6 @@ export default class ParallaxCalendarList extends Component {
                 <List>
 
                   <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    {/* <Icon name="ios-moon" style={{color:'rgba(0, 0, 0, 0.1)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
                       <Text style={{paddingTop: 5, paddingBottom: 5}}>1) I was a mentor at a major hackathon</Text>
@@ -216,7 +212,6 @@ export default class ParallaxCalendarList extends Component {
                   </ListItem>
 
                   <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    {/* <Icon name="ios-moon" style={{color:'rgba(0, 0, 0, 0.1)'}}/> */}
                     <View style={{marginLeft:15}}>
                       <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
                       <Text>Go to the gym...</Text>
