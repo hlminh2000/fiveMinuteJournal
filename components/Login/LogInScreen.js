@@ -37,12 +37,12 @@ export default class LogInScreen extends Component {
   }
 
   componentDidMount() {
-    FireAuth.setup(
-      this.onLogin.bind(this),
-      this.onUserChange.bind(this),
-      this.onLogout.bind(this),
-      this.emailVerified.bind(this),
-      this.onError.bind(this));
+    // FireAuth.setup(
+    //   this.onLogin.bind(this),
+    //   this.onUserChange.bind(this),
+    //   this.onLogout.bind(this),
+    //   this.emailVerified.bind(this),
+    //   this.onError.bind(this));
   }
 
   onLogin(){

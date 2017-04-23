@@ -1,8 +1,7 @@
 import API_ACCOUNTS from '../configs/API_ACCOUNTS.json';
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
+import RNFirebase from 'react-native-firebase';
 
-const Firebase = firebase.initializeApp(API_ACCOUNTS.FIREBASE);
-var provider = new firebase.auth.FacebookAuthProvider();
-
+const Firebase = RNFirebase.initializeApp(API_ACCOUNTS.FIREBASE);
 
 export default Firebase;
