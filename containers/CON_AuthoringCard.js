@@ -1,18 +1,21 @@
 import { connect } from 'react-redux';
-import AuthoringCard1 from '../components/AuthoringCards/AuthoringCard1.js';
+import AuthoringCard from '../components/AuthoringCards/AuthoringCard.js';
 
 const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
   return {
     questionId: ownProps.questionId,
     inputCount: ownProps.inputCount,
     showIndex: ownProps.showIndex,
     headerText: ownProps.headerText,
+    originalEntry: ownProps.originalEntry,
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onInputChange: (answerIndex, answerContent) => {
+      console.log(answerIndex, answerContent);
       dispatch({type: "AUTHORING_CARD_ANSWER_CHANGE", data: {
         questionId: ownProps.questionId,
         answerIndex: answerIndex,
@@ -22,4 +25,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default CON_AuthoringCard1 = connect(mapStateToProps, mapDispatchToProps)(AuthoringCard1);
+export default CON_AuthoringCard = connect(mapStateToProps, mapDispatchToProps)(AuthoringCard);

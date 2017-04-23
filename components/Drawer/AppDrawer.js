@@ -57,7 +57,7 @@ export default class AppDrawer extends Component {
               <Image
                 source={{uri: this.props.userInfo.photoURL}}
                 style={{
-                  borderColor: 'rgba(255, 255, 255, 0.3)',
+                  // borderColor: 'rgba(255, 255, 255, 0.3)',
                   borderWidth: 5,
                   borderRadius: 1000,
                   height: 80,

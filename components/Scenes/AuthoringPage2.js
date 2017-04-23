@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default class AuthoringPage1 extends Component{
+export default class AuthoringPage2 extends Component{
 
   constructor(props){
     super(props);
@@ -131,16 +131,9 @@ export default class AuthoringPage1 extends Component{
                   <View style={{flex: 1}}>
                     <View style = {{height: 3, width: windowDimention.width}}>
                       <LinearGradient
-                        // colors={['#F8FFAE', '#43C6AC']}
                         colors={['white', 'white']}
                         start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
-                        style={{height:3, borderRadius: 5, width: windowDimention.width*(this.state.currentPage/3)}}/>
-                      {/* <View style={{
-                        backgroundColor: 'white',
-                        width: windowDimention.width*(1-this.state.currentPage/3),
-                        height: 3,
-                        position: 'absolute',
-                        left: windowDimention.width*this.state.currentPage/3}}/> */}
+                        style={{height:3, borderRadius: 5, width: windowDimention.width*(this.state.currentPage/2)}}/>
                       </View>
 
                       <ScrollView contentContainerStyle={{alignItems:'center', height: windowDimention.height - 30 }}>
@@ -152,10 +145,6 @@ export default class AuthoringPage1 extends Component{
                             paddingBottom: 10,
                             paddingLeft: 20,
                             paddingRight: 20}}>
-                            {/* <Image
-                              source={{uri: 'https://images-na.ssl-images-amazon.com/images/I/81VStYnDGrL.jpg'}}
-                              style={{height: 60, width: 60, borderRadius:50}}
-                              /> */}
                               <View style={{flex: 1, paddingLeft: 10}}>
                                 <Text style={{fontSize: 12, color: 'white',fontStyle:'italic'}}>
                                   { this.state.quoteData ? this.state.quoteData.quote : "" }
@@ -180,40 +169,30 @@ export default class AuthoringPage1 extends Component{
                               <View style={{alignItems: 'center'}}>
                                 <View style={{height: windowDimention.height - 100 - 60, width: windowDimention.width - 40}}>
                                   <CON_AuthoringCard
-                                    questionId={ "q1" }
+                                    questionId={ "q4" }
                                     inputCount={ 3 }
                                     showIndex={ true }
-                                    originalEntry={ this.props.currentJournalEntry["q1"] }
-                                    headerText={"I am grateful for..."}/>
-                                </View>
-                              </View>
-                              <View style={{alignItems: 'center'}}>
-                                <View style={{height: windowDimention.height - 100 - 60, width: windowDimention.width - 40}}>
-                                  <CON_AuthoringCard
-                                    questionId={ "q2" }
-                                    inputCount={ 3 }
-                                    showIndex={ true }
-                                    originalEntry={ this.props.currentJournalEntry["q2"] }
-                                    headerText={"What would make today \ngreat?"}/>
+                                    originalEntry={ this.props.currentJournalEntry["q4"] }
+                                    headerText={"3 Amazing things that happened today"}/>
                                 </View>
                               </View>
                               <View style={{alignItems: 'center'}}>
                                 <View style={{height: windowDimention.height - 100 - 230, width: windowDimention.width - 40}}>
                                   <CON_AuthoringCard
-                                    questionId={ "q3" }
+                                    questionId={ "q5" }
                                     inputCount={ 1 }
                                     showIndex={ false }
-                                    originalEntry={ this.props.currentJournalEntry["q3"] }
-                                    headerText={"Daily affirmations. \nI am..."}/>
+                                    originalEntry={ this.props.currentJournalEntry["q5"] }
+                                    headerText={"How could I have made \ntoday even better?"}/>
                                 </View>
                               </View>
                               <View style={{alignItems: 'center', justifyContent: 'center', marginTop: 200}}>
                                 <View style={{width: windowDimention.width - 90}}>
                                   <View style={{marginBottom: 20}}>
-                                    <Text style={{color: 'white', fontSize:18}}>Great Job!</Text>
+                                    <Text style={{color: 'white', fontSize:18}}>Nice!</Text>
                                   </View>
                                   <View style={{marginBottom: 20}}>
-                                    <Text style={{color: 'white', fontSize:18}}>Now go rock the world!</Text>
+                                    <Text style={{color: 'white', fontSize:18}}>Enjoy your evening!</Text>
                                   </View>
                                   <View>
                                     <Button rounded style={{borderColor: "#FF4E50", backgroundColor: "#FF4E50"}}

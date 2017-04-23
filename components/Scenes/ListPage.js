@@ -35,9 +35,13 @@ export default class ListPage extends Component {
   }
 
   goToAuthoringPage(){
-    // console.log(this.props.navigation.state);
     setTimeout(()=>{
-      this.props.navigation.navigate('Authoring');
+      const isEvening = Moment().hour() > 17;
+      if(!isEvening){
+        this.props.navigation.navigate('Authoring1');
+      } else {
+        this.props.navigation.navigate('Authoring2');
+      }
       this.props.goToAuthoringPage();
     }, 0);
   }

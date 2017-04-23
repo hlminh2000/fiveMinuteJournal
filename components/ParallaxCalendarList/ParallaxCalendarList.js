@@ -74,7 +74,7 @@ export default class ParallaxCalendarList extends Component {
     today               : this.today,
     navigation          : null,
     calendarStartDate   : Moment().startOf('month').format('YYYY-MM-DD'),
-    currentJournalEntry    : null,
+    currentJournalEntry : null,
     onDateSelect        : (date) => {},
     onNextMonthPress    : () => {},
     onPrevMonthPress    : () => {},
@@ -83,7 +83,6 @@ export default class ParallaxCalendarList extends Component {
 
   constructor(props){
     super(props);
-    this.goToEditPage1 = this.goToEditPage1.bind(this);
   }
 
   componentDidMount(){
@@ -106,10 +105,6 @@ export default class ParallaxCalendarList extends Component {
     if(this.props.onPrevMonthPress){
       this.props.onPrevMonthPress()
     }
-  }
-
-  goToEditPage1(){
-    this.props.navigation.navigate('Edit1');
   }
 
   render() {
@@ -151,45 +146,44 @@ export default class ParallaxCalendarList extends Component {
                 {
                   (()=>{
                     if(
-                      true
-                      // this.props.currentJournalEntry && (
-                      //   this.props.currentJournalEntry.q1[0] && this.props.currentJournalEntry.q1[1] && this.props.currentJournalEntry.q1[2] &&
-                      //   this.props.currentJournalEntry.q2[0] && this.props.currentJournalEntry.q2[1] && this.props.currentJournalEntry.q2[2] &&
-                      //   this.props.currentJournalEntry.q3[0] && this.props.currentJournalEntry.q3[1] && this.props.currentJournalEntry.q3[2]
-                      // )
+                      this.props.currentJournalEntry && (
+                        ((this.props.currentJournalEntry.q1) && (this.props.currentJournalEntry.q1[0] || this.props.currentJournalEntry.q1[1] || this.props.currentJournalEntry.q1[2])) ||
+                        ((this.props.currentJournalEntry.q2) && (this.props.currentJournalEntry.q2[0] || this.props.currentJournalEntry.q2[1] || this.props.currentJournalEntry.q2[2])) ||
+                        ((this.props.currentJournalEntry.q3) && (this.props.currentJournalEntry.q3[0] || this.props.currentJournalEntry.q3[1] || this.props.currentJournalEntry.q3[2]))
+                      )
                     ){ return (
                       <List style={{paddingBottom:10}}>
-                        <ListItem style={{paddingTop: 20, paddingBottom: 25}} onPress={this.goToEditPage1.bind(this)}>
+                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
                           <View style={{marginLeft:15}}>
                             <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What I am grateful for?</Text></View>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[0]) ? this.props.currentJournalEntry.q1[0] : "My beautiful eyes"}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[1]) ? this.props.currentJournalEntry.q1[1] : "My beautiful eyes"}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[2]) ? this.props.currentJournalEntry.q1[2] : "My beautiful eyes"}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[0]) ? this.props.currentJournalEntry.q1[0] : " "}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[1]) ? this.props.currentJournalEntry.q1[1] : " "}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[2]) ? this.props.currentJournalEntry.q1[2] : " "}</Text>
                           </View>
-                          <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
                         </ListItem>
 
                         <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
                           <View style={{marginLeft:15}}>
                             <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What would make today great?</Text></View>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[0]) ? this.props.currentJournalEntry.q2[0] : "My beautiful eyes"}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[1]) ? this.props.currentJournalEntry.q2[1] : "My beautiful eyes"}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[2]) ? this.props.currentJournalEntry.q2[2] : "My beautiful eyes"}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[0]) ? this.props.currentJournalEntry.q2[0] : " "}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[1]) ? this.props.currentJournalEntry.q2[1] : " "}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[2]) ? this.props.currentJournalEntry.q2[2] : " "}</Text>
                           </View>
-                          <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
                         </ListItem>
 
                         <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
                           <View style={{marginLeft:15}}>
                             <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>Daily Affirmation. I am...</Text></View>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q3[0]) ? this.props.currentJournalEntry.q3[0] : "The strongest version of myself"}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q3[0]) ? this.props.currentJournalEntry.q3[0] : " "}</Text>
                           </View>
-                          <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
+                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
                         </ListItem>
                       </List>
                     )} else { return (
                       <View style={{alignItems: 'center', paddingTop: 30, paddingBottom: 30}}>
-                        <Text style={{paddingTop: 5, paddingBottom: 5}}> No journal  </Text>
+                        <Text style={{paddingTop: 5, paddingBottom: 5}}> No morning journal </Text>
                       </View>
                     )}
                   })()
@@ -199,27 +193,40 @@ export default class ParallaxCalendarList extends Component {
 
             <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>
               <Card style={{width: 340, borderRadius: 5}}>
-                <List>
+                {
+                  (()=>{
+                    if(
+                      this.props.currentJournalEntry && (
+                        ((this.props.currentJournalEntry.q4) && (this.props.currentJournalEntry.q4[0] || this.props.currentJournalEntry.q4[1] || this.props.currentJournalEntry.q4[2])) ||
+                        ((this.props.currentJournalEntry.q5) && (this.props.currentJournalEntry.q5[0] || this.props.currentJournalEntry.q5[1] || this.props.currentJournalEntry.q5[2]))
+                      )
+                    ){ return (
+                      <List>
+                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                          <View style={{marginLeft:15}}>
+                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[0]) ? this.props.currentJournalEntry.q4[0] : " "}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[1]) ? this.props.currentJournalEntry.q4[1] : " "}</Text>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[2]) ? this.props.currentJournalEntry.q4[2] : " "}</Text>
+                          </View>
+                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
+                        </ListItem>
 
-                  <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    <View style={{marginLeft:15}}>
-                      <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
-                      <Text style={{paddingTop: 5, paddingBottom: 5}}>1) I was a mentor at a major hackathon</Text>
-                      <Text style={{paddingTop: 5, paddingBottom: 5}}>2) I am building my first mobile app</Text>
-                      <Text style={{paddingTop: 5, paddingBottom: 5}}>3) I was almost a judge</Text>
-                    </View>
-                    <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
-                  </ListItem>
-
-                  <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                    <View style={{marginLeft:15}}>
-                      <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
-                      <Text>Go to the gym...</Text>
-                    </View>
-                    <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" />
-                  </ListItem>
-
-                </List>
+                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                          <View style={{marginLeft:15}}>
+                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
+                            <Text>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q5[0]) ? this.props.currentJournalEntry.q5[0] : " "}</Text>
+                          </View>
+                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
+                        </ListItem>
+                      </List>
+                    )} else {return (
+                      <View style={{alignItems: 'center', paddingTop: 30, paddingBottom: 30}}>
+                        <Text style={{paddingTop: 5, paddingBottom: 5}}> No evening journal </Text>
+                      </View>
+                    )}
+                  })()
+                }
               </Card>
             </View>
           </View>

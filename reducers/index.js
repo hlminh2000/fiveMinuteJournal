@@ -64,7 +64,12 @@ const reducers = combineReducers({
 
       case "AUTHORING_CARD_ANSWER_CHANGE":
         const newState = { ...state };
-        newState.currentJournalEntry[action.data.questionId][action.data.answerIndex] = action.data.answerContent;
+        if(newState.currentJournalEntry[action.data.questionId]){
+          newState.currentJournalEntry[action.data.questionId][action.data.answerIndex] = action.data.answerContent;
+        } else {
+          newState.currentJournalEntry[action.data.questionId] = [];
+          newState.currentJournalEntry[action.data.questionId][action.data.answerIndex] = action.data.answerContent;
+        }
         return newState;
 
       case "LOG_IN_COMPLETE":
