@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">fiveMJournalNative</string>
 
+    <string name="facebook_app_id">172373399934801</string>
     <string name="fb_app_id">172373399934801</string>
     <string name="fb_login_protocol_scheme">fb172373399934801</string>
 

@@ -126,6 +126,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-google-sign-in')
     compile project(':react-native-google-signin')
     compile project(':react-native-facebook-login')
     compile project(':react-native-spinkit')
