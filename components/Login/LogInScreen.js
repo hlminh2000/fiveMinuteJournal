@@ -20,7 +20,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Firebase from '../../firebase/Firebase.js';
 import Spinner from 'react-native-spinkit';
-import FireAuth from 'react-native-firebase-auth';
+// import FireAuth from 'react-native-firebase-auth';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
 
 export default class LogInScreen extends Component {
 
@@ -33,16 +34,6 @@ export default class LogInScreen extends Component {
       warningMessage: null,
     }
     this.showWarningMessage.bind(this);
-    FireAuth.init();
-  }
-
-  componentDidMount() {
-    // FireAuth.setup(
-    //   this.onLogin.bind(this),
-    //   this.onUserChange.bind(this),
-    //   this.onLogout.bind(this),
-    //   this.emailVerified.bind(this),
-    //   this.onError.bind(this));
   }
 
   onLogin(){
@@ -50,27 +41,6 @@ export default class LogInScreen extends Component {
     if(this.props.onLoginComplete){
       this.props.onLoginComplete();
     }
-  }
-
-  onUserChange(){
-
-  }
-
-  onLogout(){
-
-  }
-
-  emailVerified(){
-
-  }
-
-  onError(err){
-    console.log("ERROR: ", err);
-    this.showWarningMessage(err.message);
-    this.setState({
-      ...this.state,
-      isLoggingIn: false,
-    })
   }
 
   onSignUpPress(){
@@ -83,36 +53,10 @@ export default class LogInScreen extends Component {
         ...this.state,
         isLoggingIn: true,
       })
-      FireAuth.login(this.state.email, this.state.password);
     } else {
       this.showWarningMessage("Please enter your email and password");
     }
   }
-
-  // signInWithEmailAndPassword(){
-  //   if(this.state.email && this.state.password){
-  //     this.setState({
-  //       ...this.state,
-  //       isLoggingIn: true,
-  //     })
-  //     Firebase.auth()
-  //     .signInWithEmailAndPassword(this.state.email, this.state.password)
-  //     .then(() => {
-  //       if(this.props.onLoginComplete){
-  //         this.props.onLoginComplete();
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       this.setState({
-  //         ...this.state,
-  //         isLoggingIn: false,
-  //       })
-  //       this.showWarningMessage(err.message);
-  //     })
-  //   } else {
-  //     this.showWarningMessage("Please enter your email and password");
-  //   }
-  // }
 
   showWarningMessage(message){
     this.setState({
@@ -132,7 +76,41 @@ export default class LogInScreen extends Component {
       ...this.state,
       isLoggingIn: true,
     });
-    FireAuth.facebookLogin();
+    // FireAuth.facebookLogin();
+    LoginManager
+    .logInWithReadPermissions(['public_profile', 'email'])
+    .then((result) => {
+      if (result.isCancelled) {
+        return Promise.resolve('cancelled');
+      }
+      console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
+      // get the access token
+      return AccessToken.getCurrentAccessToken();
+    })
+    .then(data => {
+      // create a new firebase credential with the token
+      const credential = Firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+
+      // login with credential
+      return Firebase.auth().signInWithCredential(credential);
+    })
+    .then((currentUser) => {
+      if (currentUser === 'cancelled') {
+        console.log('Login cancelled');
+      } else {
+        // now signed in
+        console.log(JSON.stringify(currentUser.toJSON()));
+        this.props.onLoginComplete();
+      }
+    })
+    .catch((error) => {
+      console.log("ERROR: ", err);
+      this.showWarningMessage(err.message);
+      this.setState({
+        ...this.state,
+        isLoggingIn: false,
+      })
+    });
   }
 
   loginWithGoogle(){
