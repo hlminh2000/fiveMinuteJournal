@@ -53,6 +53,29 @@ export default class LogInScreen extends Component {
         ...this.state,
         isLoggingIn: true,
       })
+      Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then((user) => {
+          console.log(user);
+          this.props.onLoginComplete();
+        })
+        .catch((err) => {
+          console.log(err.code);
+          if(err.code === "auth/invalid-email"){
+            this.showWarningMessage("Invalid email");
+          }
+          else if(err.code === "auth/user-not-found"){
+            this.showWarningMessage("User not found");
+          }
+          else if(err.code === "auth/wrong-password"){
+            this.showWarningMessage("Incorrect password");
+          } else {
+            this.showWarningMessage("Login failed");
+          }
+          this.setState({
+            ...this.state,
+            isLoggingIn: false,
+          })
+        })
     } else {
       this.showWarningMessage("Please enter your email and password");
     }
