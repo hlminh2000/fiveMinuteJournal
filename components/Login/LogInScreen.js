@@ -20,8 +20,8 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Firebase from '../../firebase/Firebase.js';
 import Spinner from 'react-native-spinkit';
-// import FireAuth from 'react-native-firebase-auth';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import LocalStorageService from '../../services/LocalStorageService.js';
 
 export default class LogInScreen extends Component {
 
@@ -36,11 +36,46 @@ export default class LogInScreen extends Component {
     this.showWarningMessage.bind(this);
   }
 
-  onLogin(){
+  componentDidMount(){
+    this.setIsLoggingIn(true);
+    console.log(LocalStorageService);
+    LocalStorageService.getLastUserToken()
+      .then((id_token) => {
+        if(!id_token){
+          this.setIsLoggingIn(false);
+        } else {
+          LocalStorageService.saveUserToken(id_token);
+          if(this.props.onLoginComplete){
+            console.log(this.props.onLoginComplete);
+            this.props.onLoginComplete();
+          }
+        }
+      })
+      .catch((err) => {
+        if(err.name !== "NotFoundError"){
+          console.log(err);
+          this.showWarningMessage("Your last session was not saved properly");
+        }
+        this.setIsLoggingIn(false);
+      })
+  }
+
+  setIsLoggingIn(isLoggedIn){
+    this.setState({
+      ...this.state,
+      isLoggingIn: isLoggedIn,
+    });
+  }
+
+  onLoginComplete(){
     console.log("currentUser: ", Firebase.auth().currentUser);
-    if(this.props.onLoginComplete){
-      this.props.onLoginComplete();
-    }
+    Firebase.auth().currentUser.getToken(false)
+      .then((idToken) =>{
+        LocalStorageService.saveUserToken(idToken);
+        if(this.props.onLoginComplete){
+          this.props.onLoginComplete();
+        }
+      })
   }
 
   onSignUpPress(){
@@ -49,14 +84,11 @@ export default class LogInScreen extends Component {
 
   signInWithEmailAndPassword(){
     if(this.state.email && this.state.password){
-      this.setState({
-        ...this.state,
-        isLoggingIn: true,
-      })
+      this.setIsLoggingIn(true);
       Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
           console.log(user);
-          this.props.onLoginComplete();
+          this.onLoginComplete();
         })
         .catch((err) => {
           console.log(err.code);
@@ -95,10 +127,7 @@ export default class LogInScreen extends Component {
   }
 
   loginWithFacebook(){
-    this.setState({
-      ...this.state,
-      isLoggingIn: true,
-    });
+    this.setIsLoggingIn(true);
     // FireAuth.facebookLogin();
     LoginManager
     .logInWithReadPermissions(['public_profile', 'email'])
@@ -123,24 +152,18 @@ export default class LogInScreen extends Component {
       } else {
         // now signed in
         console.log(JSON.stringify(currentUser.toJSON()));
-        this.props.onLoginComplete();
+        this.onLoginComplete();
       }
     })
     .catch((error) => {
       console.log("ERROR: ", err);
       this.showWarningMessage(err.message);
-      this.setState({
-        ...this.state,
-        isLoggingIn: false,
-      })
+      this.setIsLoggingIn(false);
     });
   }
 
   loginWithGoogle(){
-    this.setState({
-      ...this.state,
-      isLoggingIn: true,
-    });
+    this.setIsLoggingIn(false);
     FireAuth.googleLogin();
   }
 

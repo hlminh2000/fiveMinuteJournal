@@ -19,6 +19,7 @@ import {
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
 import Firebase from '../../firebase/Firebase.js';
+import LocalStorageService from '../../services/LocalStorageService.js'
 
 const database  = Firebase.database();
 
@@ -36,6 +37,7 @@ export default class AppDrawer extends Component {
     logOut(){
       Firebase.auth().signOut().then(
         ()=>{
+          LocalStorageService.clearUserToken();
           if(this.props.onLogoutComplete){
             this.props.onLogoutComplete();
           }

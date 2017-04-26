@@ -19,7 +19,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Firebase from '../../firebase/Firebase.js';
 import Spinner from 'react-native-spinkit';
-
+import LocalStorageService from '../../services/LocalStorageService.js';
 
 export default class SignUpScreen extends Component {
 
@@ -54,9 +54,13 @@ export default class SignUpScreen extends Component {
           })
         })
         .then(() => {
-          if(this.props.onSignUpComplete){
-            this.props.onSignUpComplete();
-          }
+          return Firebase.auth().currentUser.getToken(false)
+            .then((idToken) =>{
+              LocalStorageService.saveUserToken(idToken);
+              if(this.props.onLoginComplete){
+                this.props.onLoginComplete();
+              }
+            })
         })
         .catch((err) => {
           this.setState({

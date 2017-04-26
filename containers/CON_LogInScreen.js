@@ -15,17 +15,19 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onLoginComplete: () => {
       const currentUser = Firebase.auth().currentUser;
+      console.log(currentUser);
+      const newUserData = {
+        firstName : currentUser.displayName,
+        lastName  : null,
+        photoURL  : currentUser.photoURL,
+      }
+      dispatch({type: "LOG_IN_COMPLETE", data: newUserData});
       database.ref('userInfo/' + currentUser.uid).once('value', function(userInfo){
         if(!userInfo.val()){
-          const newUserData = {
-            firstName : currentUser.displayName,
-            lastName  : null,
-            photoURL  : currentUser.photoURL,
-          }
           Firebase.database().ref('userInfo/' + Firebase.auth().currentUser.uid).set(newUserData)
           .then(()=>{
             console.log("added user: ", currentUser );
-            dispatch({type: "LOG_IN_COMPLETE", data: newUserData});
+            // dispatch({type: "LOG_IN_COMPLETE", data: newUserData});
             database.ref('userInfo/' + currentUser.uid).on('value', function(userInfo){
               dispatch({type: "EXTERNAL_USER_DATA_CHANGE", data: userInfo.val()});
             });
