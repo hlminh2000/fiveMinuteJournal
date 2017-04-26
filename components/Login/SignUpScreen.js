@@ -55,12 +55,12 @@ export default class SignUpScreen extends Component {
         })
         .then(() => {
           return Firebase.auth().currentUser.getToken(false)
-            .then((idToken) =>{
-              LocalStorageService.saveUserToken(idToken);
-              if(this.props.onLoginComplete){
-                this.props.onLoginComplete();
-              }
-            })
+        })
+        .then((idToken) =>{
+          LocalStorageService.saveUserToken(idToken);
+          if(this.props.onSignUpComplete){
+            this.props.onSignUpComplete();
+          }
         })
         .catch((err) => {
           this.setState({
