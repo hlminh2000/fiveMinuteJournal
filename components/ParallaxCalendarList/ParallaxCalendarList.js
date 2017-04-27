@@ -123,6 +123,9 @@ export default class ParallaxCalendarList extends Component {
   }
 
   render() {
+
+    const listHeight = Dimensions.get('window').height - 305 - 85;
+
     return (
         <ParallaxView
           backgroundSource = {{uri: 'https://firebasestorage.googleapis.com/v0/b/mjournal-6d19f.appspot.com/o/skyscrapers-246224_1920.jpg?alt=media&token=61c45321-b324-4862-a2ed-406e4bbf6fe3'}}
@@ -154,22 +157,23 @@ export default class ParallaxCalendarList extends Component {
               backgroundColor:'#fafafa',
               paddingTop: 5,
               paddingBottom: 5,
-              minHeight: this.state.isLoadingData ? 0 : 550,
+              minHeight: this.state.isLoadingData ? 0 : listHeight + 10,
             }}>
             {(()=>{
+
               if(!this.state.isLoadingData){ return (
 
                 <View>
                   <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>
-                    <Card style={{width: 340, borderRadius: 5}}>
-                      {(()=>{
-                        if(
-                          this.props.currentJournalEntry && (
-                            ((this.props.currentJournalEntry.q1) && (this.props.currentJournalEntry.q1[0] || this.props.currentJournalEntry.q1[1] || this.props.currentJournalEntry.q1[2])) ||
-                            ((this.props.currentJournalEntry.q2) && (this.props.currentJournalEntry.q2[0] || this.props.currentJournalEntry.q2[1] || this.props.currentJournalEntry.q2[2])) ||
-                            ((this.props.currentJournalEntry.q3) && (this.props.currentJournalEntry.q3[0] || this.props.currentJournalEntry.q3[1] || this.props.currentJournalEntry.q3[2]))
-                          )
-                        ){ return (
+                    {(()=>{
+                      if(
+                        this.props.currentJournalEntry && (
+                          ((this.props.currentJournalEntry.q1) && (this.props.currentJournalEntry.q1[0] || this.props.currentJournalEntry.q1[1] || this.props.currentJournalEntry.q1[2])) ||
+                          ((this.props.currentJournalEntry.q2) && (this.props.currentJournalEntry.q2[0] || this.props.currentJournalEntry.q2[1] || this.props.currentJournalEntry.q2[2])) ||
+                          ((this.props.currentJournalEntry.q3) && (this.props.currentJournalEntry.q3[0] || this.props.currentJournalEntry.q3[1] || this.props.currentJournalEntry.q3[2]))
+                        )
+                      ){ return (
+                        <Card style={{width: 340, borderRadius: 5}}>
                           <List style={{paddingBottom:10}}>
                             <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
                               <View style={{marginLeft:15}}>
@@ -199,52 +203,54 @@ export default class ParallaxCalendarList extends Component {
                               {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
                             </ListItem>
                           </List>
-                        )} else { return (
-                          <View style={{alignItems: 'center', paddingTop: 30, paddingBottom: 30}}>
+                        </Card>
+                      )} else { return (
+                        <View style={{borderRadius: 10, borderColor: 'lightgrey', borderStyle: 'dashed', borderWidth: 3, width: 340}}>
+                          <View style={{alignItems: 'center', paddingTop: 25, paddingBottom: 25}}>
                             <Text style={{paddingTop: 5, paddingBottom: 5}}> No morning journal </Text>
                           </View>
-                        )}
-                      })()}
-                    </Card>
+                        </View>
+                      )}
+                    })()}
                   </View>
 
                   <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>
-                    <Card style={{width: 340, borderRadius: 5}}>
-                      {
-                        (()=>{
-                          if(
-                            this.props.currentJournalEntry && (
-                              ((this.props.currentJournalEntry.q4) && (this.props.currentJournalEntry.q4[0] || this.props.currentJournalEntry.q4[1] || this.props.currentJournalEntry.q4[2])) ||
-                              ((this.props.currentJournalEntry.q5) && (this.props.currentJournalEntry.q5[0] || this.props.currentJournalEntry.q5[1] || this.props.currentJournalEntry.q5[2]))
-                            )
-                          ){ return (
-                            <List>
-                              <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                                <View style={{marginLeft:15}}>
-                                  <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
-                                  <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[0]) ? this.props.currentJournalEntry.q4[0] : " "}</Text>
-                                  <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[1]) ? this.props.currentJournalEntry.q4[1] : " "}</Text>
-                                  <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[2]) ? this.props.currentJournalEntry.q4[2] : " "}</Text>
-                                </View>
-                                {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
-                              </ListItem>
+                    {(()=>{
+                      if(
+                        this.props.currentJournalEntry && (
+                          ((this.props.currentJournalEntry.q4) && (this.props.currentJournalEntry.q4[0] || this.props.currentJournalEntry.q4[1] || this.props.currentJournalEntry.q4[2])) ||
+                          ((this.props.currentJournalEntry.q5) && (this.props.currentJournalEntry.q5[0] || this.props.currentJournalEntry.q5[1] || this.props.currentJournalEntry.q5[2]))
+                        )
+                      ){ return (
+                        <Card style={{width: 340, borderRadius: 5}}>
+                          <List>
+                            <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                              <View style={{marginLeft:15}}>
+                                <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[0]) ? this.props.currentJournalEntry.q4[0] : " "}</Text>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[1]) ? this.props.currentJournalEntry.q4[1] : " "}</Text>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[2]) ? this.props.currentJournalEntry.q4[2] : " "}</Text>
+                              </View>
+                              {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
+                            </ListItem>
 
-                              <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                                <View style={{marginLeft:15}}>
-                                  <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
-                                  <Text>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q5[0]) ? this.props.currentJournalEntry.q5[0] : " "}</Text>
-                                </View>
-                                {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
-                              </ListItem>
-                            </List>
-                          )} else {return (
-                            <View style={{alignItems: 'center', paddingTop: 30, paddingBottom: 30}}>
-                              <Text style={{paddingTop: 5, paddingBottom: 5}}> No evening journal </Text>
-                            </View>
-                          )}
-                        })()
-                      }
-                    </Card>
+                            <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                              <View style={{marginLeft:15}}>
+                                <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
+                                <Text>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q5[0]) ? this.props.currentJournalEntry.q5[0] : " "}</Text>
+                              </View>
+                              {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
+                            </ListItem>
+                          </List>
+                        </Card>
+                      )} else {return (
+                        <View style={{borderRadius: 10, borderColor: 'lightgrey', borderStyle: 'dashed', borderWidth: 3, width: 340}}>
+                          <View style={{alignItems: 'center', paddingTop: 25, paddingBottom: 25}}>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}> No evening journal </Text>
+                          </View>
+                        </View>
+                      )}
+                    })()}
                   </View>
                 </View>
 
