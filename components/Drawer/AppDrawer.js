@@ -115,7 +115,7 @@ export default class AppDrawer extends Component {
                     <Text style={{fontSize: 18, marginLeft: 10}}>About</Text>
                   </Left>
                   <Right>
-                    <Icon name="info-outline" stlye={{color: 'lightgrey'}}  />
+                    <Icon name="md-information-circle" stlye={{color: 'lightgrey'}}  />
                   </Right>
                 </ListItem>
               </TouchableNativeFeedback>

@@ -30,6 +30,12 @@ const reducers = combineReducers({
   mainReducer:  (state, action) => {
     switch (action.type) {
 
+      case "END_OF_DAY":
+        return {
+          ...state,
+          today : Moment().format('YYYY-MM-DD'),
+        }
+
       case "CALENDAR_LIST_DATE_SELECT":
         return {
           ...state,
@@ -90,6 +96,7 @@ const reducers = combineReducers({
           ...state,
           isLoggedIn : false,
         }
+
       default:
         return initialState
     }
