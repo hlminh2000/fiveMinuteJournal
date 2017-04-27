@@ -138,7 +138,8 @@ export default class ParallaxCalendarList extends Component {
             style={{
               backgroundColor:'#fafafa',
               paddingTop: 5,
-              paddingBottom: 5
+              paddingBottom: 5,
+              minHeight: 550,
             }}>
 
             <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>

@@ -71,6 +71,15 @@ export default class AuthoringPage1 extends Component{
 
   onDoneButtonPress(){
     this.setState({ ...this.state, isTransmittingData: true });
+    const MAX_TIMEOUT = 10000;
+    setTimeout(() => {
+      console.log("timeout!!!");
+      this.props.navigation.goBack();
+      if(this.props.onSubmissionTimeOut){
+        this.props.onSubmissionTimeOut();
+      }
+    }, MAX_TIMEOUT);
+
     this.transmitDataToFirebase(this.props.currentJournalEntry)
       .then((data) => {
         setTimeout(()=>{

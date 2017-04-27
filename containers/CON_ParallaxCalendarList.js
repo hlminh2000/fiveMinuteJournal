@@ -24,7 +24,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onDateSelect: (date) => {
       dispatch({type: "CALENDAR_LIST_DATE_SELECT", data: date});
-      database.ref('posts/' + currentUser.uid + "/" + date).on('value', dispatchPosts);
+      database.ref('posts/' + currentUser.uid + "/" + date).once('value', (posts)=>{
+        dispatchPosts(posts);
+        database.ref('posts/' + currentUser.uid + "/" + today).on('value', dispatchPosts);
+      });
     },
     onNextMonthPress:() => {
       dispatch({type: "CALENDAR_NEXT_MONTH_PRESSED", data: null});
@@ -33,7 +36,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({type: "CALENDAR_PREV_MONTH_PRESSED", data: null});
     },
     onComponentDidMount: () => {
-      database.ref('posts/' + currentUser.uid + "/" + today).on('value', dispatchPosts);
+      database.ref('posts/' + currentUser.uid + "/" + today).once('value', dispatchPosts);
     }
   }
 }

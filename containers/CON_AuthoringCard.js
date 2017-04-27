@@ -15,7 +15,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onInputChange: (answerIndex, answerContent) => {
-      console.log(answerIndex, answerContent);
       dispatch({type: "AUTHORING_CARD_ANSWER_CHANGE", data: {
         questionId: ownProps.questionId,
         answerIndex: answerIndex,
