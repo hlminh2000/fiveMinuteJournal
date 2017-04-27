@@ -23,10 +23,13 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
     onDateSelect: (date) => {
-      dispatch({type: "CALENDAR_LIST_DATE_SELECT", data: date});
-      database.ref('posts/' + currentUser.uid + "/" + date).once('value', (posts)=>{
-        dispatchPosts(posts);
-        database.ref('posts/' + currentUser.uid + "/" + today).on('value', dispatchPosts);
+      return new Promise((resolve, reject) => {
+        dispatch({type: "CALENDAR_LIST_DATE_SELECT", data: date});
+        database.ref('posts/' + currentUser.uid + "/" + date).once('value', (posts)=>{
+          resolve();
+          dispatchPosts(posts);
+          database.ref('posts/' + currentUser.uid + "/" + today).on('value', dispatchPosts);
+        });
       });
     },
     onNextMonthPress:() => {

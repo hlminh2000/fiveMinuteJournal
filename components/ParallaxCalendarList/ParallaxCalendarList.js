@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  Dimensions
 } from 'react-native';
 import {
   ListItem,
@@ -18,8 +19,9 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import Calendar from 'react-native-calendar';
 import ParallaxView from 'react-native-parallax-view';
+import Spinner from 'react-native-spinkit';
 import Moment from 'moment';
-import NavBar from '../NavBar/NavBar.js'
+import NavBar from '../NavBar/NavBar.js';
 
 const calendarStyle = {
   calendarContainer:{
@@ -75,7 +77,11 @@ export default class ParallaxCalendarList extends Component {
     navigation          : null,
     calendarStartDate   : Moment().startOf('month').format('YYYY-MM-DD'),
     currentJournalEntry : null,
-    onDateSelect        : (date) => {},
+    onDateSelect        : (date) => {
+      return new Promise((resolve, reject) => {
+        resolve();
+      });
+    },
     onNextMonthPress    : () => {},
     onPrevMonthPress    : () => {},
     onComponentDidMount : () => {},
@@ -83,6 +89,9 @@ export default class ParallaxCalendarList extends Component {
 
   constructor(props){
     super(props);
+    this.state = {
+      isLoadingData: false,
+    }
   }
 
   componentDidMount(){
@@ -92,7 +101,13 @@ export default class ParallaxCalendarList extends Component {
   }
 
   onDateSelect(date){
-    this.props.onDateSelect(Moment(date).format('YYYY-MM-DD'));
+    this.setState({ ...this.state, isLoadingData: true })
+    this.props.onDateSelect(Moment(date).format('YYYY-MM-DD'))
+      .then(() => {
+        setTimeout(() => {
+          this.setState({ ...this.state, isLoadingData: false })
+        }, 50);
+      })
   }
 
   onNextMonthPress(){
@@ -139,97 +154,108 @@ export default class ParallaxCalendarList extends Component {
               backgroundColor:'#fafafa',
               paddingTop: 5,
               paddingBottom: 5,
-              minHeight: 550,
+              minHeight: this.state.isLoadingData ? 0 : 550,
             }}>
+            {(()=>{
+              if(!this.state.isLoadingData){ return (
 
-            <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>
-              <Card style={{width: 340, borderRadius: 5}}>
-                {
-                  (()=>{
-                    if(
-                      this.props.currentJournalEntry && (
-                        ((this.props.currentJournalEntry.q1) && (this.props.currentJournalEntry.q1[0] || this.props.currentJournalEntry.q1[1] || this.props.currentJournalEntry.q1[2])) ||
-                        ((this.props.currentJournalEntry.q2) && (this.props.currentJournalEntry.q2[0] || this.props.currentJournalEntry.q2[1] || this.props.currentJournalEntry.q2[2])) ||
-                        ((this.props.currentJournalEntry.q3) && (this.props.currentJournalEntry.q3[0] || this.props.currentJournalEntry.q3[1] || this.props.currentJournalEntry.q3[2]))
-                      )
-                    ){ return (
-                      <List style={{paddingBottom:10}}>
-                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                          <View style={{marginLeft:15}}>
-                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What I am grateful for?</Text></View>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[0]) ? this.props.currentJournalEntry.q1[0] : " "}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[1]) ? this.props.currentJournalEntry.q1[1] : " "}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[2]) ? this.props.currentJournalEntry.q1[2] : " "}</Text>
-                          </View>
-                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
-                        </ListItem>
+                <View>
+                  <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>
+                    <Card style={{width: 340, borderRadius: 5}}>
+                      {(()=>{
+                        if(
+                          this.props.currentJournalEntry && (
+                            ((this.props.currentJournalEntry.q1) && (this.props.currentJournalEntry.q1[0] || this.props.currentJournalEntry.q1[1] || this.props.currentJournalEntry.q1[2])) ||
+                            ((this.props.currentJournalEntry.q2) && (this.props.currentJournalEntry.q2[0] || this.props.currentJournalEntry.q2[1] || this.props.currentJournalEntry.q2[2])) ||
+                            ((this.props.currentJournalEntry.q3) && (this.props.currentJournalEntry.q3[0] || this.props.currentJournalEntry.q3[1] || this.props.currentJournalEntry.q3[2]))
+                          )
+                        ){ return (
+                          <List style={{paddingBottom:10}}>
+                            <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                              <View style={{marginLeft:15}}>
+                                <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What I am grateful for?</Text></View>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[0]) ? this.props.currentJournalEntry.q1[0] : " "}</Text>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[1]) ? this.props.currentJournalEntry.q1[1] : " "}</Text>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q1[2]) ? this.props.currentJournalEntry.q1[2] : " "}</Text>
+                              </View>
+                              {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
+                            </ListItem>
 
-                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                          <View style={{marginLeft:15}}>
-                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What would make today great?</Text></View>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[0]) ? this.props.currentJournalEntry.q2[0] : " "}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[1]) ? this.props.currentJournalEntry.q2[1] : " "}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[2]) ? this.props.currentJournalEntry.q2[2] : " "}</Text>
-                          </View>
-                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
-                        </ListItem>
+                            <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                              <View style={{marginLeft:15}}>
+                                <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>What would make today great?</Text></View>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[0]) ? this.props.currentJournalEntry.q2[0] : " "}</Text>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[1]) ? this.props.currentJournalEntry.q2[1] : " "}</Text>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q2[2]) ? this.props.currentJournalEntry.q2[2] : " "}</Text>
+                              </View>
+                              {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
+                            </ListItem>
 
-                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                          <View style={{marginLeft:15}}>
-                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>Daily Affirmation. I am...</Text></View>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q3[0]) ? this.props.currentJournalEntry.q3[0] : " "}</Text>
+                            <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                              <View style={{marginLeft:15}}>
+                                <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>Daily Affirmation. I am...</Text></View>
+                                <Text style={{paddingTop: 5, paddingBottom: 5}}>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q3[0]) ? this.props.currentJournalEntry.q3[0] : " "}</Text>
+                              </View>
+                              {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
+                            </ListItem>
+                          </List>
+                        )} else { return (
+                          <View style={{alignItems: 'center', paddingTop: 30, paddingBottom: 30}}>
+                            <Text style={{paddingTop: 5, paddingBottom: 5}}> No morning journal </Text>
                           </View>
-                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
-                        </ListItem>
-                      </List>
-                    )} else { return (
-                      <View style={{alignItems: 'center', paddingTop: 30, paddingBottom: 30}}>
-                        <Text style={{paddingTop: 5, paddingBottom: 5}}> No morning journal </Text>
-                      </View>
-                    )}
-                  })()
-                }
-              </Card>
-            </View>
+                        )}
+                      })()}
+                    </Card>
+                  </View>
 
-            <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>
-              <Card style={{width: 340, borderRadius: 5}}>
-                {
-                  (()=>{
-                    if(
-                      this.props.currentJournalEntry && (
-                        ((this.props.currentJournalEntry.q4) && (this.props.currentJournalEntry.q4[0] || this.props.currentJournalEntry.q4[1] || this.props.currentJournalEntry.q4[2])) ||
-                        ((this.props.currentJournalEntry.q5) && (this.props.currentJournalEntry.q5[0] || this.props.currentJournalEntry.q5[1] || this.props.currentJournalEntry.q5[2]))
-                      )
-                    ){ return (
-                      <List>
-                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                          <View style={{marginLeft:15}}>
-                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[0]) ? this.props.currentJournalEntry.q4[0] : " "}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[1]) ? this.props.currentJournalEntry.q4[1] : " "}</Text>
-                            <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[2]) ? this.props.currentJournalEntry.q4[2] : " "}</Text>
-                          </View>
-                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
-                        </ListItem>
+                  <View style={{alignItems:'center', marginTop:5, marginBottom:5}}>
+                    <Card style={{width: 340, borderRadius: 5}}>
+                      {
+                        (()=>{
+                          if(
+                            this.props.currentJournalEntry && (
+                              ((this.props.currentJournalEntry.q4) && (this.props.currentJournalEntry.q4[0] || this.props.currentJournalEntry.q4[1] || this.props.currentJournalEntry.q4[2])) ||
+                              ((this.props.currentJournalEntry.q5) && (this.props.currentJournalEntry.q5[0] || this.props.currentJournalEntry.q5[1] || this.props.currentJournalEntry.q5[2]))
+                            )
+                          ){ return (
+                            <List>
+                              <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                                <View style={{marginLeft:15}}>
+                                  <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>3 Amazing things that happened today</Text></View>
+                                  <Text style={{paddingTop: 5, paddingBottom: 5}}>1) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[0]) ? this.props.currentJournalEntry.q4[0] : " "}</Text>
+                                  <Text style={{paddingTop: 5, paddingBottom: 5}}>2) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[1]) ? this.props.currentJournalEntry.q4[1] : " "}</Text>
+                                  <Text style={{paddingTop: 5, paddingBottom: 5}}>3) {(this.props.currentJournalEntry && this.props.currentJournalEntry.q4[2]) ? this.props.currentJournalEntry.q4[2] : " "}</Text>
+                                </View>
+                                {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
+                              </ListItem>
 
-                        <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
-                          <View style={{marginLeft:15}}>
-                            <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
-                            <Text>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q5[0]) ? this.props.currentJournalEntry.q5[0] : " "}</Text>
-                          </View>
-                          {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
-                        </ListItem>
-                      </List>
-                    )} else {return (
-                      <View style={{alignItems: 'center', paddingTop: 30, paddingBottom: 30}}>
-                        <Text style={{paddingTop: 5, paddingBottom: 5}}> No evening journal </Text>
-                      </View>
-                    )}
-                  })()
-                }
-              </Card>
-            </View>
+                              <ListItem style={{paddingTop: 20, paddingBottom: 25}}>
+                                <View style={{marginLeft:15}}>
+                                  <View style={{width:250, paddingBottom: 5}}><Text style={{fontSize:18, color:'darkgrey'}}>How Could I have made today better</Text></View>
+                                  <Text>{(this.props.currentJournalEntry && this.props.currentJournalEntry.q5[0]) ? this.props.currentJournalEntry.q5[0] : " "}</Text>
+                                </View>
+                                {/* <Icon style={{right: -30, color:'rgba(0, 0, 0, 0.1)'}}name="ios-arrow-forward" /> */}
+                              </ListItem>
+                            </List>
+                          )} else {return (
+                            <View style={{alignItems: 'center', paddingTop: 30, paddingBottom: 30}}>
+                              <Text style={{paddingTop: 5, paddingBottom: 5}}> No evening journal </Text>
+                            </View>
+                          )}
+                        })()
+                      }
+                    </Card>
+                  </View>
+                </View>
+
+              )} else { return (
+
+                <View style={{alignItems: 'center', justifyContent: 'center', background: "rgba(0, 0, 0, 0)", height: Dimensions.get('window').height - 305 - 85}}>
+                  <Spinner isVisible={true} color={"red"} size={Dimensions.get('window').width * 1/4} type={'Bounce'}/>
+                </View>
+
+              )}
+            })()}
           </View>
         </ParallaxView>
 
