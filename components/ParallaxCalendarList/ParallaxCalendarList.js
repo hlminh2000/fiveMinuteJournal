@@ -205,7 +205,7 @@ export default class ParallaxCalendarList extends Component {
                           </List>
                         </Card>
                       )} else { return (
-                        <View style={{borderRadius: 10, borderColor: 'lightgrey', borderStyle: 'dashed', borderWidth: 3, width: 340}}>
+                        <View style={{borderRadius: 5, borderColor: 'rgba(0, 0, 0, 0.05)', borderStyle: 'dashed', borderWidth: 3, width: 340}}>
                           <View style={{alignItems: 'center', paddingTop: 25, paddingBottom: 25}}>
                             <Text style={{paddingTop: 5, paddingBottom: 5}}> No morning journal </Text>
                           </View>
@@ -244,7 +244,7 @@ export default class ParallaxCalendarList extends Component {
                           </List>
                         </Card>
                       )} else {return (
-                        <View style={{borderRadius: 10, borderColor: 'lightgrey', borderStyle: 'dashed', borderWidth: 3, width: 340}}>
+                        <View style={{borderRadius: 5, borderColor: 'rgba(0, 0, 0, 0.05)', borderStyle: 'dashed', borderWidth: 3, width: 340}}>
                           <View style={{alignItems: 'center', paddingTop: 25, paddingBottom: 25}}>
                             <Text style={{paddingTop: 5, paddingBottom: 5}}> No evening journal </Text>
                           </View>

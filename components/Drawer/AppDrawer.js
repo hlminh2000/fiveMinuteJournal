@@ -91,6 +91,7 @@ export default class AppDrawer extends Component {
                   </Right>
                 </ListItem>
               </TouchableNativeFeedback>
+
               <TouchableNativeFeedback
                 onPress={ this.showJournalPage }
                 background={TouchableNativeFeedback.SelectableBackground()}
@@ -101,6 +102,20 @@ export default class AppDrawer extends Component {
                   </Left>
                   <Right>
                     <Icon name="options" stlye={{color: 'lightgrey'}}  />
+                  </Right>
+                </ListItem>
+              </TouchableNativeFeedback>
+
+              <TouchableNativeFeedback
+                onPress={ this.showJournalPage }
+                background={TouchableNativeFeedback.SelectableBackground()}
+                useForeground={true}>
+                <ListItem>
+                  <Left>
+                    <Text style={{fontSize: 18, marginLeft: 10}}>About</Text>
+                  </Left>
+                  <Right>
+                    <Icon name="info-outline" stlye={{color: 'lightgrey'}}  />
                   </Right>
                 </ListItem>
               </TouchableNativeFeedback>
