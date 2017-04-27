@@ -16,7 +16,7 @@ const mapStateToProps = (state) => {
 };
 
 const setDateUpdateCycle = (dispatcher) =>{
-  const msTillEndOfDay = (moment().endOf('day').unix() - moment().unix()) * 10000;
+  const msTillEndOfDay = (Moment().endOf('day').unix() - Moment().unix()) * 10000;
   setTimeout(() => {
     dispatcher({type: "END_OF_DAY", data: null});
     setTimeout(() => {
