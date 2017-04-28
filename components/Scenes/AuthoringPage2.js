@@ -24,7 +24,7 @@ import NavBar from '../NavBar/NavBar.js';
 import AuthoringCard from '../AuthoringCards/AuthoringCard.js';
 import CON_AuthoringCard from '../../containers/CON_AuthoringCard.js';
 import Moment from 'moment';
-import Firebase from '../../firebase/Firebase.js';
+import Firebase from '../../services/Firebase.js';
 import Spinner from 'react-native-spinkit';
 
 const database = Firebase.database();

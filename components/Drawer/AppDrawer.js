@@ -18,7 +18,7 @@ import {
   ListItem,
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import Firebase from '../../firebase/Firebase.js';
+import Firebase from '../../services/Firebase.js';
 import LocalStorageService from '../../services/LocalStorageService.js'
 
 const database  = Firebase.database();

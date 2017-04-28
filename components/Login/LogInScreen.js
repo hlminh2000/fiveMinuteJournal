@@ -18,7 +18,7 @@ import {
   Col,
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import Firebase from '../../firebase/Firebase.js';
+import Firebase from '../../services/Firebase.js';
 import Spinner from 'react-native-spinkit';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import LocalStorageService from '../../services/LocalStorageService.js';

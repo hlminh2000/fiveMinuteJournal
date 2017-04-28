@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ParallaxCalendarList from '../components/ParallaxCalendarList/ParallaxCalendarList.js';
-import Firebase from '../firebase/Firebase.js';
+import Firebase from '../services/Firebase.js';
 import Moment from 'moment';
 
 const database = Firebase.database();

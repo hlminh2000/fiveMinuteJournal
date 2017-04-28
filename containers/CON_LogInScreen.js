@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import LogInScreen from '../components/Login/LogInScreen.js';
-import Firebase from '../firebase/Firebase.js';
+import Firebase from '../services/Firebase.js';
 
 const database  = Firebase.database();
 
