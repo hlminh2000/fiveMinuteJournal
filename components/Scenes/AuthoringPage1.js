@@ -9,7 +9,8 @@ import {
   TextInput,
   Keyboard,
   TouchableNativeFeedback,
-  ViewPagerAndroid
+  ViewPagerAndroid,
+  StatusBar
 } from 'react-native';
 import {
   Container,
@@ -84,11 +85,9 @@ export default class AuthoringPage1 extends Component{
       .then((data) => {
         setTimeout(()=>{
           this.props.navigation.goBack();
-          this.setState({ ...this.state, isTransmittingData: false });
         },1000);
       })
       .catch((err) => {
-        this.setState({ ...this.state, isTransmittingData: false });
         console.log(err);
       });
   }
@@ -130,6 +129,10 @@ export default class AuthoringPage1 extends Component{
 
     return (
       <Container style={{backgroundColor: 'white'}}>
+        <StatusBar
+          backgroundColor="rgb(67,198,172)"
+          barStyle="light-content"
+        />
         <Image
           style={{flex: 1}}
           source={{uri: 'https://firebasestorage.googleapis.com/v0/b/mjournal-6d19f.appspot.com/o/skyscrapers-246224_1920.jpg?alt=media&token=61c45321-b324-4862-a2ed-406e4bbf6fe3'}}>
@@ -141,7 +144,7 @@ export default class AuthoringPage1 extends Component{
                     <View style = {{height: 3, width: windowDimention.width}}>
                       <LinearGradient
                         // colors={['#F8FFAE', '#43C6AC']}
-                        colors={['white', 'white']}
+                        colors={['#FF4E50', '#FF4E50']}
                         start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
                         style={{height:3, borderRadius: 5, width: windowDimention.width*(this.state.currentPage/3)}}/>
                       {/* <View style={{

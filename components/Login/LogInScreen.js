@@ -128,38 +128,34 @@ export default class LogInScreen extends Component {
 
   loginWithFacebook(){
     this.setIsLoggingIn(true);
-    // FireAuth.facebookLogin();
     LoginManager
-    .logInWithReadPermissions(['public_profile', 'email'])
-    .then((result) => {
-      if (result.isCancelled) {
-        return Promise.resolve('cancelled');
-      }
-      console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
-      // get the access token
-      return AccessToken.getCurrentAccessToken();
-    })
-    .then(data => {
-      // create a new firebase credential with the token
-      const credential = Firebase.auth.FacebookAuthProvider.credential(data.accessToken);
-
-      // login with credential
-      return Firebase.auth().signInWithCredential(credential);
-    })
-    .then((currentUser) => {
-      if (currentUser === 'cancelled') {
-        console.log('Login cancelled');
-      } else {
-        // now signed in
-        console.log(JSON.stringify(currentUser.toJSON()));
-        this.onLoginComplete();
-      }
-    })
-    .catch((error) => {
-      console.log("ERROR: ", err);
-      this.showWarningMessage(err.message);
-      this.setIsLoggingIn(false);
-    });
+      .logInWithReadPermissions(['public_profile', 'email'])
+      .then((result) => {
+        if (result.isCancelled) {
+          return Promise.resolve('cancelled');
+        }
+        console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
+        return AccessToken.getCurrentAccessToken();
+      })
+      .then(data => {
+        const credential = Firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+        console.log(credential);
+        return Firebase.auth().signInWithCredential(credential);
+      })
+      .then((currentUser) => {
+        if (currentUser === 'cancelled') {
+          console.log('Login cancelled');
+        } else {
+          // now signed in
+          console.log(currentUser.toJSON());
+          this.onLoginComplete();
+        }
+      })
+      .catch((error) => {
+        console.log("ERROR: ", err);
+        this.showWarningMessage(err.message);
+        this.setIsLoggingIn(false);
+      });
   }
 
   loginWithGoogle(){
