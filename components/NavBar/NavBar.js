@@ -27,13 +27,16 @@ export default class NavBar extends Component {
       <View style={{backgroundColor: 'rgba(0, 0, 0, 0)'}}>
         <View style={{height:50, justifyContent:'center', backgroundColor: this.props.backgroundColor || 'white'}}>
           <Button transparent onPress={()=>{
-              if(currentRoute == 'Home'){
+              // if(currentRoute == 'Home'){
                 this.props.navigation.navigate('DrawerOpen')
-              } else {
-                this.props.navigation.goBack();
-              }
+              // } else {
+              //   this.props.navigation.goBack();
+              // }
             }}>
-            <Icon name={currentRoute == 'Home' ? 'menu' : 'ios-arrow-back'} style={{color:'darkgrey'}}/>
+            <Icon name={
+                'menu'
+                // currentRoute == 'Home' ? 'menu' : 'ios-arrow-back'
+              } style={{color:'darkgrey'}}/>
           </Button>
           <Text
             style ={{

@@ -20,7 +20,9 @@ const mapDispatchToProps = (dispatch) => {
         firstName : currentUser.displayName,
         lastName  : null,
         photoURL  : currentUser.photoURL,
+        userEmail : currentUser.email,
       }
+      console.log(newUserData);
       dispatch({type: "LOG_IN_COMPLETE", data: newUserData});
       database.ref('userInfo/' + currentUser.uid).once('value', function(userInfo){
         if(!userInfo.val()){

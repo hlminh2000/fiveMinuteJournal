@@ -28,10 +28,15 @@ export default class AppDrawer extends Component {
     constructor(props){
       super(props);
       this.showJournalPage = this.showJournalPage.bind(this);
+      this.showSettingPage = this.showSettingPage.bind(this);
     }
 
     showJournalPage(){
       this.props.navigation.navigate('Journals');
+    }
+
+    showSettingPage(){
+      this.props.navigation.navigate('Settings');
     }
 
     logOut(){
@@ -57,7 +62,7 @@ export default class AppDrawer extends Component {
               start={{x: 0.0, y: 0.0}} end={{x: 0.5, y: 1.5}}
               style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
               <Image
-                source={this.props.userInfo.photoURL ? {uri: this.props.userInfo.photoURL} : require('./Assets/user_icon.png')}
+                source={(this.props.userInfo && this.props.userInfo.photoURL) ? {uri: this.props.userInfo.photoURL} : require('./Assets/user_icon.png')}
                 style={{
                   // borderColor: 'rgba(255, 255, 255, 0.3)',
                   borderWidth: 5,
@@ -93,7 +98,7 @@ export default class AppDrawer extends Component {
               </TouchableNativeFeedback>
 
               <TouchableNativeFeedback
-                onPress={ this.showJournalPage }
+                onPress={ this.showSettingPage }
                 background={TouchableNativeFeedback.SelectableBackground()}
                 useForeground={true}>
                 <ListItem>

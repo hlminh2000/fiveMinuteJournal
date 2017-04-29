@@ -17,7 +17,6 @@ const mapStateToProps = (state) => {
 
 const setDateUpdateCycle = (dispatcher) =>{
   dispatcher({type: "END_OF_DAY", data: null});
-  console.log("END OF CYCLE");
   setTimeout(() => {
     setDateUpdateCycle(dispatcher);
   }, 1000);
@@ -29,7 +28,7 @@ const mapDispatchToProps = (dispatch) => {
     dispatch({type: "SELECTED_DATE_POST_FETCHED", data: posts.val()});
   }
 
-  setDateUpdateCycle(dispatch);
+  // setDateUpdateCycle(dispatch);
 
   return {
     onDateSelect: (date) => {

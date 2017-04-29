@@ -22,8 +22,10 @@ const initialState = {
     firstName : null,
     lastName  : null,
     photoURL  : null,
+    email     : null,
   },
   currentJournalEntry  : emptyJournalEntry(),
+  errorMessage      : null,
 }
 
 const reducers = combineReducers({
@@ -79,6 +81,7 @@ const reducers = combineReducers({
         return newState;
 
       case "LOG_IN_COMPLETE":
+        console.log(action.data);
         return {
           ...state,
           isLoggedIn : true,
@@ -91,10 +94,25 @@ const reducers = combineReducers({
           currentUserInfo: action.data,
         }
 
+      case "USER_EMAIL_UPDATE":
+        return {
+          ...state,
+          currentUserInfo: {
+            ...state.currentUserInfo,
+            email: action.data
+          }
+        }
+
       case "LOG_OUT_COMPLETE":
         return {
           ...state,
           isLoggedIn : false,
+        }
+
+      case "SHOW_ERROR_MESSAGE":
+        return {
+          ...state,
+          errorMessage: action.data
         }
 
       default:

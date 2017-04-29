@@ -2,6 +2,7 @@ import ListPage from '../Scenes/ListPage.js';
 import JournalEntryEdit1 from '../EditPages/JournalEntryEdit1.js';
 import AppDrawer from '../Drawer/AppDrawer.js';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
+import SettingPage from '../Scenes/SettingsPage/SettingsPage.js';
 import CON_AuthoringPage1 from '../../containers/CON_AuthoringPage1.js';
 import CON_AuthoringPage2 from '../../containers/CON_AuthoringPage2.js';
 import CON_ListPage from '../../containers/CON_ListPage.js';
@@ -14,6 +15,9 @@ const AppNavigator = DrawerNavigator({
       Authoring1  : { screen: CON_AuthoringPage1 },
       Authoring2  : { screen: CON_AuthoringPage2 },
     }, { headerMode: 'none' })
+  },
+  Settings: {
+    screen: SettingPage,
   }
 }, {
   contentComponent: CON_AppDrawer,
