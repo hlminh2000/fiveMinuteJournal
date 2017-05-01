@@ -1,0 +1,9 @@
+{
+  "FIREBASE": {
+    "apiKey": "",
+    "authDomain": "",
+    "databaseURL": "",
+    "storageBucket": "",
+    "persistence": true,
+  }
+}
