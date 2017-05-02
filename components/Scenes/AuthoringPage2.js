@@ -17,6 +17,7 @@ import {
   Card,
   Button
 } from 'native-base';
+import API_ACCOUNTS from '../../configs/API_ACCOUNTS.json';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import ActionButton from 'react-native-action-button';
 import LinearGradient from 'react-native-linear-gradient';
@@ -108,7 +109,7 @@ export default class AuthoringPage2 extends Component{
     fetch('https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous', {
       method: 'POST',
       headers: {
-        'X-Mashape-Key' : 'fW86umSu3qmshWyv7l4jetvoqOA0p1RGfeYjsns5uqMqEhiEdE',
+        'X-Mashape-Key' : API_ACCOUNTS.MASHAPE_KEY,
         'Content-Type'  : 'application/x-www-form-urlencoded',
         'Accept'        : 'application/json'
       }

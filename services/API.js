@@ -29,6 +29,16 @@ var API = {
         }
       })
     });
+  },
+  getCurrentUserToken: () => {
+    return Firebase.auth().currentUser.getToken(false);
+  },
+  signInWithEmailAndPassword: (email, password) => {
+    return Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+  },
+  signInWithFacebookCredential: (accessToken) => {
+    const credential = Firebase.auth.FacebookAuthProvider.credential(accessToken);
+    return Firebase.auth().signInWithCredential(credential);
   }
 }
 

@@ -28,6 +28,8 @@ const initialState = {
   errorMessage      : null,
 }
 
+// TODO: split reducers out, getting too big!
+
 const reducers = combineReducers({
   mainReducer:  (state, action) => {
     switch (action.type) {

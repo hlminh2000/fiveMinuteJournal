@@ -20,6 +20,10 @@ import LinearGradient from 'react-native-linear-gradient';
 import Firebase from '../../services/Firebase.js';
 import Spinner from 'react-native-spinkit';
 import LocalStorageService from '../../services/LocalStorageService.js';
+import API from '../../services/API.js';
+
+// TODO: refactor to use API service layer
+// TODO: email validation before account activation
 
 export default class SignUpScreen extends Component {
 

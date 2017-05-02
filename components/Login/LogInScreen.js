@@ -14,14 +14,16 @@ import {
   Container,
   Button,
   Card,
-  Grid,
-  Col,
 } from 'native-base';
 import LinearGradient from 'react-native-linear-gradient';
-import Firebase from '../../services/Firebase.js';
 import Spinner from 'react-native-spinkit';
-import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import LocalStorageService from '../../services/LocalStorageService.js';
+import FacebookApi from '../../services/FacebookApi.js';
+import API from '../../services/API.js';
+
+// TODO: federated login
+// TODO: implement google login
+// TODO: password reset
 
 export default class LogInScreen extends Component {
 
@@ -68,8 +70,7 @@ export default class LogInScreen extends Component {
   }
 
   onLoginComplete(){
-    console.log("currentUser: ", Firebase.auth().currentUser);
-    Firebase.auth().currentUser.getToken(false)
+    API.getCurrentUserToken()
       .then((idToken) =>{
         LocalStorageService.saveUserToken(idToken);
         if(this.props.onLoginComplete){
@@ -85,7 +86,7 @@ export default class LogInScreen extends Component {
   signInWithEmailAndPassword(){
     if(this.state.email && this.state.password){
       this.setIsLoggingIn(true);
-      Firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      API.signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
           console.log(user);
           this.onLoginComplete();
@@ -113,6 +114,29 @@ export default class LogInScreen extends Component {
     }
   }
 
+  loginWithFacebook(){
+    this.setIsLoggingIn(true);
+    FacebookApi
+      .requestAccessToken()
+      .then(res => {
+        return API.signInWithFacebookCredential(res.accessToken);
+      })
+      .then((currentUser) => {
+        if (currentUser === 'cancelled') {
+          console.log('Login cancelled');
+        } else {
+          console.log(currentUser.toJSON());
+          this.onLoginComplete();
+          this.showWarningMessage("Login was cancelled");
+        }
+      })
+      .catch((error) => {
+        console.log("ERROR: ", err);
+        this.showWarningMessage(err.message);
+        this.setIsLoggingIn(false);
+      });
+  }
+
   showWarningMessage(message){
     this.setState({
       ...this.state,
@@ -126,41 +150,8 @@ export default class LogInScreen extends Component {
     }, 5000);
   }
 
-  loginWithFacebook(){
-    this.setIsLoggingIn(true);
-    LoginManager
-      .logInWithReadPermissions(['public_profile', 'email'])
-      .then((result) => {
-        if (result.isCancelled) {
-          return Promise.resolve('cancelled');
-        }
-        console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
-        return AccessToken.getCurrentAccessToken();
-      })
-      .then(data => {
-        const credential = Firebase.auth.FacebookAuthProvider.credential(data.accessToken);
-        console.log(credential);
-        return Firebase.auth().signInWithCredential(credential);
-      })
-      .then((currentUser) => {
-        if (currentUser === 'cancelled') {
-          console.log('Login cancelled');
-        } else {
-          // now signed in
-          console.log(currentUser.toJSON());
-          this.onLoginComplete();
-        }
-      })
-      .catch((error) => {
-        console.log("ERROR: ", err);
-        this.showWarningMessage(err.message);
-        this.setIsLoggingIn(false);
-      });
-  }
-
   loginWithGoogle(){
     this.setIsLoggingIn(false);
-    FireAuth.googleLogin();
   }
 
   render() {

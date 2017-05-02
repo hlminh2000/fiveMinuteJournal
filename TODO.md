@@ -1,9 +1,6 @@
 ##### Design work
   - App icon
 
-##### Core Features
-  - End of day date change (gotta make sure to update the "today" state periodically / at end of day)
-
 ##### Push notification
   - two push notifications, one for the AM and one for the PM.
   - reads time from local file system as set by user settings.
@@ -34,3 +31,7 @@
 ##### About page
   - version number
   - credit for third party components
+
+##### Refactoring
+  - split network communication to individual network service layers
+  - move network communications out of visual components to containers
