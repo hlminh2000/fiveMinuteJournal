@@ -25,10 +25,8 @@ Check out the latest build off the app: https://goo.gl/AtWvzO
 #### Preview Screenshots
 Here are a few screenshots of the actual app currently:
 
-<img src="screenshots/Screenshot_20170501-201112.png" width=200/>
-<img src="screenshots/Screenshot_20170501-201033.png" width=200/>
-<img src="screenshots/Screenshot_20170501-200449.png" width=200/>
-<img src="screenshots/Screenshot_20170501-200454.png" width=200/>
+<img src="screenshots/Screenshot_20170501-201112.png" width=200/><img src="screenshots/Screenshot_20170501-201033.png" width=200/>
+<img src="screenshots/Screenshot_20170501-200449.png" width=200/><img src="screenshots/Screenshot_20170501-200454.png" width=200/>
 <img src="screenshots/Screenshot_20170501-200950.png" width=200/>
 
 <!-- ![Image of Yaktocat](screenshots/Screenshot_20170501-200449.png) -->
