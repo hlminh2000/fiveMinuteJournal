@@ -22,6 +22,7 @@ import ParallaxView from 'react-native-parallax-view';
 import Spinner from 'react-native-spinkit';
 import Moment from 'moment';
 import NavBar from '../NavBar/NavBar.js';
+import ActionButton from 'react-native-action-button';
 
 const calendarStyle = {
   calendarContainer:{
@@ -302,6 +303,7 @@ export default class ParallaxCalendarList extends Component {
               )}
             })()}
           </View>
+
         </ParallaxView>
 
     );
