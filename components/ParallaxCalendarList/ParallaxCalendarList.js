@@ -91,7 +91,9 @@ export default class ParallaxCalendarList extends Component {
     super(props);
     this.state = {
       isLoadingData: false,
+      errorMessage: null,
     }
+    this.showError = this.showError.bind(this)
   }
 
   componentDidMount(){
@@ -102,12 +104,31 @@ export default class ParallaxCalendarList extends Component {
 
   onDateSelect(date){
     this.setState({ ...this.state, isLoadingData: true })
+    var dataReceived = false;
     this.props.onDateSelect(Moment(date).format('YYYY-MM-DD'))
       .then(() => {
-        setTimeout(() => {
-          this.setState({ ...this.state, isLoadingData: false })
-        }, 50);
+        dataReceived = true;
+        this.setState({ ...this.state, isLoadingData: false })
       })
+    setTimeout(() => {
+      if(!dataReceived){
+        this.setState({ ...this.state, isLoadingData: false })
+        this.showError("The connection timed out, plese check your internet connection")
+      }
+    }, 5000);
+  }
+
+  showError(errMsg){
+    this.setState({
+      ...this.state,
+      errorMessage: errMsg
+    });
+    setTimeout(()=>{
+      this.setState({
+        ...this.state,
+        errorMessage: null
+      })
+    }, 2000);
   }
 
   onNextMonthPress(){
@@ -125,6 +146,7 @@ export default class ParallaxCalendarList extends Component {
   render() {
 
     const listHeight = Dimensions.get('window').height - 305 - 85;
+    const windowDimention = Dimensions.get('window');
 
     return (
         <ParallaxView
@@ -148,6 +170,23 @@ export default class ParallaxCalendarList extends Component {
                   startDate={this.props.calendarStartDate}
                   eventDates={['2017-04-02']}
                   selectedDate={this.props.selectedDate}/>
+                {(()=>{ if(this.state.errorMessage){ return (
+                  <View style={{
+                    position: 'absolute',
+                    height: 60,
+                    borderRadius: 5,
+                    borderColor: 'rgba(255, 0, 0, 1)',
+                    borderWidth: 1,
+                    backgroundColor: 'rgba(255, 100, 100, 1)',
+                    top: 10,
+                    width: windowDimention.width - 80,
+                    paddingLeft: 10,
+                    paddingRight: 10,
+                    justifyContent: 'center',
+                  }}>
+                    <Text style={{color:'white'}}>{this.state.errorMessage}</Text>
+                  </View>
+                )}})()}
               </LinearGradient>
             </View>
           )}>

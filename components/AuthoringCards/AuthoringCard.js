@@ -95,7 +95,7 @@ export default class AuthoringCard extends Component{
                         onChangeText={ (content) => {this.onInputChange(index, content)} }
                         underlineColorAndroid='transparent'
                         autoCapitalize='sentences'
-                        placeholder={this.props.originalEntry ? this.props.originalEntry[index] : ""}
+                        defaultValue={this.props.originalEntry ? this.props.originalEntry[index] : ""}
                         style={{
                           textAlign: 'center',
                           fontSize: 18,

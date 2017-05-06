@@ -64,7 +64,7 @@ export default class SettingsPage extends Component {
 
           <CON_Settings_ProfileSection/>
 
-          <ListSection title="Notification"></ListSection>
+          {/* <ListSection title="Notification"></ListSection> */}
 
         </ScrollView>
       </Container>

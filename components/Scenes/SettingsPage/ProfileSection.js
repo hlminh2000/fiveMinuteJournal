@@ -67,46 +67,58 @@ export default class ProfileSection extends Component {
   }
 
   onFirstNameInputEnd(e){
-    API.updateUserFirstName(e.nativeEvent.text)
-      .then(()=>{
-        this.endEditing();
-      })
-      .catch((err) => {
-        if(this.props.onFirstNameUpdateError){
-          this.props.onFirstNameUpdateError(err)
-        }
-        this.endEditing();
-      })
+    if(e.nativeEvent.text && e.nativeEvent.text.length > 0){
+      API.updateUserFirstName(e.nativeEvent.text)
+        .then(()=>{
+          this.endEditing();
+        })
+        .catch((err) => {
+          if(this.props.onFirstNameUpdateError){
+            this.props.onFirstNameUpdateError(err)
+          }
+          this.endEditing();
+        })
+    } else {
+      this.endEditing();
+    }
   }
 
   onLastNameInputEnd(e){
-    API.updateUserLastName(e.nativeEvent.text)
-      .then(()=>{
-        this.endEditing();
-      })
-      .catch((err) => {
-        if(this.props.onLastNameUpdateError){
-          this.props.onLastNameUpdateError(err)
-        }
-        this.endEditing();
-      })
+    if(e.nativeEvent.text && e.nativeEvent.text.length > 0){
+      API.updateUserLastName(e.nativeEvent.text)
+        .then(()=>{
+          this.endEditing();
+        })
+        .catch((err) => {
+          if(this.props.onLastNameUpdateError){
+            this.props.onLastNameUpdateError(err)
+          }
+          this.endEditing();
+        })
+    } else {
+      this.endEditing();
+    }
   }
 
   onEmailInputEnd(e){
     const newEmail = e.nativeEvent.text;
-    API.updateUserEmail(newEmail)
-      .then(() => {
-        if(this.props.onUserEmailUpdated){
-          this.props.onUserEmailUpdated(newEmail);
-        }
-        this.endEditing();
-      })
-      .catch((err) => {
-        if(this.props.onEmailUpdateError){
-          this.props.onEmailUpdateError(err);
-        }
-        this.endEditing();
-      })
+    if(newEmail && newEmail.length > 0){
+      API.updateUserEmail(newEmail)
+        .then(() => {
+          if(this.props.onUserEmailUpdated){
+            this.props.onUserEmailUpdated(newEmail);
+          }
+          this.endEditing();
+        })
+        .catch((err) => {
+          if(this.props.onEmailUpdateError){
+            this.props.onEmailUpdateError(err);
+          }
+          this.endEditing();
+        })
+    } else {
+      this.endEditing();
+    }
   }
 
   setEditingField(fieldName){
@@ -148,8 +160,10 @@ export default class ProfileSection extends Component {
               {(()=>{
                 if(this.state.editingField === "firstName"){return (
                     <TextInput
-                      placeholder={this.props.firstName}
+                      defaultValue={this.props.firstName}
                       onEndEditing={this.onFirstNameInputEnd.bind(this)}
+                      autoFocus={true}
+                      ref="input_firstName"
                       style={STYLE.INPUT}/>
                 )} else {
                   return <Text style={{fontSize: 16}}>{shortenString(this.props.firstName)}</Text>
@@ -174,8 +188,10 @@ export default class ProfileSection extends Component {
               {(()=>{
                 if(this.state.editingField === "lastName"){return (
                     <TextInput
-                      placeholder={this.props.lastName}
+                      defaultValue={this.props.lastName}
                       onEndEditing={this.onLastNameInputEnd.bind(this)}
+                      autoFocus={true}
+                      ref="input_lastName"
                       style={STYLE.INPUT}/>
                 )} else {
                   return <Text style={{fontSize: 16}}>{shortenString(this.props.lastName)}</Text>
@@ -200,8 +216,10 @@ export default class ProfileSection extends Component {
               {(()=>{
                 if(this.state.editingField === "email"){return (
                     <TextInput
-                      placeholder={this.props.email}
+                      defaultValue={this.props.email}
                       onEndEditing={this.onEmailInputEnd.bind(this)}
+                      autoFocus={true}
+                      ref="input_email"
                       style={STYLE.INPUT}/>
                 )} else {
                   return <Text style={{fontSize: 16}}>{shortenString(this.props.email)}</Text>
